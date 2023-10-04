@@ -139,7 +139,7 @@ Let's try to do some amauterous DDD.
 What entities do I work with in my nixos configurations?
 
 - x86_64: system
-- wsl, bare metal: host
+- wsl, bare metal: installation
 - Tower PC, Lenovo Laptop: machine
 - finapi, gg, tprobix: environment
 
@@ -149,3 +149,8 @@ them, so I would stay inside the frame of other people cases.
 - virtual machines
 - different systems - darwin, arm
 - nix without nixos
+
+# Todos
+
+- Try to use nixago, it should magic tool for specifying configurations in nix.
+  I'll keep it in the inputs.

@@ -3,40 +3,31 @@
   description = "PrimaMateria's NixOS configuration";
 
   nixConfig = {
-    extra-experimental-features = "nix-command flakes";
-
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      "https://ezkea.cachix.org"
-      "https://colmena.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-      "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
-    ];
+    extra-experimental-features = [ "nix-command" "flakes" ];
   };
 
   inputs = {
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
-    nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+    nixpkgs-stable.url = "github:nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "github:nixpkgs/nixos-unstable";
+
     nixpkgs.follows = "nixpkgs-stable";
-    nixpkgs'.follows = "nixpkgs";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follow = "nixpkgs";
     };
 
     nixos-hardware = "github:nixos/nixos-hardware";
 
-    devshell.url = "github:numtide/devshell";
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     nixago = {
       url = "github:nix-community/nixago";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
 
     std = {
       url = "github:divnix/std";
