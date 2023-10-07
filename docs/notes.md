@@ -154,3 +154,12 @@ them, so I would stay inside the frame of other people cases.
 
 - Try to use nixago, it should magic tool for specifying configurations in nix.
   I'll keep it in the inputs.
+
+# Diary
+
+~ I already have my dream structure prepared. I come to see the growOn funcion
+with 3 set arguments. I checked that it comes from hive -> std -> paisano. But
+at the end I saw it consume only 2 sets - the cells source & cell blocks spec,
+and the second nix cli flake output schema with harvest/collect calls. So I am
+not sure what is the third arg, and where in the chain it is processed. I
+considered asking on the matrix channel.
