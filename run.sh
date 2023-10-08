@@ -1,0 +1,2 @@
+clear
+nix flake show

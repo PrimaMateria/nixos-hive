@@ -7,23 +7,23 @@
   };
 
   inputs = {
-    nixpkgs-stable.url = "github:nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/23.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
 
     nixpkgs.follows = "nixpkgs-stable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
-      inputs.nixpkgs.follow = "nixpkgs";
+      url = "github:nix-community/home-manager/release-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware = "github:nixos/nixos-hardware";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
 
     devshell = {
       url = "github:numtide/devshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nixago = {
       url = "github:nix-community/nixago";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +47,7 @@
         home-manager.follows = "home-manager";
         disko.follows = "disko";
         colmena.follows = "colmena";
-        nixos-generators = "nixos-generators";
+        nixos-generators.follows = "nixos-generators";
       };
     };
 
@@ -77,42 +77,44 @@
   outputs = { self, hive, std, ... }@inputs:
     let
       collect = hive.collect // { renamer = cell: target: "${target}"; };
-      lib = inputs.nixpkgs.lib // buitlins;
+      # lib = inputs.nixpkgs.lib // buitlins;
+      lib = inputs.nixpkgs.lib;
     in
     hive.growOn
       {
         inherit inputs;
 
-        cellsFrom = ./comb;
+        cellsFrom = ./cells;
         cellBlocks = with std.blockTypes; [
           # modules
-          (functions "nixosModules")
-          (functions "homeModules")
+          # (functions "nixosModules")
+          # (functions "homeModules")
 
           # profiles
-          (functions "hardwareProfiles")
-          (functions "nixosProfiles")
-          (functions "userProfiles")
-          (functions "arionProfiles")
-          (functions "homeProfiles")
+          # (functions "hardwareProfiles")
+          # (functions "nixosProfiles")
+          # (functions "userProfiles")
+          # (functions "arionProfiles")
+          # (functions "homeProfiles")
 
           # suites
-          (functions "nixosSuites")
-          (functions "homeSuites")
+          # (functions "nixosSuites")
+          # (functions "homeSuites")
 
           # configurations
-          nixosConfigurations
-          diskoConfigurations
-          colmenaConfigurations
-          (installables "generators")
-          (installables "installers")
+          # nixosConfigurations
+          # diskoConfigurations
+          # colmenaConfigurations
+          # (installables "generators")
+          # (installables "installers")
+
 
           # pkgs
-          (pkgs "pkgs")
+          # (pkgs "pkgs")
 
           # devshells
-          (nixago "configs")
-          (devshells "devshells")
+          # (nixago "configs")
+          # (devshells "devshells")
         ];
 
         nixpkgsConfig.allowUnfreePredicate = pkg:
@@ -121,21 +123,21 @@
           ];
       }
       {
-        devShells = std.harvest self [ "repo" "devshells" ];
-        packages =
-          let
-            generators = std.harvest self [ "repo" "generators" ];
-            installers = std.harvest self [ "primamateria" "installers" ];
-          in
-          {
-            inherit (installers) x86_64-linux;
-          };
+        # devShells = std.harvest self [ "repo" "devshells" ];
+        # packages =
+        #   let
+        #     # generators = std.harvest self [ "repo" "generators" ];
+        #     # installers = std.harvest self [ "primamateria" "installers" ];
+        #   in
+        #   {
+        #     inherit (installers) x86_64-linux;
+        #   };
       }
+      # maybe not needed, might get rid of it later
       {
-        nixosConfigurations = collect self "nixosConfigurations";
-        colmenaHive = collect self "colmenaConfigurations";
-        # TODO: implement
+        # nixosConfigurations = collect self "nixosConfigurations";
+        # colmenaHive = collect self "colmenaConfigurations";
         # nixosModules = collect self "nixosModules";
-        hmModules = collect self "homeModules";
+        # hmModules = collect self "homeModules";
       };
 }
