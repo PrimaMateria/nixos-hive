@@ -87,7 +87,7 @@
         cellsFrom = ./cells;
         cellBlocks = with std.blockTypes; [
           # modules
-          # (functions "nixosModules")
+          (functions "nixosModules")
           # (functions "homeModules")
 
           # profiles
@@ -95,11 +95,11 @@
           # (functions "nixosProfiles")
           # (functions "userProfiles")
           # (functions "arionProfiles")
-          # (functions "homeProfiles")
+          (functions "homeProfiles")
 
           # suites
-          # (functions "nixosSuites")
-          # (functions "homeSuites")
+          (functions "nixosSuites")
+          (functions "homeSuites")
 
           # configurations
           # nixosConfigurations
