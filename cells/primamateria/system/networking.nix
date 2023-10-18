@@ -1,0 +1,6 @@
+{}:
+{
+  config = {
+    networking.useDHCP = false;
+  };
+}
