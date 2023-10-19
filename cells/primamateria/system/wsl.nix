@@ -1,7 +1,7 @@
 {}:
 {
   import = [
-    # probably I can get it from flake inputs
+    # TODO probably I can get it from flake inputs
     system.nixos-wsl
   ];
 
@@ -9,12 +9,11 @@
     wsl = {
       enable = true;
       automountPath = "/mnt";
-      # defaultUser = username;
+      defaultUser = "primamateria";
       startMenuLaunchers = true;
       interop.register = true;
       wslConf = {
         network = {
-          # inherit hostname;
           generateResolvConf = false;
         };
       };

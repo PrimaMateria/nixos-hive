@@ -5,14 +5,7 @@ in
 {
   nixpkgs.config.allowUnfree = true;
 
-  # Make ready for nix flakes
-  nix = {
-    extraOptions = "experimental-features = nix-command flakes";
-    # package = nixpkgs.unstable.nixFlakes;
-  };
-
   time.timeZone = "Europe/Berlin";
-  # networking.hostName = hostname;
 
   services.xserver =
     {
@@ -28,6 +21,11 @@ in
         fonts = [ "CascadiaCode" ];
       })
     ];
+
+  users.users.primamateria = {
+    homeMode = "755";
+    extraGroups = [ "wheel" "audio" "video" "networkmanager" "disk" "scanner" "lp" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -87,15 +87,11 @@
         cellsFrom = ./cells;
         cellBlocks = with std.blockTypes; [
           # modules
-          (functions "nixosModules")
-          # (functions "homeModules")
-
-          # profiles
-          # (functions "hardwareProfiles")
-          # (functions "nixosProfiles")
-          # (functions "userProfiles")
-          # (functions "arionProfiles")
-          (functions "homeProfiles")
+          (functions "devices")
+          (functions "system")
+          (functions "machines")
+          (functions "installations")
+          (functions "applications")
 
           # suites
           (functions "nixosSuites")
