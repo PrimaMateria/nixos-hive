@@ -1,2 +1,0 @@
-clear
-nix flake show
