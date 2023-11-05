@@ -1,6 +1,6 @@
 { inputs, cell }:
 let
-  inherit (cell) homeSuites bee;
+  inherit (cell) bee applications;
 in
 {
   inherit bee;
@@ -16,5 +16,6 @@ in
         stateVersion = "22.05";
       };
     }
-  ] ++ homeSuites.gg;
+    applications.shell
+  ];
 }

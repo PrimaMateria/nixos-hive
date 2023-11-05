@@ -1,8 +1,15 @@
 { inputs, cell }:
 let
-  inherit (cell) nixosSuites bee;
+  inherit (cell) bee machines installations system;
 in
 {
   inherit bee;
-  imports = nixosSuites.gg;
+  imports = [ 
+    installations.common
+    installations.wsl
+    {
+      networking.hostName = "gg";
+      wsl.wslConf.network.hostname = "gg";
+    }
+  ];
 }

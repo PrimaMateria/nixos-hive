@@ -43,21 +43,12 @@
 
         cellsFrom = ./cells;
         cellBlocks = with std.blockTypes; with hive.blockTypes; [
-          # bee
           (functions "bee")
-
-          # modules
           (functions "devices")
           (functions "system")
           (functions "machines")
           (functions "installations")
           (functions "applications")
-
-          # suites
-          (functions "nixosSuites")
-          (functions "homeSuites")
-
-          # configurations
           nixosConfigurations
         ];
       }
