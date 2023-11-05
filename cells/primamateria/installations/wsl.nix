@@ -4,9 +4,8 @@ let
   inherit (cell) system;
 in
 {
-  import = [
+  imports = [
     system.wsl
     system.essentials
-    system.vnc
   ];
 }

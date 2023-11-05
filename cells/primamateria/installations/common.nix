@@ -21,6 +21,7 @@ in
     ];
 
   users.users.primamateria = {
+    isNormalUser = true;
     homeMode = "755";
     extraGroups = [ "wheel" "audio" "video" "networkmanager" "disk" "scanner" "lp" ];
   };

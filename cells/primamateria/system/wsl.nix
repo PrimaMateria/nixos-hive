@@ -1,4 +1,7 @@
 { inputs, cell }:
+let 
+  inherit (inputs) nixpkgs;
+in
 {
   # Activated wsl in bee module, might be enough
   # import = [
@@ -8,11 +11,11 @@
   config = {
     wsl = {
       enable = true;
-      automountPath = "/mnt";
       defaultUser = "primamateria";
       startMenuLaunchers = true;
       interop.register = true;
       wslConf = {
+        automount.root = "/mnt";
         network = {
           generateResolvConf = false;
         };
@@ -21,7 +24,7 @@
 
     environment.etc."resolv.conf" = {
       enable = true;
-      source = pkgs.writeText "resolv.conf" '' 
+      source = nixpkgs.writeText "resolv.conf" '' 
       nameserver 8.8.8.8
     '';
     };
