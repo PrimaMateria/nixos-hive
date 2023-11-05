@@ -51,9 +51,11 @@
           (functions "installations")
           (functions "applications")
           nixosConfigurations
+          homeConfigurations
         ];
       }
       {
         nixosConfigurations = hive.collect self "nixosConfigurations";
+        homeConfigurations = hive.collect self "homeConfigurations";
       };
 }

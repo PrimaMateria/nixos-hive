@@ -3,11 +3,6 @@ let
   inherit (inputs) nixpkgs;
 in
 {
-  # Activated wsl in bee module, might be enough
-  # import = [
-  #   system.nixos-wsl.nixosModules.wsl
-  # ];
-
   config = {
     wsl = {
       enable = true;

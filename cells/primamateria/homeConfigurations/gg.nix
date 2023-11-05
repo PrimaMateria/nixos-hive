@@ -4,18 +4,15 @@ let
 in
 {
   inherit bee;
-  # inherit pkgs;
-  # extraSpecialArgs = {
-  #   inherit watson-jira-next pkgs-unstable;
-  # };
-  modules = [
+  imports = [
     {
       home = {
-        username = "mbenko";
-        homeDirectory = "/home/mbenko";
+        username = "primamateria";
+        homeDirectory = "/home/primamateria";
         stateVersion = "22.05";
       };
     }
     applications.shell
+    applications.git
   ];
 }
