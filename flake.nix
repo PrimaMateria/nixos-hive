@@ -55,7 +55,12 @@
         ];
       }
       {
+        # sudo nixos-rebuild switch --flake .#primamateria-gg  
+        # sudo nixos-rebuild dry-activate --flake .#primamateria-gg  
         nixosConfigurations = hive.collect self "nixosConfigurations";
+
+        # nix build .#homeConfigurations.primamateria-gg.activationPackage
+        # ./result/activate
         homeConfigurations = hive.collect self "homeConfigurations";
       };
 }
