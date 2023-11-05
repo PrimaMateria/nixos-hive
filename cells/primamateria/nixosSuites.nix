@@ -14,8 +14,10 @@ in {
         # rclone
       ];
       networking.hostName = "mentat";
-      primamateria.system.i3.displaySetupScript =
-        nixpkgs.acerMonitorDisplaySetupScript;
+      # TODO: I was trying to pass this shell script through overlay, but it is
+      # not picked up
+      # primamateria.system.i3.displaySetupScript =
+      #   nixpkgs.acerMonitorDisplaySetupScript;
     }
   ];
   wokwok = [ 

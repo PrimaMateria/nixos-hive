@@ -1,9 +1,9 @@
 {}:
 {
-  import = [
-    # TODO probably I can get it from flake inputs
-    system.nixos-wsl
-  ];
+  # Activated wsl in bee module, might be enough
+  # import = [
+  #   system.nixos-wsl.nixosModules.wsl
+  # ];
 
   config = {
     wsl = {

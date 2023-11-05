@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     devshell = {
@@ -76,7 +81,6 @@
 
   outputs = { self, hive, std, ... }@inputs:
     let
-      collect = hive.collect // { renamer = cell: target: "${target}"; };
       # lib = inputs.nixpkgs.lib // buitlins;
       lib = inputs.nixpkgs.lib;
     in
@@ -85,7 +89,10 @@
         inherit inputs;
 
         cellsFrom = ./cells;
-        cellBlocks = with std.blockTypes; [
+        cellBlocks = with std.blockTypes; with hive.blockTypes; [
+          # bee
+          (functions "bee")
+
           # modules
           (functions "devices")
           (functions "system")
@@ -98,7 +105,7 @@
           (functions "homeSuites")
 
           # configurations
-          # nixosConfigurations
+          nixosConfigurations
           # diskoConfigurations
           # colmenaConfigurations
           # (installables "generators")
@@ -112,11 +119,6 @@
           # (nixago "configs")
           # (devshells "devshells")
         ];
-
-        nixpkgsConfig.allowUnfreePredicate = pkg:
-          lib.elem (lib.getName pkg) [
-            "discord"
-          ];
       }
       {
         # devShells = std.harvest self [ "repo" "devshells" ];
@@ -129,11 +131,8 @@
         #     inherit (installers) x86_64-linux;
         #   };
       }
-      # maybe not needed, might get rid of it later
       {
-        # nixosConfigurations = collect self "nixosConfigurations";
+        nixosConfigurations = hive.collect self "nixosConfigurations";
         # colmenaHive = collect self "colmenaConfigurations";
-        # nixosModules = collect self "nixosModules";
-        # hmModules = collect self "homeModules";
       };
 }
