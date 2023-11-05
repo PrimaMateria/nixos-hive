@@ -1,4 +1,4 @@
-{ inputs }:
+{ inputs, cell }:
 let
   inherit (inputs) nixpkgs;
   acerMonitorDisplaySetupScript = nixpkgs.writeShellApplication {

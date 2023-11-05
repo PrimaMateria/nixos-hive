@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   # Activated wsl in bee module, might be enough
   # import = [

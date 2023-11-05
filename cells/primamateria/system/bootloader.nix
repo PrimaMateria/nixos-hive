@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   config = {
     # Use the systemd-boot EFI boot loader.

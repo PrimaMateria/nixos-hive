@@ -1,6 +1,6 @@
 { inputs, cell }:
 let
-  inherit (cell) bee machines installations system;
+  inherit (cell) bee installations;
 in
 {
   inherit bee;

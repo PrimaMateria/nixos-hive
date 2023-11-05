@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   config = {
     services.xserver.videoDrivers = [ "nvidia" ];

@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   config = {
     services.x2goserver.enable = true;

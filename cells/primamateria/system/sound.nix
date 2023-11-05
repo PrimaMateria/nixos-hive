@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   config = {
     sound.enable = true;

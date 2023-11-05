@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   config = {
     services.printing.enable = true;

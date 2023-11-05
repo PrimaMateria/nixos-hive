@@ -1,4 +1,4 @@
-{}:
+{ inputs, cell }:
 {
   config = {
     fileSystems."/mnt/c" =

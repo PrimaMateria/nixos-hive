@@ -1,4 +1,4 @@
-{ inputs, config }:
+{ inputs, cell, config }:
 let
   inherit (inputs) nixpkgs;
   cfg = config.primamateria.system.i3;

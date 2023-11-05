@@ -3,8 +3,6 @@ let
   inherit (inputs) nixpkgs;
 in
 {
-  nixpkgs.config.allowUnfree = true;
-
   time.timeZone = "Europe/Berlin";
 
   services.xserver =
@@ -15,7 +13,7 @@ in
       xkbOptions = "grp:lctrl_lwin_toggle";
     };
 
-  fonts.fonts = with pkgs;
+  fonts.fonts = with nixpkgs;
     [
       (nerdfonts.override {
         fonts = [ "CascadiaCode" ];

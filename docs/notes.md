@@ -1,40 +1,31 @@
 Following [https://github.com/thongpv87/hive-config/blob/main/flake.nix]().
-Actually it looks like this is copy of [https://github.com/Lord-Valen/configuration.nix]().
+Actually it looks like this is copy of
+[https://github.com/Lord-Valen/configuration.nix]().
 
 What is
 
 - arion - docker-compose enhanced by nix
 - colmena - deployment tool
 - nixago - configs in nix
-- nixos-generators - somehow generates different images for VM or some other platforms
+- nixos-generators - somehow generates different images for VM or some other
+  platforms
 - flake-compat - adapter between flake and non-flake nix systems
 - aagl (as substituter) - genshiin impact launcher
 - watershot (in desktop's inputs) - flameshot but for wayland
 - "VCV-Rack" - music creator app
 - "osu-lazer-bin" - some game for mouse agility
 
-Hardware:
-tower,
-lenovo-notebook
+Hardware: tower, lenovo-notebook
 
-Home Profiles:
-i3
-shell
-git
-...
+Home Profiles: i3 shell git ...
 
-NixOS Configurations:
-full-tprobix
-wsl-finapi
-wsl-gg
+NixOS Configurations: full-tprobix wsl-finapi wsl-gg
 
-User Profiles:
-primamateria, mbenko
+User Profiles: primamateria, mbenko
 
 Module is from now on reserved from nix module as in nixpkgs - imports, meta &
-options.
-Profiles are what I have previously called modules. Different aspects of either
-system or home.
+options. Profiles are what I have previously called modules. Different aspects
+of either system or home.
 
 ```
 # modules
