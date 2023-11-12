@@ -2,6 +2,7 @@
 let
   inherit (inputs) nixpkgs;
   # gh-secrets = import ../.secrets/github-cli.nix;
+  inherit (cell) secrets;
 in
 {
   home.packages = with nixpkgs; [
@@ -51,6 +52,8 @@ in
     enable = true;
     pinentryFlavor = "qt";
   };
+
+  home.file.foo.text = secrets.common.foo;
 
   # programs.gh = {
   #   enable = true;

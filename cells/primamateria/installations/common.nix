@@ -5,6 +5,10 @@ in
 {
   time.timeZone = "Europe/Berlin";
 
+  nix = {
+    extraOptions = "experimental-features = nix-command flakes";
+  };
+
   services.xserver =
     {
       enable = true;
