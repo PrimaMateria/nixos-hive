@@ -1,10 +1,12 @@
 { inputs, cell }:
 let
   inherit (cell) bee installations;
+  inherit (inputs) agenix;
 in
 {
   inherit bee;
-  imports = [ 
+  imports = [
+    agenix.nixosModules.default
     installations.common
     installations.wsl
     {

@@ -28,6 +28,7 @@
           (functions "machines")
           (functions "installations")
           (functions "applications")
+          (functions "secrets")
           nixosConfigurations
           homeConfigurations
         ];
@@ -64,16 +65,17 @@
 
     std = {
       url = "github:divnix/std";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hive = {
       url = "github:divnix/hive";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
