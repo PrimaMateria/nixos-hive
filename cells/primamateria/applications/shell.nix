@@ -6,7 +6,7 @@ in
   home.packages = with nixpkgs; [
     unzip
     htop
-    exa
+    eza
     bat
     tldr
     fzf
@@ -18,7 +18,7 @@ in
   programs.bash = {
     enable = true;
     shellAliases = {
-      ls = "exa --color automatic --time-style long-iso";
+      ls = "eza --time-style long-iso";
       ll = "ls -lha";
       cat = "bat -p";
       nvim = "nix run ~/dev/neovim-nix --";

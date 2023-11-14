@@ -11,8 +11,23 @@ in
         homeDirectory = "/home/primamateria";
         stateVersion = "22.05";
       };
+
+      primamateria.applications.tmux = {
+        space = [
+          "nixos"
+          "neovim-nix"
+          "ambients"
+          "newsboat"
+          "weechat"
+        ];
+        projects = [
+          "hive"
+          "qmk"
+        ];
+      };
     }
     applications.shell
     applications.git
+    applications.tmux
   ];
 }

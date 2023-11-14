@@ -7,7 +7,6 @@ in
   home.packages = with nixpkgs; [
     git-crypt
     gnupg
-    pinentry_qt
     diff-so-fancy
   ];
 
@@ -49,9 +48,7 @@ in
 
   services.gpg-agent = {
     enable = true;
-    pinentryFlavor = "qt";
   };
-
 
   programs.gh = {
     enable = true;

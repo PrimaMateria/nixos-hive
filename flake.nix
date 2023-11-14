@@ -51,10 +51,10 @@
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
-    nixpkgs.follows = "nixpkgs-stable";
+    nixpkgs.follows = "nixpkgs-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
