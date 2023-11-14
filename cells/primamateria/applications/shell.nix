@@ -13,7 +13,6 @@ in
     entr
     translate-shell
     glow
-    sc-im
   ];
 
   programs.bash = {
@@ -38,13 +37,8 @@ in
 
       export EDITOR=${nixpkgs.neovim}/bin/nvim
       export MANPAGER="less -R --use-color -Dd+y -Du+b"
-      export NIXPKGS_ALLOW_UNFREE=1
-      
-      eval "$(zoxide init bash)"
-
-      #test -z ''${TMUX} && tmux new-session -A -s space
     '';
 
-      # export OPENAI_API_KEY=${chatgptSecrets.apiKey}
+    # export OPENAI_API_KEY=${chatgptSecrets.apiKey}
   };
 }

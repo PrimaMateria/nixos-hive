@@ -1,7 +1,6 @@
 { inputs, cell }:
 let
   inherit (inputs) nixpkgs;
-  # gh-secrets = import ../.secrets/github-cli.nix;
   inherit (cell) secrets;
 in
 {
@@ -53,13 +52,12 @@ in
     pinentryFlavor = "qt";
   };
 
-  home.file.foo.text = secrets.common.foo;
 
-  # programs.gh = {
-  #   enable = true;
-  #   settings = {
-  #     git_protocol = "ssh";
-  #   };
-  # };
-  # xdg.configFile."gh/hosts.yml".text = gh-secrets.hosts;
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+    };
+  };
+  xdg.configFile."gh/hosts.yml".text = secrets.github.hosts;
 }
