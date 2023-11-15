@@ -42,9 +42,7 @@
         '';
       };
 
-      generatePrefabs = windows: foldl (accumulator: window: accumulator +
-      (getAttr window prefabs)) "" windows;
-
+      generatePrefabs = foldl (accumulator: window: accumulator + (getAttr window prefabs)) "";
 
       fkey = spec: "F" + (toString (
         (lists.findFirstIndex (x: x.name == spec.name) null specs) + 1
@@ -77,7 +75,7 @@
       (map (spec: {
         name = "tmuxp/${spec.name}.yml";
         value = {
-          text = debug.traceVal (generateContent spec);
+          text = generateContent spec;
         };
       }))
       listToAttrs
