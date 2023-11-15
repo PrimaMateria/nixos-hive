@@ -5,6 +5,11 @@ in
 {
   inherit bee;
   imports = [
+    applications.shell
+    applications.git
+    applications.tmux
+    applications.newsboat
+
     {
       home = {
         username = "primamateria";
@@ -17,9 +22,9 @@ in
           {
             name = "space";
             type = "prefabs";
-            windows = [ "nixos" "neovim-nix" "ambients" "newsboat" "weechat"];
+            windows = [ "nixos" "neovim-nix" "ambients" "newsboat" "weechat" ];
           }
-          { 
+          {
             name = "hive";
             type = "custom";
             windows = ''
@@ -31,7 +36,7 @@ in
                 start_directory: ~/dev/experiment-paisano
             '';
           }
-          { 
+          {
             name = "qmk";
             type = "project";
             dir = "/mnt/c/Users/matus/qmk_firmware/keyboards/ferris";
@@ -39,8 +44,5 @@ in
         ];
       };
     }
-    applications.shell
-    applications.git
-    applications.tmux
   ];
 }
