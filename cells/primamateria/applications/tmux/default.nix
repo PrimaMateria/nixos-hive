@@ -1,29 +1,15 @@
 { inputs, cell, config, ... }:
 let
   inherit (inputs) nixpkgs;
-  inherit (cell) utils;
   inherit (nixpkgs) lib;
+
+  utils = import ./__utils.nix { inherit lib; };
 
   cfg = config.primamateria.applications.tmux;
 
 in {
-  options.primamateria.applications.tmux = {
-    space = lib.mkOption {
-      type = lib.types.listOf (lib.types.enum [
-        "nixos"
-        "neovim-nix"
-        "ambients"
-        "newsboat"
-        "weechat"
-      ]);
-    };
-    projects = lib.mkOption {
-      type = lib.types.listOf (lib.types.attrs);
-    };
-  };
-
   config = {
-    xdg.configFile = utils.generateTmuxpConfigs (cfg.projects);
+    xdg.configFile = utils.generateTmuxpConfigs cfg.sessions;
 
     programs.tmux = {
       enable = true;

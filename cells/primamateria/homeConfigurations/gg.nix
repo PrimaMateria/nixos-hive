@@ -13,19 +13,16 @@ in
       };
 
       primamateria.applications.tmux = {
-        space = [
-          "nixos"
-          "neovim-nix"
-          "ambients"
-          "newsboat"
-          "weechat"
-        ];
-        projects = [
+        sessions = [
+          {
+            name = "space";
+            type = "prefabs";
+            windows = [ "nixos" "neovim-nix" "ambients" "newsboat" "weechat"];
+          }
           { 
             name = "hive";
             type = "custom";
             windows = ''
-            windows:
               - window_name: hive
                 start_directory: ~/dev/experiment-hive
               - window_name: haumea
