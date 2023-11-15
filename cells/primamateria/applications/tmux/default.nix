@@ -11,6 +11,10 @@ in {
   config = {
     xdg.configFile = utils.generateTmuxpConfigs cfg.sessions;
 
+    programs.bash.shellAliases = {
+      tmux-load = "tmuxp load ${utils.generateTmuxpLoadArgs cfg.sessions}";
+    };
+
     programs.tmux = {
       enable = true;
       baseIndex = 1;

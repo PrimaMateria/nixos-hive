@@ -1,4 +1,4 @@
-{ lib }: {
+{ lib }: with lib; with builtins; {
   # Function that generates YAML files describing a tmux session that can be
   # loaded by tmuxp.
   #
@@ -10,7 +10,7 @@
   # Each name of the session is prefixed with F-key. Tmux has binds that
   # activate a session that name starts with the F-key. F-keys used in this
   # function start with F1 and increase based on the index of spec in the list.
-  generateTmuxpConfigs = with lib; with builtins; specs:
+  generateTmuxpConfigs = sessions:
     let
       prefabs = {
         nixos = ''
@@ -44,40 +44,44 @@
 
       generatePrefabs = foldl (accumulator: window: accumulator + (getAttr window prefabs)) "";
 
-      fkey = spec: "F" + (toString (
-        (lists.findFirstIndex (x: x.name == spec.name) null specs) + 1
+      fkey = session: "F" + (toString (
+        (lists.findFirstIndex (x: x.name == session.name) null sessions) + 1
       ));
 
-      sessionName = spec: "session_name: ${fkey spec} ${spec.name}";
+      sessionName = session: "session_name: ${fkey session} ${session.name}";
 
       contentGenerators = {
-        custom = spec: ''
-          ${sessionName spec}
+        custom = session: ''
+          ${sessionName session}
           windows:
-          ${spec.windows}
+          ${session.windows}
         '';
-        project = spec: ''
-          ${sessionName spec}
+        project = session: ''
+          ${sessionName session}
           windows:
             - window_name: code
             - window_name: run
         '';
-        prefabs = spec: ''
-          ${sessionName spec}
+        prefabs = session: ''
+          ${sessionName session}
           windows:
-          ${generatePrefabs spec.windows}
+          ${generatePrefabs session.windows}
         '';
       };
 
-      generateContent = spec: (getAttr spec.type contentGenerators) spec;
+      generateContent = session: (getAttr session.type contentGenerators) session;
     in
-    pipe specs [
-      (map (spec: {
-        name = "tmuxp/${spec.name}.yml";
+    pipe sessions [
+      (map (session: {
+        name = "tmuxp/${session.name}.yml";
         value = {
-          text = generateContent spec;
+          text = generateContent session;
         };
       }))
       listToAttrs
     ];
+
+  # Picks names from the provided sessions and joins them space separated into
+  # one string.
+  generateTmuxpLoadArgs = foldl (acc: session: acc + " ${session.name}") "";
 }
