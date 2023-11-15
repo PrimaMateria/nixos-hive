@@ -29,6 +29,7 @@
           (functions "installations")
           (functions "applications")
           (functions "secrets")
+          (functions "utils")
           nixosConfigurations
           homeConfigurations
         ];

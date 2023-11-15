@@ -21,8 +21,24 @@ in
           "weechat"
         ];
         projects = [
-          "hive"
-          "qmk"
+          { 
+            name = "hive";
+            type = "custom";
+            windows = ''
+            windows:
+              - window_name: hive
+                start_directory: ~/dev/experiment-hive
+              - window_name: haumea
+                start_directory: ~/dev/experiment-haumea
+              - window_name: paisano
+                start_directory: ~/dev/experiment-paisano
+            '';
+          }
+          { 
+            name = "qmk";
+            type = "project";
+            dir = "/mnt/c/Users/matus/qmk_firmware/keyboards/ferris";
+          }
         ];
       };
     }

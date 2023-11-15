@@ -1,22 +1,14 @@
 { inputs, cell, config, ... }:
 let
   inherit (inputs) nixpkgs;
+  inherit (cell) utils;
   inherit (nixpkgs) lib;
 
   cfg = config.primamateria.applications.tmux;
 
-in with lib; with builtins; let 
-
-  # Navigation between session in tmux is achieved with function keys. The
-  # "space" session is always first with F1. Other "project" sessions will
-  # receive the F2 + their index in the list.
-  projectFKey = project: "F" + toString (
-    (lists.findFirstIndex (p: p == project) null cfg.projects) + 2
-  );
-
 in {
   options.primamateria.applications.tmux = {
-    space = mkOption {
+    space = lib.mkOption {
       type = lib.types.listOf (lib.types.enum [
         "nixos"
         "neovim-nix"
@@ -25,27 +17,13 @@ in {
         "weechat"
       ]);
     };
-    projects = mkOption {
-      type = types.listOf (types.enum [
-        "hive"
-        "qmk"
-      ]);
+    projects = lib.mkOption {
+      type = lib.types.listOf (lib.types.attrs);
     };
   };
 
   config = {
-    xdg.configFile = {
-      "tmuxp/hive".text = mkIf (elem "hive" cfg.projects)  ''
-        session_name: ${projectFKey "hive"} hive
-        windows:
-          - window_name: hive
-            start_directory: ~/dev/experiment-hive
-          - window_name: haumea
-            start_directory: ~/dev/experiment-haumea
-          - window_name: paisano
-            start_directory: ~/dev/experiment-paisano
-      ''; 
-    };
+    xdg.configFile = utils.generateTmuxpConfigs (cfg.projects);
 
     programs.tmux = {
       enable = true;
@@ -59,6 +37,7 @@ in {
       extraConfig = ''
         set -g status 2
         set -g status-format[1] ""
+        
         set -g status-position top
         set -g default-terminal xterm
         set -g display-time 5000
