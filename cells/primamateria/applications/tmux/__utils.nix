@@ -23,7 +23,7 @@
         '';
         ambients = ''
           - window_name: ambients
-            start_directory: ~/Music/mp3
+            start_directory: ~/Music/ambients
             panes:
               - cmus
         '';

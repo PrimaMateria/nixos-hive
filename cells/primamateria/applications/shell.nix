@@ -35,7 +35,7 @@ in
 
       PS1="''${BLUE}\w''${YELLOW}\$''${RESET} "
 
-      export EDITOR=${nixpkgs.neovim}/bin/nvim
+      export EDITOR=nvim
       export MANPAGER="less -R --use-color -Dd+y -Du+b"
     '';
 

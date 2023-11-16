@@ -9,6 +9,7 @@ in
     applications.git
     applications.tmux
     applications.newsboat
+    applications.ambients
 
     {
       home = {
