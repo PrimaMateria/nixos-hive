@@ -1,5 +1,5 @@
 { inputs, cell }:
-let 
+let
   inherit (inputs) nixpkgs;
 in
 {
@@ -8,12 +8,22 @@ in
       enable = true;
       defaultUser = "primamateria";
       startMenuLaunchers = true;
-      interop.register = true;
+      nativeSystemd = true;
+
       wslConf = {
-        automount.root = "/mnt";
         network = {
           generateResolvConf = false;
         };
+
+        interop = {
+          enabled = true;
+          appendWindowsPath = true;
+        };
+      };
+
+      interop = {
+        register = true;
+        includePath = true;
       };
     };
 
