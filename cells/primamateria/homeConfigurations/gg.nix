@@ -6,7 +6,7 @@ in
   inherit bee;
   imports = [
     applications.shell
-    applications.git
+    applications.vcs
     applications.tmux
     applications.newsboat
     applications.ambients

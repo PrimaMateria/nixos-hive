@@ -1,12 +1,6 @@
-{ inputs, cell }:
-let
-  inherit (inputs) nixpkgs;
-  inherit (cell) secrets;
-in
+{ pkgs, ... }:
 {
-  home.packages = with nixpkgs; [
-    git-crypt
-    gnupg
+  home.packages = with pkgs; [
     diff-so-fancy
   ];
 
@@ -41,20 +35,4 @@ in
       };
     };
   };
-
-  programs.gpg = {
-    enable = true;
-  };
-
-  services.gpg-agent = {
-    enable = true;
-  };
-
-  programs.gh = {
-    enable = true;
-    settings = {
-      git_protocol = "ssh";
-    };
-  };
-  xdg.configFile."gh/hosts.yml".text = secrets.github.hosts;
 }
