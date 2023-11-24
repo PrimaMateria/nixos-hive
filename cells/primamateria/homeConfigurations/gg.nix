@@ -10,6 +10,7 @@ in
     applications.tmux
     applications.newsboat
     applications.ambients
+    applications.vifm
 
     {
       home = {
