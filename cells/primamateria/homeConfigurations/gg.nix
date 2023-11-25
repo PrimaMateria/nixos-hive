@@ -58,7 +58,7 @@ in
           {
             name = "space";
             type = "prefabs";
-            windows = [ "nixos" "neovim-nix" "ambients" "newsboat" "weechat" ];
+            windows = [ "neovim-nix" "ambients" "newsboat" "weechat" ];
           }
           {
             name = "hive";
@@ -70,6 +70,8 @@ in
                 start_directory: ~/dev/experiment-haumea
               - window_name: paisano
                 start_directory: ~/dev/experiment-paisano
+              - window_name: nixos
+                start_directory: ~/dev/nixos
             '';
           }
           {
