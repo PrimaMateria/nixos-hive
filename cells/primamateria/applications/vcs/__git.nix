@@ -1,9 +1,29 @@
 { pkgs, ... }:
+let
+  gitBranchClean = pkgs.writeShellApplication
+    {
+      name = "git-branch-clean";
+      text = ''
+        if [[ $* == *--dry* ]]; then
+          git branch |\
+          grep -v "develop\|main\|master" |\
+          sed "s/  //" |\
+          xargs -I {} echo "Will delete {}"
+        else
+          git branch |\
+          grep -v "develop\|main\|master" |\
+          sed "s/  //" |\
+          xargs -I {} git branch -D {}
+        fi
+      '';
+    };
+in
 {
-  home.packages = with pkgs; [
-    diff-so-fancy
-    lazygit
-  ];
+  home.packages = (with pkgs;
+    [
+      diff-so-fancy
+      lazygit
+    ]) ++ [ gitBranchClean ];
 
   programs.git = {
     enable = true;
