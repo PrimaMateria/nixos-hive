@@ -11,12 +11,46 @@ in
     applications.newsboat
     applications.ambients
     applications.vifm
+    applications.dev
 
     {
       home = {
         username = "primamateria";
         homeDirectory = "/home/primamateria";
         stateVersion = "22.05";
+      };
+
+      primamateria.applications.dev = {
+        projects = [
+          {
+            name = "experiment-hive";
+            url = "https://github.com/PrimaMateria/experiment-hive";
+          }
+          {
+            name = "experiment-haumea";
+            url = "https://github.com/PrimaMateria/experiment-haumea";
+          }
+          {
+            name = "experiment-paisano";
+            url = "https://github.com/PrimaMateria/experiment-paisano";
+          }
+          {
+            name = "startpages";
+            url = "https://github.com/PrimaMateria/startpages";
+          }
+          {
+            name = "blog";
+            url = "https://github.com/PrimaMateria/blog";
+          }
+          {
+            name = "nixos";
+            url = "https://github.com/PrimaMateria/nixos";
+          }
+          {
+            name = "neovim-nix";
+            url = "https://github.com/PrimaMateria/neovim-nix";
+          }
+        ];
       };
 
       primamateria.applications.tmux = {
