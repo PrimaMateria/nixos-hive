@@ -29,10 +29,11 @@
         '';
         newsboat = ''
           - window_name: newsboat
+            layout: even-vertical
             start_directory: ~/
             panes:
-              - chatblade -i
               - newsboat
+              - chatblade -i
         '';
         weechat = ''
           - window_name: weechat

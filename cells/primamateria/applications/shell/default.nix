@@ -20,6 +20,7 @@ in
       entr
       translate-shell
       glow
+      chatblade
     ];
   };
 }
