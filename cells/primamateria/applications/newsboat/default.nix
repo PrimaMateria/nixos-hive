@@ -1,7 +1,8 @@
 { inputs, cell }:
 let
   inherit (inputs) nixpkgs;
-in{
+in
+{
   programs.newsboat = {
     enable = true;
     autoReload = true;
