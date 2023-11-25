@@ -33,5 +33,14 @@ in
       nameserver 8.8.8.8
     '';
     };
+
+    environment.systemPackages =  [
+      (nixpkgs.writeShellApplication {
+        name = "firefox";
+        text = ''
+          /mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe "$@"
+        '';
+      })
+    ];
   };
-}
+ }
