@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     diff-so-fancy
+    lazygit
   ];
 
   programs.git = {

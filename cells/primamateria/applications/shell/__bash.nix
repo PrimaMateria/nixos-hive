@@ -1,20 +1,4 @@
-{ inputs, cell }:
-let
-  inherit (inputs) nixpkgs;
-in
-{
-  home.packages = with nixpkgs; [
-    unzip
-    htop
-    eza
-    bat
-    tldr
-    fzf
-    entr
-    translate-shell
-    glow
-  ];
-
+{ ... }: {
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -38,7 +22,5 @@ in
       export EDITOR=nvim
       export MANPAGER="less -R --use-color -Dd+y -Du+b"
     '';
-
-    # export OPENAI_API_KEY=${chatgptSecrets.apiKey}
   };
 }
