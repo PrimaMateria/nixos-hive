@@ -7,5 +7,6 @@ in
   imports = [
     system.wsl
     system.essentials
+    system.vnc
   ];
 }
