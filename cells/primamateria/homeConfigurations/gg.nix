@@ -12,6 +12,7 @@ in
     applications.ambients
     applications.vifm
     applications.dev
+    applications.weechat
 
     {
       home = {
