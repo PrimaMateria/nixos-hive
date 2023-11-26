@@ -24,32 +24,32 @@ in
       primamateria.applications.dev = {
         projects = [
           {
-            name = "experiment-hive";
-            url = "https://github.com/PrimaMateria/experiment-hive";
+            name = "nixos-hive";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
           {
             name = "experiment-haumea";
-            url = "https://github.com/PrimaMateria/experiment-haumea";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
           {
             name = "experiment-paisano";
-            url = "https://github.com/PrimaMateria/experiment-paisano";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
           {
             name = "startpages";
-            url = "https://github.com/PrimaMateria/startpages";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
           {
             name = "blog";
-            url = "https://github.com/PrimaMateria/blog";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
           {
             name = "nixos";
-            url = "https://github.com/PrimaMateria/nixos";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
           {
             name = "neovim-nix";
-            url = "https://github.com/PrimaMateria/neovim-nix";
+            url = "git@github.com:PrimaMateria/$project.git";
           }
         ];
       };

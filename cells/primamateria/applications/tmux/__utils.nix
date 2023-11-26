@@ -13,6 +13,10 @@
   generateTmuxpConfigs = sessions:
     let
       prefabs = {
+        nixos-hive = ''
+          - window_name: nixos-hive
+            start_directory: ~/dev/nixos-hive/
+        '';
         nixos = ''
           - window_name: nixos
             start_directory: ~/dev/nixos/
@@ -29,7 +33,7 @@
         '';
         newsboat = ''
           - window_name: newsboat
-            layout: even-vertical
+            layout: even-horizontal
             start_directory: ~/
             panes:
               - newsboat
@@ -61,7 +65,9 @@
           ${sessionName session}
           windows:
             - window_name: code
+              start_directory: ${session.dir}
             - window_name: run
+              start_directory: ${session.dir}
         '';
         prefabs = session: ''
           ${sessionName session}
