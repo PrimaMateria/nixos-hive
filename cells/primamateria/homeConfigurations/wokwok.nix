@@ -143,7 +143,7 @@ in
           {
             name = "fhp";
             type = "project";
-            dir = "~/dev/finapi-host-pages";
+            dir = "~/dev/finapi-hostpages";
           }
         ];
       };
