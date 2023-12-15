@@ -119,4 +119,8 @@
     url = "https://jovica.org/posts/index.xml";
     tags = [ "rss" "blog" ];
   }
+  {
+    url = "https://spravy.rtvs.sk/feed/";
+    tags = [ "rss" "news" ];
+  }
 ]
