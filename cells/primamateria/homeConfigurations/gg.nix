@@ -25,31 +25,31 @@ in
         projects = [
           {
             name = "nixos-hive";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/nixos-hive.git";
           }
           {
             name = "experiment-haumea";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/experiment-haumea.git";
           }
           {
             name = "experiment-paisano";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/experiment-paisano.git";
           }
           {
             name = "startpages";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/startpages.git";
           }
           {
             name = "blog";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/blog.git";
           }
           {
             name = "nixos";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/nixos.git";
           }
           {
             name = "neovim-nix";
-            url = "git@github.com:PrimaMateria/$project.git";
+            url = "git@github.com:PrimaMateria/neovim-nix.git";
           }
         ];
       };
@@ -59,20 +59,14 @@ in
           {
             name = "space";
             type = "prefabs";
-            windows = [ "neovim-nix" "ambients" "newsboat" "weechat" ];
+            windows = [ "nixos-hive" "neovim-nix" "ambients" "newsboat" "weechat" ];
           }
           {
-            name = "hive";
+            name = "craft";
             type = "custom";
             windows = ''
-              - window_name: hive
-                start_directory: ~/dev/experiment-hive
-              - window_name: haumea
-                start_directory: ~/dev/experiment-haumea
-              - window_name: paisano
-                start_directory: ~/dev/experiment-paisano
-              - window_name: nixos
-                start_directory: ~/dev/nixos
+              - window_name: blog
+                start_directory: ~/dev/blog
             '';
           }
           {
