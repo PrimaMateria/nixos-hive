@@ -33,11 +33,9 @@
         '';
         newsboat = ''
           - window_name: newsboat
-            layout: even-horizontal
             start_directory: ~/
             panes:
               - newsboat
-              - chatblade -i
         '';
         weechat = ''
           - window_name: weechat

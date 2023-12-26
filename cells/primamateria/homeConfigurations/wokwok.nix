@@ -8,7 +8,7 @@ in
     applications.shell
     applications.vcs
     applications.tmux
-    applications.newsboat
+    applications.feeds
     applications.ambients
     applications.vifm
     applications.dev

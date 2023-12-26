@@ -7,7 +7,8 @@ let
 
   cfg = config.primamateria.applications.tmux;
 
-in {
+in
+{
   config = {
     xdg.configFile = utils.generateTmuxpConfigs cfg.sessions;
 
@@ -64,7 +65,7 @@ in {
         bind BSpace last-window
 
         bind -n F1 switch-client -t F1
-        bind -n F2 switch-client -t F2
+        bind -n F2 switch-client -t F2:
         bind -n F3 switch-client -t F3
         bind -n F4 switch-client -t F4
         bind -n F5 switch-client -t F5
@@ -76,6 +77,6 @@ in {
         bind -n F11 switch-client -t F11
         bind -n F12 switch-client -t F12
       '';
-    }; 
+    };
   };
 }

@@ -1,6 +1,7 @@
 { inputs, cell }:
 let
   inherit (inputs) nixpkgs;
+  inherit (cell) secrets;
 in
 {
   programs.newsboat = {
@@ -8,7 +9,7 @@ in
     autoReload = true;
     browser = "\"firefox '%u' > /dev/null 2>&1\"";
     maxItems = 50;
-    urls = import ./__urls.nix;
+    # urls = import ./__urls.nix;
 
     extraConfig = ''
       include ${nixpkgs.newsboat}/share/doc/newsboat/contrib/colorschemes/solarized-dark
@@ -30,6 +31,12 @@ in
       highlight article "^(Title):.*$" blue default
       highlight article "https?://[^ ]+" red default
       highlight article "\\[image\\ [0-9]+\\]" green default
+
+      # remote
+      urls-source "freshrss"
+      freshrss-url "${secrets.freshrss.host}/api/greader.php"
+      freshrss-login "${secrets.freshrss.user}"
+      freshrss-password "${secrets.freshrss.password}"
     '';
   };
 }
