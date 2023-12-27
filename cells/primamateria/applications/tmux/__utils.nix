@@ -33,9 +33,12 @@
         '';
         newsboat = ''
           - window_name: newsboat
+            layout: even-horizontal  
             start_directory: ~/
             panes:
+              - blank
               - newsboat
+              - blank
         '';
         weechat = ''
           - window_name: weechat

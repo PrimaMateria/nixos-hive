@@ -4,39 +4,54 @@ let
   inherit (cell) secrets;
 in
 {
-  programs.newsboat = {
-    enable = true;
-    autoReload = true;
-    browser = "\"firefox '%u' > /dev/null 2>&1\"";
-    maxItems = 50;
-    # urls = import ./__urls.nix;
+  home.packages = [
+    (nixpkgs.writeShellApplication
+      {
+        name = "newsboat";
+        text = ''
+          curl '${secrets.freshrss.host}/i/?c=feed&a=actualize&user=${secrets.freshrss.user}&token=${secrets.freshrss.token}'
+            ${nixpkgs.newsboat}/bin/newsboat
+        '';
+      })
+  ];
 
-    extraConfig = ''
-      include ${nixpkgs.newsboat}/share/doc/newsboat/contrib/colorschemes/solarized-dark
+  xdg.configFile."newsboat/config".text = ''
+    max-items 50
+    browser "firefox '%u' > /dev/null 2>&1"
+    reload-threads 5
+    auto-reload yes
+    reload-time 60
+    prepopulate-query-feeds yes
 
-      # unbind keys
-      unbind-key ENTER
-      unbind-key j
-      unbind-key k
-      unbind-key J
-      unbind-key K
+    include ${nixpkgs.newsboat}/share/doc/newsboat/contrib/colorschemes/solarized-dark
 
-      # bind keys - vim style
-      bind-key j down
-      bind-key k up
-      bind-key l open
-      bind-key h quit
+    # unbind keys
+    unbind-key ENTER
+    unbind-key j
+    unbind-key k
+    unbind-key J
+    unbind-key K
+    unbind-key n
+    unbind-key o
 
-      # highlights
-      highlight article "^(Title):.*$" blue default
-      highlight article "https?://[^ ]+" red default
-      highlight article "\\[image\\ [0-9]+\\]" green default
+    # bind keys - vim style
+    bind-key j down
+    bind-key k up
+    bind-key l open
+    bind-key h quit
+    bind-key n toggle-article-read
+    bind-key o open-in-browser-and-mark-read
 
-      # remote
-      urls-source "freshrss"
-      freshrss-url "${secrets.freshrss.host}/api/greader.php"
-      freshrss-login "${secrets.freshrss.user}"
-      freshrss-password "${secrets.freshrss.password}"
-    '';
-  };
+    # highlights
+    highlight article "^(Title):.*$" cyan default
+    highlight article "https?://[^ ]+" red default
+    highlight article "\\[image\\ [0-9]+\\]" green default
+
+    # remote
+    urls-source "freshrss"
+    freshrss-url "${secrets.freshrss.host}/api/greader.php"
+    freshrss-login "${secrets.freshrss.user}"
+    freshrss-password "${secrets.freshrss.password}"
+
+  '';
 }
