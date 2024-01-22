@@ -95,6 +95,7 @@ in
               "nixos-hive"
               "nixos"
               "neovim-nix"
+              "startpages"
               "ambients"
               "newsboat"
               "weechat"
@@ -129,6 +130,11 @@ in
             name = "wf";
             type = "project";
             dir = "~/dev/web-form/frontend";
+          }
+          {
+            name = "cuda";
+            type = "project";
+            dir = "~/dev/nextjs-dashboard";
           }
           {
             name = "fjsl";

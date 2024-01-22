@@ -25,6 +25,10 @@
           - window_name: neovim
             start_directory: ~/dev/neovim-nix/
         '';
+        startpages = ''
+          - window_name: startpages
+            start_directory: ~/dev/startpages/
+        '';
         ambients = ''
           - window_name: ambients
             start_directory: ~/Music/ambients

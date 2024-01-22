@@ -59,7 +59,14 @@ in
           {
             name = "space";
             type = "prefabs";
-            windows = [ "nixos-hive" "neovim-nix" "ambients" "newsboat" "weechat" ];
+            windows = [
+              "nixos-hive"
+              "neovim-nix"
+              "startpages"
+              "ambients"
+              "newsboat"
+              "weechat"
+            ];
           }
           {
             name = "craft";
@@ -72,7 +79,7 @@ in
           {
             name = "qmk";
             type = "project";
-            dir = "/mnt/c/Users/matus/qmk_firmware/keyboards/ferris";
+            dir = "/dev/qmk_firmware/keyboards/ferris";
           }
         ];
       };
