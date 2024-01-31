@@ -1,34 +1,36 @@
 { inputs, cell, config }:
 let
   inherit (inputs) nixpkgs;
+  inherit (nixpkgs) lib;
   cfg = config.primamateria.system.docker;
 in
-{
+with lib; {
   options.primamateria.system.docker = {
-    wsl-fix = nixpkgs.lib.mkOption {
-      type = Boolean;
+    wsl-fix = mkOption {
+      type = lib.types.bool;
       default = false;
     };
-    user = nixpkgs.lib.mkOption {
-      type = String;
-      default = "nixos";
+    user = mkOption {
+      type = lib.types.str;
+      default = "primamateria";
     };
   };
+
   config = {
-
-    nixpkgs.overlays =
-      mkIf cfg.wsl-fix [
-        (self: super: {
-          docker = super.docker.override { iptables = pkgs.iptables-legacy; };
-        })
-      ];
-
     # TODO: verity that it will merge and not override
     users.users.${cfg.user} = {
       extraGroups = [ "docker" ];
     };
 
-    virtualisation.docker.enable = true;
+    virtualisation.docker = {
+      enable = true;
+      package = mkIf cfg.wsl-fix (
+        nixpkgs.docker.override {
+          iptables = nixpkgs.iptables-legacy;
+        }
+      );
+    };
+
     environment.systemPackages = with nixpkgs; [
       docker-compose
     ];
