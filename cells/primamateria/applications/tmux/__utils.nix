@@ -40,15 +40,17 @@
             layout: even-horizontal  
             start_directory: ~/
             panes:
-              - blank
               - newsboat
-              - blank
         '';
         weechat = ''
           - window_name: weechat
             start_directory: ~/
             panes:
               - weechat
+        '';
+        qmk = ''
+          - window_name: qmk
+            start_directory: ~/dev/qmk_firmware/keyboards/ferris
         '';
       };
 

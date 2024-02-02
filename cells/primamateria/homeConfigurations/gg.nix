@@ -51,6 +51,10 @@ in
             name = "neovim-nix";
             url = "git@github.com:PrimaMateria/neovim-nix.git";
           }
+          {
+            name = "qmk_fjrmware";
+            url = "git@github.com:PrimaMateria/qmk_firmware.git";
+          }
         ];
       };
 
@@ -63,6 +67,7 @@ in
               "nixos-hive"
               "neovim-nix"
               "startpages"
+              "qmk"
               "ambients"
               "newsboat"
               "weechat"
@@ -75,11 +80,6 @@ in
               - window_name: blog
                 start_directory: ~/dev/blog
             '';
-          }
-          {
-            name = "qmk";
-            type = "project";
-            dir = "/dev/qmk_firmware/keyboards/ferris";
           }
         ];
       };
