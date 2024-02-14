@@ -134,7 +134,7 @@ in
           {
             name = "cuda";
             type = "project";
-            dir = "~/dev/tutorial-nextjs-dashboard";
+            dir = "~/dev/finapi-customer-dashboard-ui";
           }
           {
             name = "fjsl";
