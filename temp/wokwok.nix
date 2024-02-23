@@ -9,7 +9,7 @@ in
     installations.wsl
     {
       imports = [
-        system.docker
+        # system.docker
       ];
       networking.hostName = "wokwok";
       wsl.wslConf.network.hostname = "wokwok";
