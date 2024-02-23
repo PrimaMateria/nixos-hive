@@ -33,20 +33,20 @@
           - window_name: ambients
             start_directory: ~/Music/ambients
             panes:
-              - cmus
+              - echo cmus
         '';
         newsboat = ''
           - window_name: newsboat
             layout: even-horizontal  
             start_directory: ~/
             panes:
-              - newsboat
+              - echo newsboat
         '';
         weechat = ''
           - window_name: weechat
             start_directory: ~/
             panes:
-              - weechat
+              - echo weechat
         '';
         qmk = ''
           - window_name: qmk
