@@ -17,7 +17,6 @@ with lib; {
   };
 
   config = {
-    # TODO: verity that it will merge and not override
     users.users.${cfg.user} = {
       extraGroups = [ "docker" ];
     };

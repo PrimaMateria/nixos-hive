@@ -9,8 +9,10 @@ in
       {
         name = "newsboat";
         text = ''
-          curl '${secrets.freshrss.host}/i/?c=feed&a=actualize&user=${secrets.freshrss.user}&token=${secrets.freshrss.token}'
-            ${nixpkgs.newsboat}/bin/newsboat
+          # This for avoiding duplicated when using remote RSS server
+          # rm "$HOME/.local/share/newsboat/cache.db"
+          # curl '${secrets.freshrss.host}/i/?c=feed&a=actualize&user=${secrets.freshrss.user}&token=${secrets.freshrss.token}'
+          ${nixpkgs.newsboat}/bin/newsboat
         '';
       })
   ];
