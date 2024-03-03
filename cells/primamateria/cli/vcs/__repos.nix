@@ -1,10 +1,10 @@
 { lib, config, ... }:
 let
-  cfg = config.primamateria.applications.vcs.repos;
+  cfg = config.primamateria.cli.vcs.repos;
 in
 {
   options = {
-    primamateria.applications.vcs.repos = {
+    primamateria.cli.vcs.repos = {
       secrets = lib.mkOption {
         type = lib.types.attrs;
       };

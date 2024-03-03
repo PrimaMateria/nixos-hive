@@ -20,14 +20,17 @@
       {
         inherit inputs;
 
+        nixpkgsConfig.allowUnfree = true;
+
         cellsFrom = ./cells;
         cellBlocks = with std.blockTypes; with hive.blockTypes; [
-          (functions "bee")
+          (functions "bees")
           (functions "devices")
           (functions "system")
           (functions "machines")
           (functions "installations")
-          (functions "applications")
+          (functions "cli")
+          (functions "desktop")
           (functions "secrets")
           nixosConfigurations
           homeConfigurations
@@ -35,7 +38,7 @@
       }
       {
         # sudo nixos-rebuild switch --flake .#primamateria-gg  
-        # sudo nixos-rebuild dry-activate --flake .#primamateria-gg  
+        # sudo nixos-rebuild dry-activate --flake .#primamateria-mentat --show-trace --option eval-cache false
         nixosConfigurations = hive.collect self "nixosConfigurations";
 
         # nix build .#homeConfigurations.primamateria-gg.activationPackage

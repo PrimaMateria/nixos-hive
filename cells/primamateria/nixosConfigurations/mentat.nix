@@ -1,9 +1,10 @@
 { inputs, cell }:
 let
-  inherit (cell) bee machines installations system;
+  inherit (cell) bees machines installations system devices;
 in
 {
-  inherit bee;
+  bee = bees.boot;
+
   imports = [
     machines.tower
     installations.common
@@ -15,10 +16,6 @@ in
         # rclone
       ];
       networking.hostName = "mentat";
-      # TODO: I was trying to pass this shell script through overlay, but it is
-      # not picked up
-      # primamateria.system.i3.displaySetupScript =
-      #   nixpkgs.acerMonitorDisplaySetupScript;
     }
   ];
 }

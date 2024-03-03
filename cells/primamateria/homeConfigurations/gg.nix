@@ -1,18 +1,18 @@
 { inputs, cell }:
 let
-  inherit (cell) bee applications;
+  inherit (cell) bees cli;
 in
 {
-  inherit bee;
+  bee = bees.wsl;
   imports = [
-    applications.shell
-    applications.vcs
-    applications.tmux
-    applications.feeds
-    applications.ambients
-    applications.vifm
-    applications.dev
-    applications.weechat
+    cli.shell
+    cli.vcs
+    cli.tmux
+    cli.feeds
+    cli.ambients
+    cli.vifm
+    cli.dev
+    cli.weechat
 
     {
       home = {
@@ -21,7 +21,7 @@ in
         stateVersion = "22.05";
       };
 
-      primamateria.applications.dev = {
+      primamateria.cli.dev = {
         projects = [
           {
             name = "nixos-hive";
@@ -58,7 +58,7 @@ in
         ];
       };
 
-      primamateria.applications.tmux = {
+      primamateria.cli.tmux = {
         sessions = [
           {
             name = "space";

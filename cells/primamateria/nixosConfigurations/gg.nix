@@ -1,9 +1,10 @@
 { inputs, cell }:
 let
-  inherit (cell) bee installations;
+  inherit (inputs.nixpkgs) lib;
+  inherit (cell) bees installations;
 in
 {
-  inherit bee;
+  bee = lib.traceVal bees.wsl;
   imports = [
     installations.common
     installations.wsl

@@ -12,9 +12,9 @@ in
     ./__repos.nix
   ];
 
-  primamateria.applications.vcs.repos = {
+  primamateria.cli.vcs.repos = {
     secrets = {
-      inherit (secrets) github; 
+      inherit (secrets) github;
       identityFile = {
         inherit (secrets.identityFile) github gitlab bitbucket;
       };

@@ -3,10 +3,11 @@ let
   inherit (inputs) nixpkgs;
   inherit (nixpkgs) lib;
 
-  cfg = config.primamateria.applications.dev;
+  cfg = config.primamateria.cli.dev;
   utils = import ./__utils.nix { inherit lib nixpkgs cfg; };
 
-in {
+in
+{
   config = {
     systemd.user.services = {
       devProjectInitializer = {
@@ -17,11 +18,11 @@ in {
 
         Service = {
           Type = "simple";
-          ExecStart = "${utils.devProjectInitializer}/bin/devProjectInitializer"; 
+          ExecStart = "${utils.devProjectInitializer}/bin/devProjectInitializer";
         };
 
         Install = {
-          WantedBy = ["default.target"];
+          WantedBy = [ "default.target" ];
         };
       };
     };

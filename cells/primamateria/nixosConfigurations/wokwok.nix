@@ -1,9 +1,9 @@
 { inputs, cell }:
 let
-  inherit (cell) bee installations system;
+  inherit (cell) bees installations system;
 in
 {
-  inherit bee;
+  bee = bees.wsl;
   imports = [
     installations.common
     installations.wsl

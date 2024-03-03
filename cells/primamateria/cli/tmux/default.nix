@@ -5,7 +5,7 @@ let
 
   utils = import ./__utils.nix { inherit lib; };
 
-  cfg = config.primamateria.applications.tmux;
+  cfg = config.primamateria.cli.tmux;
 
 in
 {

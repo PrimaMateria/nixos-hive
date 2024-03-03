@@ -1,24 +1,15 @@
 { inputs, cell, config }:
 let
   inherit (inputs) nixpkgs;
-  cfg = config.primamateria.system.i3;
+  inherit (nixpkgs) lib;
 in
 {
-  options = {
-    displaySetupScript = nixkpgs.mkPackageOption displaySetupScript {
-      nullable = true;
-      default = true;
-    };
-  };
   config = {
     services.xserver.desktopManager.xterm.enable = false;
     services.xserver.windowManager.i3.enable = true;
     services.xserver.displayManager.lightdm.enable = true;
-    services.xserver.displayManager.lightdm.extraSeatDefaults = mkIf
-      (!(cfg.displaySetupScript == null)) ''
-      display-setup-script = ${displaySetupScript}/bin/displaySetupScript
-    '';
-  };
+    # display-setup-script for lightdm set in devices/monitor
 
-  programs.thunar.enable = true;
+    programs.thunar.enable = true;
+  };
 }
