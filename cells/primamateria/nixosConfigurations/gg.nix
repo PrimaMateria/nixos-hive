@@ -4,7 +4,9 @@ let
   inherit (cell) bees installations;
 in
 {
-  bee = lib.traceVal bees.wsl;
+  # FIXME: now bee returns lambda and not set. Suspecting findLoad. Investigate
+  bee = (lib.traceVal (bees.wsl));
+
   imports = [
     installations.common
     installations.wsl
