@@ -1,12 +1,11 @@
 { inputs, cell }:
 let
-  inherit (inputs.nixpkgs) lib;
-  inherit (cell) bees installations;
+  inherit (inputs) nixpkgs;
+  inherit (nixpkgs) lib;
+  inherit (cell) bee bees installations;
 in
 {
-  # FIXME: now bee returns lambda and not set. Suspecting findLoad. Investigate
-  bee = (lib.traceVal (bees.wsl));
-
+  bee = bees.wsl;
   imports = [
     installations.common
     installations.wsl
