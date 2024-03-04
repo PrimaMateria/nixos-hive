@@ -5,10 +5,10 @@ in
 {
   imports = [
     system.bootloader
-    # system.bluetooth
-    # system.networking
-    # system.sound
-    # system.essentials
-    # system.i3
+    system.bluetooth
+    system.networking
+    system.sound
+    system.essentials
+    system.i3
   ];
 }
