@@ -30,6 +30,7 @@
           (functions "machines")
           (functions "installations")
           (functions "cli")
+          (functions "environments")
           (functions "desktop")
           (functions "secrets")
           nixosConfigurations

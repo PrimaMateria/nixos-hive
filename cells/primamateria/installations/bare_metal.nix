@@ -9,6 +9,6 @@ in
     system.networking
     system.sound
     system.essentials
-    system.i3
+    system.manager
   ];
 }
