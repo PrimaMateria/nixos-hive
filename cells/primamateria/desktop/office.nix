@@ -10,6 +10,7 @@ in
     qimgv
     libreoffice
     gimp
+    firefox
   ];
 
 

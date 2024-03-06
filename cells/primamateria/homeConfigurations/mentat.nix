@@ -6,6 +6,7 @@ in
   bee = bees.boot;
   imports = [
     environments.clicraft
+    desktop.xsession
     desktop.terminal
     desktop.office
     desktop.media
