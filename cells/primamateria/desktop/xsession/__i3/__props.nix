@@ -30,9 +30,12 @@ in
     n;
 
   menus = {
-    commands = "${pkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
-    favorites = "${pkgs.dmenu-run-from-file}/bin/dmenu ${favorites}";
-    scratchpad = "${pkgs.dmenu-i3-scratchpad}/bin/dmenu";
+    commands = "${nixpkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
+    # TODO:
+    # favorites = "${nixpkgs.dmenu-run-from-file}/bin/dmenu ${favorites}";
+    # scratchpad = "${nixpkgs.dmenu-i3-scratchpad}/bin/dmenu";
+    favorites = "${nixpkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
+    scratchpad = "${nixpkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
   };
 
   statusBars = {

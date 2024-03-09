@@ -52,6 +52,7 @@
     allowUnfree = true;
   };
 
+  # Hive inputs
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
@@ -76,5 +77,16 @@
       url = "github:divnix/hive";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    haumea = {
+      url = "github:nix-community/haumea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
+  # My inputs
+  # inputs = {
+  #   i3blocks-contrib = { };
+  # };
 }
+

@@ -212,6 +212,26 @@
     "haumea": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708375098,
+        "narHash": "sha256-DaFJp3wDHgOqx98U0SF57bXaH2Orp106c+jSdPCVu1E=",
+        "owner": "nix-community",
+        "repo": "haumea",
+        "rev": "ec6350fd9353e7f27ce0e85d31f82e3ed73e4d70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "haumea",
+        "type": "github"
+      }
+    },
+    "haumea_2": {
+      "inputs": {
+        "nixpkgs": [
           "hive",
           "std",
           "lib"
@@ -232,7 +252,7 @@
         "type": "github"
       }
     },
-    "haumea_2": {
+    "haumea_3": {
       "inputs": {
         "nixpkgs": [
           "std",
@@ -556,6 +576,7 @@
     },
     "root": {
       "inputs": {
+        "haumea": "haumea",
         "hive": "hive",
         "home-manager": "home-manager",
         "nixpkgs": [
@@ -580,7 +601,7 @@
           "devshell"
         ],
         "dmerge": "dmerge",
-        "haumea": "haumea",
+        "haumea": "haumea_2",
         "incl": "incl",
         "lib": "lib",
         "makes": [
@@ -641,7 +662,7 @@
           "blank"
         ],
         "dmerge": "dmerge_2",
-        "haumea": "haumea_2",
+        "haumea": "haumea_3",
         "incl": "incl_2",
         "lib": "lib_2",
         "makes": [

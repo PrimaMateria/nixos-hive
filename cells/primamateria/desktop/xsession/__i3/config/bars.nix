@@ -1,10 +1,11 @@
-{ root }:
+{ root, inputs }:
 let
+  inherit (inputs.nixpkgs) lib;
   inherit (root.props) statusBars palette;
 in
 [
   {
-    statusCommand = statusBars.main;
+    statusCommand = lib.traceVal statusBars.main;
     position = "top";
     fonts = {
       size = 10.0;

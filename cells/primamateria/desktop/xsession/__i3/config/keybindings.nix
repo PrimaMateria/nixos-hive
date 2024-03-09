@@ -9,8 +9,11 @@ in
   "${mod}+f" = "fullscreen toggle";
   "${mod}+Shift+space" = "floating toggle";
 
-  "${mod}+Shift+d" = "exec --no-startup-id ${menu.commands}";
-  "${mod}+d" = "exec --no-startup-id ${menu.favorits}";
+  # temporary
+  "${mod}+Enter" = "exec --no-startup-id alacritty";
+
+  "${mod}+Shift+d" = "exec --no-startup-id ${menus.commands}";
+  "${mod}+d" = "exec --no-startup-id ${menus.favorites}";
 
   "${mod}+r" = "mode ${modes.resize}";
   "${mod}+Shift+e" = "mode \"${modes.system}\"";
@@ -60,7 +63,7 @@ in
   "${mod}+Shift+9" = "move container to workspace number ${workspace 9}";
 
   "${mod}+x" = "move scratchpad";
-  "${mod}+Shift+x" = "exec ${menu.scratchpad}";
+  "${mod}+Shift+x" = "exec ${menus.scratchpad}";
 
   "${mod}+minus" = "[class=\"Enpass\" title=\"^Enpass$\"] scratchpad show";
   "${mod}+equal" = "[class=\"chatgpt\"] scratchpad show";
