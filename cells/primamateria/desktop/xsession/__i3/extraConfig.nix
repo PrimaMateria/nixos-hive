@@ -1,4 +1,3 @@
 ''
-  title_align center
-  default_border normal
+  default_border pixel
 ''

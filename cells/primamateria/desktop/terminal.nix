@@ -27,7 +27,7 @@
           blue = "0x458588";
           magenta = "0xb16286";
           cyan = "0x689d6a";
-          white = "0xa89984";
+          white = "0xffffff";
         };
         bright = {
           black = "0x928374";
@@ -37,7 +37,7 @@
           blue = "0x83a598";
           magenta = "0xd3869b";
           cyan = "0x8ec07c";
-          white = "0xebdbb2";
+          white = "0xffffff";
         };
       };
     };

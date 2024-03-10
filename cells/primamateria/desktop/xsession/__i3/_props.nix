@@ -11,7 +11,7 @@ in
     colorProminent = "#FABD2F";
     colorDrab = "#464646";
     colorBackground = "#000000";
-    colorBackgroundBar = "#303030";
+    colorBackgroundBar = "#000000";
     colorAlert = "#FF0000";
   };
 

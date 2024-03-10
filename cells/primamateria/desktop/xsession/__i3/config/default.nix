@@ -10,7 +10,7 @@ in
   };
 
   gaps = {
-    inner = 25;
+    inner = 5;
   };
 
   workspaceLayout = "default";

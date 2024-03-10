@@ -5,6 +5,7 @@ in
 {
   bee = bees.wsl;
   imports = [
+    cli.hive
     cli.shell
     cli.vcs
     cli.tmux

@@ -1,4 +1,4 @@
-{ ... }: {
+{
   programs.bash = {
     enable = true;
     shellAliases = {
@@ -6,8 +6,6 @@
       ll = "ls -lha";
       cat = "bat -p";
       nvim = "nix run ~/dev/neovim-nix --";
-      n = "cd ~/dev/nixos; nvim";
-      nn = "cd ~/dev/neovim-nix; nvim";
     };
     initExtra = ''
       # \001 (^A) start non-visible characters

@@ -8,7 +8,7 @@ in
     statusCommand = lib.traceVal statusBars.main;
     position = "top";
     fonts = {
-      size = 10.0;
+      size = 12.0;
     };
     colors = {
       background = "${palette.colorBackgroundBar}";
