@@ -1,5 +1,6 @@
-{ root }:
+{ inputs, root }:
 let
+  inherit (inputs) nixpkgs;
   inherit (root.props) mod modes menus workspace;
 in
 {
@@ -10,7 +11,7 @@ in
   "${mod}+Shift+space" = "floating toggle";
 
   # temporary
-  "${mod}+Enter" = "exec --no-startup-id alacritty";
+  "${mod}+Enter" = "exec --no-startup-id ${nixpkgs.alacritty}/bin/alacritty";
 
   "${mod}+Shift+d" = "exec --no-startup-id ${menus.commands}";
   "${mod}+d" = "exec --no-startup-id ${menus.favorites}";
@@ -24,8 +25,6 @@ in
   "${mod}+l" = "focus right";
   "${mod}+a" = "focus parent";
   "${mod}+z" = "focus child";
-  "${mod}+Tab" = "focus next";
-  "${mod}+Shift+Tab" = "focus previous";
   "${mod}+space" = "focus mode_toggle";
 
   "${mod}+Shift+h" = "move left";

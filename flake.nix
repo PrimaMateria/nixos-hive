@@ -85,8 +85,21 @@
   };
 
   # My inputs
-  # inputs = {
-  #   i3blocks-contrib = { };
-  # };
+  inputs = {
+    dmenu-primamateria = {
+      url = "github:PrimaMateria/dmenu";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    i3blocks-gcalcli = {
+      url = "github:PrimaMateria/i3blocks-gcalcli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    i3blocks-contrib = {
+      url = "github:vivien/i3blocks-contrib";
+      flake = false;
+    };
+  };
 }
 

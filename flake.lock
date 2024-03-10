@@ -97,6 +97,26 @@
         "type": "github"
       }
     },
+    "dmenu-primamateria": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1643238321,
+        "narHash": "sha256-MMRn23SrkEXUmgNXSMIloSfvx5EOZUUyRdN4b0PvoQs=",
+        "owner": "PrimaMateria",
+        "repo": "dmenu",
+        "rev": "a6ebf08b2357a8c5e881f18302cd28341c8e186c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrimaMateria",
+        "repo": "dmenu",
+        "type": "github"
+      }
+    },
     "dmerge": {
       "inputs": {
         "haumea": [
@@ -321,6 +341,42 @@
         "owner": "nix-community",
         "ref": "master",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "i3blocks-contrib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707384458,
+        "narHash": "sha256-iY9y3zLw5rUIHZkA9YLmyTDlgzZtIYAwWgHxaCS1+PI=",
+        "owner": "vivien",
+        "repo": "i3blocks-contrib",
+        "rev": "9d66d81da8d521941a349da26457f4965fd6fcbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vivien",
+        "repo": "i3blocks-contrib",
+        "type": "github"
+      }
+    },
+    "i3blocks-gcalcli": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1644784160,
+        "narHash": "sha256-KXJH2Xxd8DmeY0mTvq9r/lTTlfLrBTtIeZhxAEFcD00=",
+        "owner": "PrimaMateria",
+        "repo": "i3blocks-gcalcli",
+        "rev": "04069724084b23397161c0706eae254ade080f54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrimaMateria",
+        "repo": "i3blocks-gcalcli",
         "type": "github"
       }
     },
@@ -576,9 +632,12 @@
     },
     "root": {
       "inputs": {
+        "dmenu-primamateria": "dmenu-primamateria",
         "haumea": "haumea",
         "hive": "hive",
         "home-manager": "home-manager",
+        "i3blocks-contrib": "i3blocks-contrib",
+        "i3blocks-gcalcli": "i3blocks-gcalcli",
         "nixpkgs": [
           "nixpkgs-unstable"
         ],

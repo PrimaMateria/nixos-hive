@@ -14,19 +14,8 @@ in
       enable = true;
       backend = "xrender";
       # vSync = true;
-      shadow = true;
-      shadowExclude = [
-        "window_type *= 'menu'"
-        "class_g = 'i3bar'"
-      ];
       settings = {
         unredir-if-possible = false;
-        shadow-color = "#FFFFFF";
-        shadow-radius = 30;
-        shadow-offset-x = -30;
-        shadow-offset-y = -30;
-        shadow-opacity = 0.3;
-        shadow-ignore-shaped = true;
       };
     };
 

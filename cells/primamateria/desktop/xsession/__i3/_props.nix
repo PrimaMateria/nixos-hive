@@ -1,7 +1,7 @@
-{ inputs, root }:
+{ inputs, cell, root }:
 let
   inherit (inputs) nixpkgs;
-  inherit (root) i3blocks;
+  inherit (root) i3blocks packages;
 in
 {
   mod = "Mod1"; # alt
@@ -30,12 +30,12 @@ in
     n;
 
   menus = {
-    commands = "${nixpkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
+    commands = "${packages.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
     # TODO:
     # favorites = "${nixpkgs.dmenu-run-from-file}/bin/dmenu ${favorites}";
     # scratchpad = "${nixpkgs.dmenu-i3-scratchpad}/bin/dmenu";
-    favorites = "${nixpkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
-    scratchpad = "${nixpkgs.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
+    favorites = "${packages.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
+    scratchpad = "${packages.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
   };
 
   statusBars = {
@@ -48,6 +48,8 @@ in
   };
 
   favorites = nixpkgs.writeText "favorites" ''
+    terminal: alacritty
+    browser: firefox
     ebooks: calibre
     files: doublecmd
     image Editor: gimp

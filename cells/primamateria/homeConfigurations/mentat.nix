@@ -7,10 +7,10 @@ in
   imports = [
     environments.clicraft
     desktop.xsession
-    # desktop.terminal
-    # desktop.office
-    # desktop.media
-    # desktop.comms
+    desktop.terminal
+    desktop.office
+    desktop.media
+    desktop.comms
     {
       home = {
         username = "primamateria";
