@@ -10,11 +10,8 @@ in
   "${mod}+f" = "fullscreen toggle";
   "${mod}+Shift+space" = "floating toggle";
 
-  # temporary
-  "${mod}+Enter" = "exec --no-startup-id ${nixpkgs.alacritty}/bin/alacritty";
-
-  "${mod}+Shift+d" = "exec --no-startup-id ${menus.commands}";
-  "${mod}+d" = "exec --no-startup-id ${menus.favorites}";
+  "${mod}+d" = "exec --no-startup-id ${menus.commands}";
+  "${mod}+BackSpace" = "exec --no-startup-id ${menus.favorites}";
 
   "${mod}+r" = "mode ${modes.resize}";
   "${mod}+Shift+e" = "mode \"${modes.system}\"";
@@ -38,7 +35,6 @@ in
   "${mod}+F5" = "layout stacked";
   "${mod}+F6" = "split horizontal, layout stacking";
 
-  "${mod}+BackSpace" = "workspace back_and_forth";
   "${mod}+1" = "workspace number ${workspace 1}";
   "${mod}+2" = "workspace number ${workspace 2}";
   "${mod}+3" = "workspace number ${workspace 3}";

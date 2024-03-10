@@ -1,7 +1,7 @@
-{ inputs, cell, root }:
+{ inputs, cell, root, self }:
 let
   inherit (inputs) nixpkgs;
-  inherit (root) i3blocks packages;
+  inherit (root) i3blocks menus;
 in
 {
   mod = "Mod1"; # alt
@@ -30,12 +30,8 @@ in
     n;
 
   menus = {
-    commands = "${packages.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
-    # TODO:
-    # favorites = "${nixpkgs.dmenu-run-from-file}/bin/dmenu ${favorites}";
-    # scratchpad = "${nixpkgs.dmenu-i3-scratchpad}/bin/dmenu";
-    favorites = "${packages.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
-    scratchpad = "${packages.dmenu}/bin/dmenu_run -nb black -nf white -sb yellow -sf black -l 20 -c";
+    inherit (menus) commands scratchpad;
+    favorites = "${menus.favorites} ${self.favorites}";
   };
 
   statusBars = {
