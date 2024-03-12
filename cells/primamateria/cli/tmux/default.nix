@@ -40,7 +40,7 @@ in
         
         set -g status-style bg=terminal 
         set -g status-style fg=white
-        set -g status-left "#[white]#S ~ "
+        set -g status-left "#[white]#S ~  "
         set -g status-right ""
         
         set -g status-justify 'left'
@@ -65,7 +65,7 @@ in
         bind BSpace last-window
 
         bind -n F1 switch-client -t F1
-        bind -n F2 switch-client -t F2:
+        bind -n F2 switch-client -t F2
         bind -n F3 switch-client -t F3
         bind -n F4 switch-client -t F4
         bind -n F5 switch-client -t F5

@@ -1,3 +1,3 @@
 ''
-  default_border pixel
+  default_border none
 ''

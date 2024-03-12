@@ -7,7 +7,7 @@ in
   mod = "Mod1"; # alt
 
   palette = {
-    colorDominant = "#FBF1C7";
+    colorDominant = "#FFFFFF";
     colorProminent = "#FABD2F";
     colorDrab = "#464646";
     colorBackground = "#000000";
