@@ -8,16 +8,16 @@ in
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
   };
-
-  services.xserver =
-    {
-      enable = true;
+  services.xserver = {
+    enable = true;
+    xkb = { 
       layout = "us,sk,de";
-      xkbVariant = ",qwerty,qwerty";
-      xkbOptions = "grp:lctrl_lwin_toggle";
+      variant = ",qwerty,qwerty";
+      options = "grp:lctrl_lwin_toggle";
     };
+  };
 
-  fonts.fonts = with nixpkgs;
+  fonts.packages = with nixpkgs;
     [
       (nerdfonts.override {
         fonts = [ "CascadiaCode" ];
