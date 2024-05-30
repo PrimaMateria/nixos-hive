@@ -6,7 +6,7 @@ in {
     hashKnownHosts = true;
     matchBlocks = {
       "rip5" = {
-        host = "192.168.178.61";
+        host = "rpi5";
         identityFile = "${secrets.identityFile.rpi5}";
       };
     };
