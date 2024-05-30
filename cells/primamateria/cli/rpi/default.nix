@@ -1,4 +1,8 @@
-{cell}: let
+{
+  inputs,
+  cell,
+}: let
+  inherit (inputs) nixpkgs;
   inherit (cell) secrets;
 in {
   programs.ssh = {
@@ -11,4 +15,14 @@ in {
       };
     };
   };
+
+  home.packages = [
+    (nixpkgs.writeShellApplication {
+      name = "hive-rpi5-sync";
+      runtimeInputs = [nixpkgs.rsync];
+      text = ''
+        rsync -a "$HOME/dev/nixos-hive" "rpi5:/home/primamateria/"
+      '';
+    })
+  ];
 }
