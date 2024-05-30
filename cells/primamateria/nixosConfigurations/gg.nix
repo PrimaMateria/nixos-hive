@@ -1,10 +1,11 @@
-{ inputs, cell }:
-let
+{
+  inputs,
+  cell,
+}: let
   inherit (inputs) nixpkgs;
   inherit (nixpkgs) lib;
-  inherit (cell) bee bees installations;
-in
-{
+  inherit (cell) bees installations;
+in {
   bee = bees.wsl;
   imports = [
     installations.common

@@ -1,8 +1,9 @@
-{ inputs, cell }:
-let
-  inherit (cell) cli;
-in
 {
+  inputs,
+  cell,
+}: let
+  inherit (cell) cli;
+in {
   imports = [
     cli.hive
     cli.shell
@@ -13,6 +14,7 @@ in
     cli.vifm
     cli.dev
     cli.weechat
+    cli.rpi
 
     {
       primamateria.cli.dev = {
