@@ -1,8 +1,9 @@
-{ inputs, cell }:
-let
-  inherit (cell) bees cli secrets;
-in
 {
+  inputs,
+  cell,
+}: let
+  inherit (cell) bees cli secrets;
+in {
   bee = bees.wsl;
   imports = [
     cli.hive

@@ -1,18 +1,11 @@
-{ inputs }:
-let
+{inputs}: let
+  inherit (cell) cli;
   inherit (inputs) nixpkgs;
-in
-{
-  imports = [
-    ./__bash.nix
-    ./__direnv.nix
-    ./__readline.nix
-  ];
-
+in {
+  imports = [cli.shellMin];
   config = {
     home.packages = with nixpkgs; [
       unzip
-      htop
       eza
       bat
       tldr
@@ -22,5 +15,14 @@ in
       glow
       chatblade
     ];
+
+    programs.bash = {
+      enable = true;
+      shellAliases = {
+        ls = "eza --time-style long-iso";
+        cat = "bat -p";
+        nvim = "nix run ~/dev/neovim-nix --";
+      };
+    };
   };
 }

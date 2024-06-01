@@ -8,8 +8,9 @@
 in {
   bee = bees.rpi;
   imports = [
+    cli.pureNix
     cli.hive
-    cli.shell
+    cli.shellMin
 
     {
       home = {

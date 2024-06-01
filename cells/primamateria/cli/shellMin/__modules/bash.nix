@@ -2,10 +2,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      ls = "eza --time-style long-iso";
       ll = "ls -lha";
-      cat = "bat -p";
-      nvim = "nix run ~/dev/neovim-nix --";
     };
     initExtra = ''
       # \001 (^A) start non-visible characters
