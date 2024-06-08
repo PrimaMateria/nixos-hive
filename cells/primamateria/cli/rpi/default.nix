@@ -21,7 +21,7 @@ in {
       name = "hive-rpi5-sync";
       runtimeInputs = [nixpkgs.rsync];
       text = ''
-        rsync -a "$HOME/dev/nixos-hive" "rpi5:/home/primamateria/"
+        rsync -a "$HOME/dev/nixos-hive" "rpi5:/home/primamateria/dev/"
       '';
     })
   ];
