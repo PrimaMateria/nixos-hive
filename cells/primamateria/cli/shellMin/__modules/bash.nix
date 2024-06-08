@@ -2,6 +2,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
+      ls = "ls --color=always";
       ll = "ls -lha";
     };
     initExtra = ''
