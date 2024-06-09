@@ -1,3 +1,5 @@
+# This configuration is for the client that is connecting and working with RPi5
+# via SSH.
 {
   inputs,
   cell,

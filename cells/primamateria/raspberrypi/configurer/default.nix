@@ -1,3 +1,7 @@
+# Since rpi5 is running pure Nix and not everything is possible to declare in
+# NixOS, this configuration script tries to stay as close to a declarative
+# approach as possible. The script should be written in a way that it can be run
+# repeatedly in any state.
 {
   inputs,
   cell,
