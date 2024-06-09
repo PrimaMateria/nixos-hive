@@ -85,10 +85,24 @@ in {
           {
             name = "rpi5-configure";
             text = ''
-              # Backup original /boot/firmware/config.txt
-              sudo cp /boot/firmware/config.txt /boot/firmware/config.backup.txt
+
+              if [ ! -f "/boot/firmware/config.backup.txt" ]; then
+                # Backup original /boot/firmware/config.txt
+                sudo cp /boot/firmware/config.txt /boot/firmware/config.backup.txt
+              fi
+
               # Copy custom config from the nix store
               sudo cp ${boot-firmware-config} /boot/firmware/config.txt
+
+              # Install docker
+              # Not tested yet, because at first docker was installed
+              # imperatively
+              if command -v "docker" &> //null; then
+                echo "docker already installed"
+              else
+                curl -fsSL https://get.docker.com -o "$HOME/Downloads/get-docker.sh"
+                sudo sh "$HOME/Downloads/get-docker.sh"
+              fi
             '';
           })
       ];
