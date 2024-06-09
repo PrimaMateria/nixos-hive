@@ -1,54 +1,60 @@
-#             ██            
-#       ██  ██████  ██      
-#     ██      ██      ██    
-#   ██  ██    ██    ██  ██  
-#         ██  ██  ██        
-#   ██      ██████      ██  
+#             ██
+#       ██  ██████  ██
+#     ██      ██      ██
+#   ██  ██    ██    ██  ██
+#         ██  ██  ██
+#   ██      ██████      ██
 # ██████████████████████████
-#   ██      ██████      ██  
-#         ██  ██  ██        
-#   ██  ██    ██    ██  ██  
-#     ██      ██      ██    
-#       ██  ██████  ██      
-#             ██            
-
+#   ██      ██████      ██
+#         ██  ██  ██
+#   ██  ██    ██    ██  ██
+#     ██      ██      ██
+#       ██  ██████  ██
+#             ██
 {
   description = "PrimaMateria's NixOS configuration";
 
-  outputs = { self, hive, std, ... }@inputs:
+  outputs = {
+    self,
+    hive,
+    std,
+    ...
+  } @ inputs:
     hive.growOn
-      {
-        inherit inputs;
+    {
+      inherit inputs;
 
-        nixpkgsConfig.allowUnfree = true;
+      nixpkgsConfig.allowUnfree = true;
 
-        cellsFrom = ./cells;
-        cellBlocks = with std.blockTypes; with hive.blockTypes; [
-          (functions "bees")
-          (functions "devices")
-          (functions "system")
-          (functions "machines")
-          (functions "installations")
-          (functions "cli")
-          (functions "environments")
-          (functions "desktop")
-          (functions "secrets")
-          nixosConfigurations
-          homeConfigurations
-        ];
-      }
-      {
-        # sudo nixos-rebuild switch --flake .#primamateria-gg  
-        # sudo nixos-rebuild dry-activate --flake .#primamateria-mentat --show-trace --option eval-cache false
-        nixosConfigurations = hive.collect self "nixosConfigurations";
+      cellsFrom = ./cells;
+      cellBlocks = with std.blockTypes;
+      with hive.blockTypes; [
+        (functions "bees")
+        (functions "devices")
+        (functions "system")
+        (functions "machines")
+        (functions "installations")
+        (functions "cli")
+        (functions "environments")
+        (functions "desktop")
+        (functions "secrets")
+        (functions "raspberrypi")
+        nixosConfigurations
+        homeConfigurations
+      ];
+    }
+    {
+      # sudo nixos-rebuild switch --flake .#primamateria-gg
+      # sudo nixos-rebuild dry-activate --flake .#primamateria-mentat --show-trace --option eval-cache false
+      nixosConfigurations = hive.collect self "nixosConfigurations";
 
-        # nix build .#homeConfigurations.primamateria-gg.activationPackage
-        # ./result/activate
-        homeConfigurations = hive.collect self "homeConfigurations";
-      };
+      # nix build .#homeConfigurations.primamateria-gg.activationPackage
+      # ./result/activate
+      homeConfigurations = hive.collect self "homeConfigurations";
+    };
 
   nixConfig = {
-    extra-experimental-features = [ "nix-command" "flakes" ];
+    extra-experimental-features = ["nix-command" "flakes"];
     allowUnfree = true;
   };
 
@@ -102,4 +108,3 @@
     };
   };
 }
-

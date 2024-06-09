@@ -14,7 +14,6 @@ in {
     cli.vifm
     cli.dev
     cli.weechat
-    cli.rpi
 
     {
       primamateria.cli.dev = {

@@ -2,11 +2,12 @@
   inputs,
   cell,
 }: let
-  inherit (cell) bees environments;
+  inherit (cell) bees environments raspberrypi;
 in {
   bee = bees.wsl;
   imports = [
     environments.clicraft
+    raspberrypi.client
 
     {
       home = {
