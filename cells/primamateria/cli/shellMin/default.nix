@@ -1,10 +1,13 @@
-{inputs}: let
+{
+  inputs,
+  super,
+}: let
   inherit (inputs) nixpkgs;
 in {
   imports = [
-    ./__modules/bash.nix
-    ./__modules/direnv.nix
-    ./__modules/readline.nix
+    super.modules.bash
+    super.modules.direnv
+    super.modules.readline
   ];
 
   config = {

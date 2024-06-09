@@ -19,7 +19,7 @@ in {
     programs.bash = {
       enable = true;
       shellAliases = {
-        ls = "eza --time-style long-iso";
+        ls = nixpkgs.lib.mkForce "eza --time-style long-iso";
         cat = "bat -p";
         nvim = "nix run ~/dev/neovim-nix --";
       };

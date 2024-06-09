@@ -19,9 +19,9 @@ in {
         stateVersion = "22.05";
       };
 
-      nix.settings = {
-        extra-experimental-features = ["nix-command" "flakes"];
-      };
+      # nix.settings = {
+      #   extra-experimental-features = ["nix-command" "flakes"];
+      # };
     }
   ];
 }
