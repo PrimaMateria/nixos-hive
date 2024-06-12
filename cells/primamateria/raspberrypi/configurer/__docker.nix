@@ -11,5 +11,6 @@
   else
     curl -fsSL https://get.docker.com -o "$HOME/Downloads/get-docker.sh"
     sudo sh "$HOME/Downloads/get-docker.sh"
+    sudo usermod --append --groups docker primamateria
   fi
 ''
