@@ -12,6 +12,7 @@ in {
     cli.hive
     cli.shellMin
     raspberrypi.configurer
+    raspberrypi.traefik
     raspberrypi.freshrss
 
     {

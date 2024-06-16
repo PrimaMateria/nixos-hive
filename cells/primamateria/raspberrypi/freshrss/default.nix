@@ -15,6 +15,11 @@
       };
       services = with secrets.freshrssServer; {
         freshrss = {
+          labels = [
+            "traefik.http.middlewares.freshrssM3.stripprefix.prefixes=/freshrss"
+            "traefik.http.routers.freshrss.middlewares=freshrssM3"
+            "traefik.http.routers.freshrss.rule=PathPrefix(`/freshrss`)"
+          ];
           image = "freshrss/freshrss";
           container_name = "freshrss";
           restart = "unless-stopped";
@@ -23,7 +28,6 @@
             "data:/var/www/FreshRSS/data"
             "extensions:/var/www/FreshRSSS/extensions"
           ];
-          ports = ["8080:80"];
           environment = {
             TZ = "Europe/Berlin";
             CRON_MIN = "2,32";
@@ -34,7 +38,7 @@
             ADMIN_API_PASSWORD = adminApiPassword;
             FRESHRSS_INSTALL = ''
               --api-enabled
-              --base-url http://rpi5:8080
+              --base-url http://rpi5/freshrss
               --default_user primamateria
               --language en
             '';
@@ -57,7 +61,7 @@ in {
         name = "run-freshrss";
         text = ''
           echo "Composing freshrss"
-          docker compose -p freshrss --file ${dockerCompose} up
+          docker compose -p freshrss --file ${dockerCompose} up -d
         '';
       })
   ];
