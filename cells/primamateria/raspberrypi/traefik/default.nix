@@ -5,23 +5,12 @@
   inherit (cell) secrets;
   inherit (inputs) nixpkgs;
 
-  tls = nixpkgs.writeTextFile {
-    name = "traefik-tls.yaml";
+  dynamicConfiguration = nixpkgs.writeTextFile {
+    name = "traefik-dynamic.yaml";
     text = builtins.toJSON {
-      options.default = {
-        minVersion = "VersionTLS12";
-        sniStrict = true;
-        cipherSuites = [
-          "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"
-          "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
-          "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
-          "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-          "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305"
-          "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305"
-          "TLS_AES_128_GCM_SHA256"
-          "TLS_AES_256_GCM_SHA384"
-          "TLS_CHACHA20_POLY1305_SHA256"
-        ];
+      tls.stores.default.defaultCertificate = {
+        certFile = "/etc/ssl/certs/primamateria_ddns_net.pem";
+        keyFile = "/etc/ssl/private/primamateria_ddns_net.key";
       };
     };
   };
@@ -47,8 +36,9 @@
           volumes = [
             "/var/run/docker.sock:/var/run/docker.sock"
             "traefik-tmp:/tmp"
-            "traefik-letsencrypt:/etc/traefik/acme"
-            "${tls}:/etc/traefik/tls.yaml:ro"
+            "${dynamicConfiguration}:/etc/traefik/dynamic.yaml:ro"
+            "${secrets.primamateriaDdnsNet}/primamateria_ddns_net.pem:/etc/ssl/certs/primamateria_ddns_net.pem:ro"
+            "${secrets.primamateriaDdnsNet}/primamateria_ddns_net.key:/etc/ssl/private/primamateria_ddns_net.key:ro"
           ];
           command = [
             "--api.insecure=true"
@@ -57,10 +47,7 @@
             "--entryPoints.https.address=:443"
             "--entryPoints.http.http.redirections.entryPoint.to=https"
             "--entryPoints.http.http.redirections.entryPoint.scheme=https"
-            "--certificatesResolvers.letsEncrypt.acme.storage=/etc/traefik/acme/acme.json"
-            "--certificatesResolvers.letsEncrypt.acme.email=matus.benko@gmail.com"
-            "--certificatesResolvers.letsEncrypt.acme.tlsChallenge=true"
-            "--providers.file.filename=/etc/traefik/tls.yaml"
+            "--providers.file.filename=/etc/traefik/dynamic.yaml"
           ];
           labels = [
             "traefik.enable=false"
