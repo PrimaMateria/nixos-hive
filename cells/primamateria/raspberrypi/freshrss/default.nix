@@ -25,7 +25,6 @@
             "traefik.http.middlewares.freshrssM2.headers.stsSeconds=31536000"
             "traefik.http.routers.freshrss.entrypoints=https"
             "traefik.http.routers.freshrss.tls=true"
-            "traefik.http.routers.freshrss.tls.certResolver=default"
             "traefik.http.middlewares.freshrssM3.stripprefix.prefixes=/freshrss"
             "traefik.http.routers.freshrss.middlewares=freshrssM1,freshrssM2,freshrssM3"
             "traefik.http.routers.freshrss.rule=PathPrefix(`/freshrss`)"

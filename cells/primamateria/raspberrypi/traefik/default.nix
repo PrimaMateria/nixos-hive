@@ -38,7 +38,7 @@
             "traefik-tmp:/tmp"
             "${dynamicConfiguration}:/etc/traefik/dynamic.yaml:ro"
             "${secrets.primamateriaDdnsNet}/primamateria_ddns_net.pem:/etc/ssl/certs/primamateria_ddns_net.pem:ro"
-            "${secrets.primamateriaDdnsNet}/primamateria_ddns_net.key:/etc/ssl/private/primamateria_ddns_net.key:ro"
+            "${secrets.primamateriaDdnsNet}/primamateria_ddns_net_nopassword.key:/etc/ssl/private/primamateria_ddns_net.key:ro"
           ];
           command = [
             "--api.insecure=true"
@@ -48,6 +48,8 @@
             "--entryPoints.http.http.redirections.entryPoint.to=https"
             "--entryPoints.http.http.redirections.entryPoint.scheme=https"
             "--providers.file.filename=/etc/traefik/dynamic.yaml"
+            "--log.filepath=/tmp/traefik.log"
+            "--log.level=DEBUG"
           ];
           labels = [
             "traefik.enable=false"
