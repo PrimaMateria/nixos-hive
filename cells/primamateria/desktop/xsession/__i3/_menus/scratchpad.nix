@@ -1,10 +1,12 @@
-{ inputs, super }:
-let
+{
+  inputs,
+  super,
+}: let
   inherit (inputs) nixpkgs;
 
   scratchpad = nixpkgs.writeShellApplication {
     name = "dmenu-scratchpad";
-    runtimeInputs = [ nixpkgs.jq ];
+    runtimeInputs = [nixpkgs.jq];
     text = ''
       i3-msg -t get_tree | \
       jq '.nodes[] | .nodes[] | .nodes[] | select(.name=="__i3_scratch") | .floating_nodes[] | .nodes[] | .window,.name' | \
@@ -15,6 +17,4 @@ let
       xargs -I "PID" i3-msg "[id=PID] scratchpad show"
     '';
   };
-in
-"${scratchpad}/bin/dmenu-scratchpad"
-
+in "${scratchpad}/bin/dmenu-scratchpad"

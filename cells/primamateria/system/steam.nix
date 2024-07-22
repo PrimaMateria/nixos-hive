@@ -1,5 +1,7 @@
-{ inputs, cell }:
 {
+  inputs,
+  cell,
+}: {
   config = {
     programs.steam = {
       enable = true;

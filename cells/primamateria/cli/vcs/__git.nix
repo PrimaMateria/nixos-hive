@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-let
-  gitBranchClean = pkgs.writeShellApplication
+{pkgs, ...}: let
+  gitBranchClean =
+    pkgs.writeShellApplication
     {
       name = "git-branch-clean";
       text = ''
@@ -17,13 +17,11 @@ let
         fi
       '';
     };
-in
-{
-  home.packages = (with pkgs;
-    [
-      diff-so-fancy
-      lazygit
-    ]) ++ [ gitBranchClean ];
+in {
+  home.packages = (with pkgs; [
+    diff-so-fancy
+    lazygit
+  ]) ++ [gitBranchClean];
 
   programs.git = {
     enable = true;

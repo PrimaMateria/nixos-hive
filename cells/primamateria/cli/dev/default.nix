@@ -1,13 +1,15 @@
-{ inputs, cell, config, ... }:
-let
+{
+  inputs,
+  cell,
+  config,
+  ...
+}: let
   inherit (inputs) nixpkgs;
   inherit (nixpkgs) lib;
 
   cfg = config.primamateria.cli.dev;
-  utils = import ./__utils.nix { inherit lib nixpkgs cfg; };
-
-in
-{
+  utils = import ./__utils.nix {inherit lib nixpkgs cfg;};
+in {
   config = {
     systemd.user.services = {
       devProjectInitializer = {
@@ -22,7 +24,7 @@ in
         };
 
         Install = {
-          WantedBy = [ "default.target" ];
+          WantedBy = ["default.target"];
         };
       };
     };

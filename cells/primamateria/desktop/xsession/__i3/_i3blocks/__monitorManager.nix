@@ -1,11 +1,10 @@
-{ inputs }:
-let
+{inputs}: let
   inherit (inputs) nixpkgs;
 
   i3block = nixpkgs.writeShellApplication {
     name = "i3block-monitorManager";
 
-    runtimeInputs = [ nixpkgs.hsetroot ];
+    runtimeInputs = [nixpkgs.hsetroot];
 
     text = ''
       status=$(xrandr --query | grep HDMI-0)
@@ -28,7 +27,7 @@ let
           # report new status
           echo "Monitor: [2][1]"
         fi
-      else 
+      else
 
         # if is HDMI turned on
         if [[ $status =~ $resolutionTest ]]; then
@@ -41,6 +40,4 @@ let
       fi
     '';
   };
-in
-"${i3block}/bin/i3block-monitorManager"
-
+in "${i3block}/bin/i3block-monitorManager"

@@ -1,11 +1,11 @@
 # Version Control System
-
-{ inputs, cell }:
-let
+{
+  inputs,
+  cell,
+}: let
   inherit (inputs) nixpkgs;
   inherit (cell) secrets;
-in
-{
+in {
   imports = [
     ./__git.nix
     ./__secrets.nix

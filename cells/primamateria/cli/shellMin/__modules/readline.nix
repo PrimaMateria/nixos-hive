@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.readline = {
     enable = true;
     extraConfig = ''

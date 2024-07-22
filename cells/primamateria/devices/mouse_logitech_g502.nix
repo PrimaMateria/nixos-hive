@@ -1,5 +1,7 @@
-{ inputs, cell }:
 {
+  inputs,
+  cell,
+}: {
   config = {
     services.xserver.inputClassSections = [
       ''

@@ -1,5 +1,4 @@
-{ inputs }:
-let
+{inputs}: let
   inherit (inputs) nixpkgs;
 
   i3block = nixpkgs.writeShellApplication {
@@ -12,5 +11,4 @@ let
       exit 0
     '';
   };
-in
-"${i3block}/bin/i3block-datetime"
+in "${i3block}/bin/i3block-datetime"

@@ -1,9 +1,10 @@
-{ inputs, cell }:
-let
+{
+  inputs,
+  cell,
+}: let
   inherit (inputs) nixpkgs;
   src = "$HOME/dev/nixos-hive";
-in
-{
+in {
   home.packages = [
     (nixpkgs.writeShellApplication {
       name = "hive-reload-home";

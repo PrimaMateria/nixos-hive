@@ -1,8 +1,9 @@
-{ inputs, cell }:
-let
-  inherit (inputs) nixpkgs;
-in
 {
+  inputs,
+  cell,
+}: let
+  inherit (inputs) nixpkgs;
+in {
   config = {
     wsl = {
       enable = true;
@@ -29,12 +30,12 @@ in
 
     environment.etc."resolv.conf" = {
       enable = true;
-      source = nixpkgs.writeText "resolv.conf" '' 
-      nameserver 8.8.8.8
-    '';
+      source = nixpkgs.writeText "resolv.conf" ''
+        nameserver 8.8.8.8
+      '';
     };
 
-    environment.systemPackages =  [
+    environment.systemPackages = [
       (nixpkgs.writeShellApplication {
         name = "firefox";
         text = ''
@@ -43,4 +44,4 @@ in
       })
     ];
   };
- }
+}

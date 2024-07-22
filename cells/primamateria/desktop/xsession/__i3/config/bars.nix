@@ -1,5 +1,7 @@
-{ root, inputs }:
-let
+{
+  root,
+  inputs,
+}: let
   inherit (inputs.nixpkgs) lib;
   inherit (root.props) statusBars palette;
 
@@ -33,8 +35,7 @@ let
       text = "${palette.colorBackgroundBar}";
     };
   };
-in
-[
+in [
   {
     statusCommand = statusBars.main;
     position = "top";

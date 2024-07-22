@@ -1,9 +1,12 @@
-{ inputs, cell, root, self }:
-let
+{
+  inputs,
+  cell,
+  root,
+  self,
+}: let
   inherit (inputs) nixpkgs;
   inherit (root) i3blocks menus;
-in
-{
+in {
   mod = "Mod1"; # alt
 
   palette = {
@@ -15,18 +18,19 @@ in
     colorAlert = "#FF0000";
   };
 
-  workspace = n: builtins.elemAt [
-    "10: Messier 87"
-    "1: Sun"
-    "2: Mercury"
-    "3: Venus"
-    "4: Earth"
-    "5: Mars"
-    "6: Jupiter"
-    "7: Saturn"
-    "8: Chat"
-    "9: Music"
-  ]
+  workspace = n:
+    builtins.elemAt [
+      "10: Messier 87"
+      "1: Sun"
+      "2: Mercury"
+      "3: Venus"
+      "4: Earth"
+      "5: Mars"
+      "6: Jupiter"
+      "7: Saturn"
+      "8: Chat"
+      "9: Music"
+    ]
     n;
 
   menus = {

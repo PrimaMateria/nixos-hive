@@ -1,5 +1,3 @@
-{ root }:
-let
+{root}: let
   inherit (root.props) workspace;
-in
-{ }
+in {}

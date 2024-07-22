@@ -1,5 +1,7 @@
-{ cell, inputs }:
-let
+{
+  cell,
+  inputs,
+}: let
   inherit (inputs) nixpkgs;
   inherit (cell) secrets;
   inherit (nixpkgs) lib;
@@ -22,20 +24,19 @@ let
     "#nixos"
     "#xeserv"
   ];
-in
-{
+in {
   home.packages = [
     (nixpkgs.weechat.override {
-      configure = { availablePlugins, ... }: {
+      configure = {availablePlugins, ...}: {
         scripts = with nixpkgs.weechatScripts; [
           weechat-matrix
           weechat-autosort
           weechat-go
         ];
         init =
-          theme +
-          secrets.weechat +
-          ''
+          theme
+          + secrets.weechat
+          + ''
             /set irc.look.smart_filter on
             /filter add irc_smart * irc_smart_filter *
             /set irc.look.server_buffer independent

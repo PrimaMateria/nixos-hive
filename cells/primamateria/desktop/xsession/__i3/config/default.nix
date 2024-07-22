@@ -1,11 +1,9 @@
-{ root }:
-let
+{root}: let
   inherit (root.props) workspace mod;
-in
-{
+in {
   modifier = mod;
   fonts = {
-    names = [ "CaskaydiaCove Nerd Font Mono" ];
+    names = ["CaskaydiaCove Nerd Font Mono"];
     size = 10.0;
   };
 

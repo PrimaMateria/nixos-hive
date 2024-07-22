@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.file.".config/vifm/colors/gruvbox.vifm".source = (pkgs.writeText "vifm" ''
+{pkgs, ...}: {
+  home.file.".config/vifm/colors/gruvbox.vifm".source = pkgs.writeText "vifm" ''
     " gruvbox color scheme approximation for vifm
 
     " Reset all styles first
@@ -30,5 +29,5 @@
     highlight Device	cterm=none,standout	ctermfg=214	ctermbg=default
     highlight Fifo		cterm=none	ctermfg=172	ctermbg=default
     highlight Socket	cterm=bold	ctermfg=223	ctermbg=default
-  '');
+  '';
 }

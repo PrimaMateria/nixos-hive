@@ -1,8 +1,6 @@
-{ root }:
-let
+{root}: let
   inherit (root.props) modes;
-in
-{
+in {
   "${modes.resize}" = {
     h = "resize shrink width 10 px or 10 ppt";
     j = "resize grow height 10 px or 10 ppt";

@@ -1,2 +1,2 @@
-{ super }:
+{super}:
 super.dmenu.dmenuRun

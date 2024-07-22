@@ -1,9 +1,10 @@
-{ inputs, root }:
-let
+{
+  inputs,
+  root,
+}: let
   inherit (inputs) nixpkgs;
   inherit (root.props) mod modes menus workspace;
-in
-{
+in {
   "${mod}+q" = "kill";
   "${mod}+Shift+c" = "reload";
   "${mod}+Shift+r" = "restart";

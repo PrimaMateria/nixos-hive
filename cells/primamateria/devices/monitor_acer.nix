@@ -1,6 +1,8 @@
 # This is not a nix module, just a custom set that provides one package.
-{ inputs, cell }:
-let
+{
+  inputs,
+  cell,
+}: let
   inherit (inputs) nixpkgs;
   displaySetup = nixpkgs.writeShellApplication {
     name = "setup";
@@ -9,8 +11,7 @@ let
       ${nixpkgs.xorg.xrandr}/bin/xrandr --output HDMI-0 --off
     '';
   };
-in
-{
+in {
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''
     display-setup-script = ${displaySetup}/bin/setup
   '';

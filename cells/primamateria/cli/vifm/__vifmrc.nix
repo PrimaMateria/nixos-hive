@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.file.".config/vifm/vifmrc".source = (pkgs.writeText "vifm" ''
+{pkgs, ...}: {
+  home.file.".config/vifm/vifmrc".source = pkgs.writeText "vifm" ''
     " vim: filetype=vifm :
     " Sample configuration file for vifm (last updated: 2 June, 2019)
     " You can edit this file by hand.
@@ -502,5 +501,5 @@
     nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
     " account for <c-h>/<bs> conflict
     nnoremap <silent> <bs>  :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
-  '');
+  '';
 }

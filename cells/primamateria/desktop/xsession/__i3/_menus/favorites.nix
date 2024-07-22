@@ -1,5 +1,7 @@
-{ inputs, super }:
-let
+{
+  inputs,
+  super,
+}: let
   inherit (inputs) nixpkgs;
 
   favorites = nixpkgs.writeShellApplication {
@@ -23,6 +25,4 @@ let
       fi
     '';
   };
-in
-"${favorites}/bin/dmenu-favorites"
-
+in "${favorites}/bin/dmenu-favorites"

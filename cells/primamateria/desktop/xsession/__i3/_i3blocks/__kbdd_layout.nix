@@ -1,10 +1,11 @@
-{ inputs, super }:
-let
+{
+  inputs,
+  super,
+}: let
   inherit (inputs) nixpkgs;
 
   i3block = super.lib.buildContribBlock {
     name = "kbdd_layout";
-    deps = [ nixpkgs.kbdd ];
+    deps = [nixpkgs.kbdd];
   };
-in
-"${i3block}/kbdd_layout"
+in "${i3block}/kbdd_layout"

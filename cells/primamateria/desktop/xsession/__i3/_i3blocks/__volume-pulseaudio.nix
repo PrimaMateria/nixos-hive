@@ -1,5 +1,7 @@
-{ inputs, super }:
-let
+{
+  inputs,
+  super,
+}: let
   inherit (inputs) nixpkgs;
 
   i3block = super.lib.buildContribBlock {
@@ -10,5 +12,4 @@ let
       nixpkgs.envsubst
     ];
   };
-in
-"${i3block}/volume-pulseaudio"
+in "${i3block}/volume-pulseaudio"

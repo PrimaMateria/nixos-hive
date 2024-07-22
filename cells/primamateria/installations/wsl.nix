@@ -1,9 +1,10 @@
-{ inputs, cell }:
-let
+{
+  inputs,
+  cell,
+}: let
   inherit (inputs) nixpkgs;
   inherit (cell) system;
-in
-{
+in {
   imports = [
     system.wsl
     system.essentials

@@ -1,10 +1,12 @@
-{ inputs, cell }:
-let
+{
+  inputs,
+  cell,
+}: let
   inherit (inputs) nixpkgs;
 
   ambients-sync = nixpkgs.writeShellApplication {
     name = "ambients-sync";
-    runtimeInputs = with nixpkgs; [ yt-dlp ffmpeg ];
+    runtimeInputs = with nixpkgs; [yt-dlp ffmpeg];
     text = ''
       mkdir -p ~/Music/ambients/
 
@@ -15,10 +17,11 @@ let
         https://www.youtube.com/playlist?list=PLjDqZb1FVlst1XPXongf5UD02yU9Md-ot
     '';
   };
-in
-{
-  home.packages = (with nixpkgs; [
-    cmus
-    mpv
-  ]) ++ [ ambients-sync ];
+in {
+  home.packages =
+    (with nixpkgs; [
+      cmus
+      mpv
+    ])
+    ++ [ambients-sync];
 }

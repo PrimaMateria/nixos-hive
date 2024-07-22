@@ -1,8 +1,6 @@
-{ root }:
-let
+{root}: let
   inherit (root.props) palette;
-in
-{
+in {
   background = "${palette.colorBackground}";
   focused = {
     border = "${palette.colorDrab}";
