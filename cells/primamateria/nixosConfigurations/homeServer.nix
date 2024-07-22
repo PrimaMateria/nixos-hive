@@ -7,17 +7,15 @@ in {
   bee = bees.boot;
 
   imports = [
-    machines.tower
+    machines.beelink
     installations.common
-    installations.standalone
+    installations.headless
     system.networkingHome
+    system.docker
     {
-      imports = [
-        # system.docker
-        # system.steam
-        # rclone
-      ];
-      networking.hostName = "mentat";
+      networking.hostName = "homeServer";
+      services.openssh.enable = true;
+      networking.firewall.enable = false;
     }
   ];
 }

@@ -1,33 +1,28 @@
-{ inputs, cell }:
-let
-  inherit (inputs) nixpkgs;
-in
 {
+  inputs,
+  cell,
+}: let
+  inherit (inputs) nixpkgs;
+in {
   time.timeZone = "Europe/Berlin";
 
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
   };
+
   services.xserver = {
     enable = true;
-    xkb = { 
+    xkb = {
       layout = "us,sk,de";
       variant = ",qwerty,qwerty";
       options = "grp:lctrl_lwin_toggle";
     };
   };
 
-  fonts.packages = with nixpkgs;
-    [
-      (nerdfonts.override {
-        fonts = [ "CascadiaCode" ];
-      })
-    ];
-
   users.users.primamateria = {
     isNormalUser = true;
     homeMode = "755";
-    extraGroups = [ "wheel" "audio" "video" "networkmanager" "disk" "scanner" "lp" ];
+    extraGroups = ["wheel" "audio" "video" "networkmanager" "disk" "scanner" "lp"];
   };
 
   # This value determines the NixOS release from which the default

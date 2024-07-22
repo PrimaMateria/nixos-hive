@@ -38,7 +38,7 @@
         (functions "environments")
         (functions "desktop")
         (functions "secrets")
-        (functions "raspberrypi")
+        (functions "dockerServices")
         nixosConfigurations
         homeConfigurations
       ];

@@ -1,37 +1,40 @@
-{ inputs, cell, config }:
-let
+{
+  inputs,
+  cell,
+  config,
+}: let
   inherit (inputs) nixpkgs;
   inherit (nixpkgs) lib;
   cfg = config.primamateria.system.docker;
 in
-with lib; {
-  options.primamateria.system.docker = {
-    wsl-fix = mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-    user = mkOption {
-      type = lib.types.str;
-      default = "primamateria";
-    };
-  };
-
-  config = {
-    users.users.${cfg.user} = {
-      extraGroups = [ "docker" ];
+  with lib; {
+    options.primamateria.system.docker = {
+      wsl-fix = mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
+      user = mkOption {
+        type = lib.types.str;
+        default = "primamateria";
+      };
     };
 
-    virtualisation.docker = {
-      enable = true;
-      package = mkIf cfg.wsl-fix (
-        nixpkgs.docker.override {
-          iptables = nixpkgs.iptables-legacy;
-        }
-      );
-    };
+    config = {
+      users.users.${cfg.user} = {
+        extraGroups = ["docker"];
+      };
 
-    environment.systemPackages = with nixpkgs; [
-      docker-compose
-    ];
-  };
-}
+      virtualisation.docker = {
+        enable = true;
+        package = mkIf cfg.wsl-fix (
+          nixpkgs.docker.override {
+            iptables = nixpkgs.iptables-legacy;
+          }
+        );
+      };
+
+      environment.systemPackages = with nixpkgs; [
+        docker-compose
+      ];
+    };
+  }

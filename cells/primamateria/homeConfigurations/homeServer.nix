@@ -2,12 +2,16 @@
   inputs,
   cell,
 }: let
-  inherit (cell) bees environments raspberrypi;
+  inherit (inputs) nixpkgs;
+  inherit (nixpkgs) lib;
+  inherit (cell) bees cli dockerServices;
 in {
-  bee = bees.wsl;
+  bee = bees.boot;
   imports = [
-    environments.clicraft
-
+    cli.hive
+    cli.shellMin
+    dockerServices.traefik
+    dockerServices.freshrss
     {
       home = {
         username = "primamateria";

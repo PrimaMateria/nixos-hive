@@ -1,8 +1,9 @@
-{ inputs, cell }:
-let
-  inherit (cell) bees environments desktop;
-in
 {
+  inputs,
+  cell,
+}: let
+  inherit (cell) bees environments desktop;
+in {
   bee = bees.boot;
   imports = [
     environments.clicraft

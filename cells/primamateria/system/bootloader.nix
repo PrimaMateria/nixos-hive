@@ -1,12 +1,8 @@
-{ inputs, cell }:
-{
-  config = {
-    # Use the systemd-boot EFI boot loader.
-    boot.loader = {
-      systemd-boot.enable = true;
-      systemd-boot.consoleMode = "max";
-      efi.canTouchEfiVariables = true;
-      timeout = 10000;
-    };
+{}: {
+  # Use the systemd-boot EFI boot loader.
+  boot.loader = {
+    systemd-boot.enable = true;
+    systemd-boot.consoleMode = "max";
+    efi.canTouchEfiVariables = true;
   };
 }
