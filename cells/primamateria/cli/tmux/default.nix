@@ -42,7 +42,8 @@ in {
 
         set -g status-style bg=terminal
         set -g status-style fg=white
-        set -g status-left "#[white]#S ~  "
+        set -g status-left "#[white][#(hostname)] #S ~  "
+        set -g status-left-length 40
         set -g status-right ""
 
         set -g status-justify 'left'
