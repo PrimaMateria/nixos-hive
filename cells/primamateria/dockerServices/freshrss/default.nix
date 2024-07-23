@@ -32,7 +32,6 @@
           image = "freshrss/freshrss";
           container_name = "freshrss";
           restart = "unless-stopped";
-          logging.options.max-size = "10m";
           volumes = [
             "data:/var/www/FreshRSS/data"
             "extensions:/var/www/FreshRSSS/extensions"
