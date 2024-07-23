@@ -7,17 +7,6 @@
   inherit (inputs) nixpkgs;
   inherit (cell) secrets;
 in {
-  programs.ssh = {
-    enable = true;
-    hashKnownHosts = true;
-    matchBlocks = {
-      "rip5" = {
-        host = "rpi5";
-        identityFile = "${secrets.identityFile.rpi5}";
-      };
-    };
-  };
-
   home.packages = [
     # Sync the client's hive to the Raspberry Pi.
     (nixpkgs.writeShellApplication {
