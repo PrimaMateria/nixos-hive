@@ -9,7 +9,9 @@ in {
   bee = bees.boot;
   imports = [
     cli.hive
-    cli.shellMin
+    cli.shell
+    cli.tmux
+    cli.vcs
     dockerServices.traefik
     dockerServices.freshrss
     {
@@ -17,6 +19,21 @@ in {
         username = "primamateria";
         homeDirectory = "/home/primamateria";
         stateVersion = "22.05";
+      };
+
+      primamateria.cli.tmux = {
+        sessions = [
+          {
+            name = "space";
+            type = "prefabs";
+            windows = [
+              "workbench"
+              "monitoring"
+              "nixos-hive"
+              "neovim-nix"
+            ];
+          }
+        ];
       };
     }
   ];

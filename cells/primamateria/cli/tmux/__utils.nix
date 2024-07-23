@@ -53,6 +53,14 @@ with builtins; {
         - window_name: qmk
           start_directory: ~/dev/qmk_firmware/keyboards/ferris
       '';
+      monitoring = ''
+        - window_name: monitoring
+          panes:
+            - top
+      '';
+      workbench = ''
+        - window_name: workbench
+      '';
     };
 
     generatePrefabs = foldl (accumulator: window: accumulator + (getAttr window prefabs)) "";

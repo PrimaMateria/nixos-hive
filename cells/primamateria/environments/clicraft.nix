@@ -59,6 +59,7 @@ in {
             name = "space";
             type = "prefabs";
             windows = [
+              "workbench"
               "nixos-hive"
               "neovim-nix"
               "startpages"

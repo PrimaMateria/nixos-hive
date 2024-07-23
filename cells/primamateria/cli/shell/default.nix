@@ -12,8 +12,7 @@ in {
       fzf
       entr
       translate-shell
-      glow
-      chatblade
+      btop
     ];
 
     programs.bash = {
@@ -21,6 +20,7 @@ in {
       shellAliases = {
         ls = nixpkgs.lib.mkForce "eza --time-style long-iso";
         cat = "bat -p";
+        top = "btop";
         nvim = "nix run ~/dev/neovim-nix --";
       };
     };
