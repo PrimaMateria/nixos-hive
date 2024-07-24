@@ -1,3 +1,7 @@
+#
+# █▄█ ▄▀▄ █▄ ▄█ ██▀
+# █ █ ▀▄▀ █ ▀ █ █▄▄ rpi5
+#
 # Raspberry Pi 5 was running Raspbian with Pure Nix. Some configurations that I
 # couldn't write in Nix, I attempted to write as a bash configuration script. In
 # addition to other installations, the configuration script also installed
