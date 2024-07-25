@@ -61,6 +61,10 @@ with builtins; {
       workbench = ''
         - window_name: workbench
       '';
+      dev-toolkit-nix = ''
+        - window_name: dev-toolkit-nix
+          start_directory: ~/dev/dev-toolkit-nix
+      '';
     };
 
     generatePrefabs = foldl (accumulator: window: accumulator + (getAttr window prefabs)) "";

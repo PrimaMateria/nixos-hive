@@ -101,10 +101,8 @@ in {
               "nixos-hive"
               "nixos"
               "neovim-nix"
+              "dev-toolkit-nix"
               "startpages"
-              "ambients"
-              "newsboat"
-              "weechat"
             ];
           }
           {
