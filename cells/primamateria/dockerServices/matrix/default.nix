@@ -78,7 +78,18 @@
             "db"
           ];
           labels = [
-            # TODO
+            "traefik.enable=true"
+            "traefik.http.routers.http-synapse.entryPoints=http"
+            "traefik.http.routers.http-synapse.rule=Host(`primamateria.ddns.net`)"
+            "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+            "traefik.http.middlewares.https_redirect.resirectscheme.permanent=true"
+            "traefik.http.routers.http-synapse.middlewares=https_redirect"
+            "traefik.http.routers.https-synapse.entryPoint=https"
+            "traefik.http.routers.https-synapse.rule=Host(`primamateria.ddns.net`)"
+            "traefik.http.routers.https-synapse.service=synapse"
+            "traefik.http.routers.https-synapse.tls=true"
+            "traefik.http.services.synapse.loadbalancer.server.port=8080" # ?
+            "traefik.http.routers.https-synapse.tls.certResolver=le-ssl" # ?
           ];
         };
 
@@ -93,21 +104,21 @@
             "POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
           ];
           volumes = [
-            "db-data:/var/lib/postgresql/data"
+            "synapse-db-data:/var/lib/postgresql/data"
           ];
         };
 
-        element = {
-          image = "vectorim/element-web";
-          container_name = "matrix-element";
-          restart = "unless-stopped";
-          volumes = [
-            "${elementConfiguration}:/app/config.json:ro"
-          ];
-          labels = [
-            # TODO
-          ];
-        };
+        # element = {
+        #   image = "vectorim/element-web";
+        #   container_name = "matrix-element";
+        #   restart = "unless-stopped";
+        #   volumes = [
+        #     "${elementConfiguration}:/app/config.json:ro"
+        #   ];
+        #   labels = [
+        #     # TODO
+        #   ];
+        # };
       };
     };
   };
