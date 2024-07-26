@@ -64,18 +64,8 @@ in {
               "neovim-nix"
               "startpages"
               "qmk"
-              "ambients"
-              "newsboat"
-              "weechat"
+              "blog"
             ];
-          }
-          {
-            name = "craft";
-            type = "custom";
-            windows = ''
-              - window_name: blog
-                start_directory: ~/dev/blog
-            '';
           }
         ];
       };

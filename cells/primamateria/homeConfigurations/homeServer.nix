@@ -35,6 +35,7 @@ in {
               "monitoring"
               "nixos-hive"
               "neovim-nix"
+              "blog"
             ];
           }
         ];

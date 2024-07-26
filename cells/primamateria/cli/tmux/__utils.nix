@@ -61,6 +61,10 @@ with builtins; {
       workbench = ''
         - window_name: workbench
       '';
+      blog = ''
+        - window_name: blog
+          start_directory: ~/dev/blog/
+      '';
     };
 
     generatePrefabs = foldl (accumulator: window: accumulator + (getAttr window prefabs)) "";
