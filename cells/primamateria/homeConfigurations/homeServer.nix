@@ -18,6 +18,7 @@ in {
     cli.vcs
     dockerServices.traefik
     dockerServices.freshrss
+    dockerServices.matrix
     {
       home = {
         username = "primamateria";
@@ -37,6 +38,14 @@ in {
               "neovim-nix"
               "blog"
             ];
+          }
+          {
+            name = "docker";
+            type = "custom";
+            windows = ''
+              - window_name: workbench
+              - window_name: lazydocker
+            '';
           }
         ];
       };
