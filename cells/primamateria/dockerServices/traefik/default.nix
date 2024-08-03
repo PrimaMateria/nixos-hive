@@ -36,6 +36,7 @@
           volumes = [
             "/var/run/docker.sock:/var/run/docker.sock"
             "traefik-tmp:/tmp"
+            "traefik-letsencrypt:/letsencrypt"
             "${dynamicConfiguration}:/etc/traefik/dynamic.yaml:ro"
             "${secrets.primamateriaDdnsNet}/primamateria_ddns_net.pem:/etc/ssl/certs/primamateria_ddns_net.pem:ro"
             "${secrets.primamateriaDdnsNet}/primamateria_ddns_net_nopassword.key:/etc/ssl/private/primamateria_ddns_net.key:ro"
@@ -48,6 +49,9 @@
             "--entryPoints.http.http.redirections.entryPoint.to=https"
             "--entryPoints.http.http.redirections.entryPoint.scheme=https"
             "--providers.file.filename=/etc/traefik/dynamic.yaml"
+            "--certificatesresolvers.le-ssl.acme.email=matus.benko@gmail.com"
+            "--certificatesresolvers.le-ssl.acme.storage=/letsencrypt/acme.json"
+            "--certificatesresolvers.le-ssl.acme.httpChallenge.entryPoint=http"
             "--log.filepath=/tmp/traefik.log"
             "--log.level=DEBUG"
           ];

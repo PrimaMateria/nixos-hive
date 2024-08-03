@@ -6,7 +6,7 @@
   inherit (inputs) nixpkgs;
 
   synapseLoggingConfiguration = nixpkgs.writeTextFile {
-    name = "primamateria.ddns.net.log.config";
+    name = "matrix.primamateria.ddns.net.log.config";
     text = builtins.toJSON {
       version = 1;
       formatters.precise.format = "%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(request)s - %(message)s";
@@ -45,7 +45,7 @@
   synapseConfiguration = nixpkgs.writeTextFile {
     name = "synapse-config.yaml";
     text = builtins.toJSON {
-      server_name = "primamateria.ddns.net";
+      server_name = "matrix.primamateria.ddns.net";
       pid_file = "/data/homeserver.pid";
       listeners = [
         {
@@ -73,7 +73,7 @@
       };
 
       report_stats = true;
-      log_config = "/primamateria.ddns.net.log.config";
+      log_config = "/matrix.primamateria.ddns.net.log.config";
       media_store_path = "/data/media_store";
 
       # Forbid public registration
@@ -97,8 +97,8 @@
       # TODO
       default_server_config = {
         "m.homeserver" = {
-          base_url = "https://primamateria.ddns.net";
-          server_name = "primamateria.ddns.net";
+          base_url = "https://matrix.primamateria.ddns.net";
+          server_name = "matrix.primamateria.ddns.net";
         };
         "m.identity_server" = {
           base_url = "https://vector.im";
@@ -185,7 +185,7 @@
             "synapse-data:/data"
             "synapse-log:/var/log/synapse"
             "${synapseConfiguration}:/etc/synapse/synapse.yaml:ro"
-            "${synapseLoggingConfiguration}:/primamateria.ddns.net.log.config:ro"
+            "${synapseLoggingConfiguration}:/matrix.primamateria.ddns.net.log.config:ro"
           ];
           environment = [
             "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
@@ -196,18 +196,16 @@
           labels = [
             "traefik.enable=true"
 
-            # http is just redirected to https
             "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
             "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
             "traefik.http.routers.http-synapse.entrypoints=http"
-            "traefik.http.routers.http-synapse.rule=PathPrefix(`/_matrix`) || PathPrefix(`/_synapse/client`)"
+            "traefik.http.routers.http-synapse.rule=Host(`matrix.primamateria.ddns.net`)"
             "traefik.http.routers.http-synapse.middlewares=https_redirect"
 
-            # https will pass all https request to subpath of /_matrix and /_synapse/client to synapse service to port 8008 as http
             "traefik.http.routers.https-synapse.entrypoints=https"
-            "traefik.http.routers.https-synapse.rule=PathPrefix(`/_matrix`) || PathPrefix(`/_synapse/client`)"
+            "traefik.http.routers.https-synapse.rule=Host(`matrix.primamateria.ddns.net`)"
             "traefik.http.routers.https-synapse.tls=true"
-            "traefik.http.routers.https-synapse.tls.certresolver=http"
+            "traefik.http.routers.https-synapse.tls.certresolver=le-ssl"
             "traefik.http.routers.https-synapse.service=synapse"
             "traefik.http.services.synapse.loadbalancer.server.port=8008"
           ];
@@ -245,23 +243,18 @@
           labels = [
             "traefik.enable=true"
 
-            # http is just redirected to https
             "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
             "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
             "traefik.http.routers.http-element.entrypoints=http"
-            # "traefik.http.routers.http-element.rule=PathPrefix(`/element`)"
             "traefik.http.routers.http-element.rule=Host(`element.primamateria.ddns.net`)"
             "traefik.http.routers.http-element.middlewares=https_redirect"
 
-            # https will pass all https request to subpath of /element  to
-            # element service to port 80 as http and strip the prefix
             "traefik.http.middlewares.element_stripprefix.stripprefix.prefixes=element"
             "traefik.http.routers.https-element.entrypoints=https"
-            # "traefik.http.routers.https-element.rule=PathPrefix(`/element`)"
             "traefik.http.routers.https-element.rule=Host(`element.primamateria.ddns.net`)"
             "traefik.http.routers.https-element.middlewares=element_stripprefix"
             "traefik.http.routers.https-element.tls=true"
-            "traefik.http.routers.https-element.tls.certresolver=http"
+            "traefik.http.routers.https-element.tls.certresolver=le-ssl"
             "traefik.http.routers.https-element.service=element"
             "traefik.http.services.element.loadbalancer.server.port=80"
           ];
