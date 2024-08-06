@@ -121,6 +121,13 @@ in {
       "traefik.http.routers.https-synapse.tls=true"
       "traefik.http.routers.https-synapse.tls.certresolver=le-ssl"
       "traefik.http.routers.https-synapse.service=synapse"
+
+      "traefik.http.routers.federation-synapse.entrypoints=federation"
+      "traefik.http.routers.federation-synapse.rule=Host(`matrix.primamateria.ddns.net`)"
+      "traefik.http.routers.federation-synapse.tls=true"
+      "traefik.http.routers.federation-synapse.tls.certresolver=le-ssl"
+      "traefik.http.routers.federation-synapse.service=synapse"
+
       "traefik.http.services.synapse.loadbalancer.server.port=8008"
     ];
   };

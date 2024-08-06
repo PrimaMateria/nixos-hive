@@ -46,6 +46,7 @@
             "--providers.docker=true"
             "--entryPoints.http.address=:80"
             "--entryPoints.https.address=:443"
+            "--entryPoints.federation.address=:8448"
             "--entryPoints.http.http.redirections.entryPoint.to=https"
             "--entryPoints.http.http.redirections.entryPoint.scheme=https"
             "--providers.file.filename=/etc/traefik/dynamic.yaml"
