@@ -1,6 +1,7 @@
 {
   inputs,
   cell,
+  super,
 }: let
   inherit (cell) secrets;
   inherit (inputs) nixpkgs;
@@ -33,6 +34,7 @@
       };
       loggers = {
         "synapse.storage.sql".level = "INFO";
+        "shared_secret_authenticator".level = "INFO";
       };
       root = {
         level = "INFO";
@@ -88,6 +90,17 @@
       trusted_key_servers = [
         {server_name = "matrix.org";}
       ];
+
+      # wechat bridge
+      modules = [
+        {
+          module = "shared_secret_authenticator.SharedSecretAuthProvider";
+          config = {
+            shared_secret = secrets.matrix.synapse.authenticator_shared_secret;
+            m_login_password_support_enabled = true;
+          };
+        }
+      ];
     };
   };
 in {
@@ -100,6 +113,7 @@ in {
       "synapse-log:/var/log/synapse"
       "${synapseConfiguration}:/etc/synapse/synapse.yaml:ro"
       "${synapseLoggingConfiguration}:/matrix.primamateria.ddns.net.log.config:ro"
+      "${super.bridgeWechat.authenticator}/shared_secret_authenticator.py:/usr/local/lib/python3.11/site-packages/shared_secret_authenticator.py:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
