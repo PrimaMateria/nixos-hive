@@ -11,8 +11,8 @@ in {
       tldr
       fzf
       entr
-      translate-shell
       btop
+      jq
     ];
 
     programs.bash = {
