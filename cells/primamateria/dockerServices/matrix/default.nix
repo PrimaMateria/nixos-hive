@@ -17,7 +17,7 @@
       services =
         super.synapse
         // super.synapsedb.dockerService
-        // super.element
+        // super.element.dockerService
         // super.bridgeWechat.dockerService;
     };
   };
