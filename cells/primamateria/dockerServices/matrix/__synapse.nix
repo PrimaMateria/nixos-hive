@@ -91,7 +91,7 @@
         {server_name = "matrix.org";}
       ];
 
-      # wechat bridge
+      # Authenticator for wechat bridge
       modules = [
         {
           module = "shared_secret_authenticator.SharedSecretAuthProvider";
@@ -100,6 +100,9 @@
             m_login_password_support_enabled = true;
           };
         }
+      ];
+      app_service_config_files = [
+        "/wechat-registration.yaml"
       ];
     };
   };
@@ -114,6 +117,7 @@ in {
       "${synapseConfiguration}:/etc/synapse/synapse.yaml:ro"
       "${synapseLoggingConfiguration}:/matrix.primamateria.ddns.net.log.config:ro"
       "${super.bridgeWechat.authenticator}/shared_secret_authenticator.py:/usr/local/lib/python3.11/site-packages/shared_secret_authenticator.py:ro"
+      "${super.bridgeWechat.registration}:/wechat-registration.yaml:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
@@ -151,7 +155,6 @@ in {
     container_name = "synapse-db";
     restart = "unless-stopped";
     environment = [
-      # TODO
       "POSTGRES_USER=synapse"
       "POSTGRES_PASSWORD=synapse"
       "POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C"

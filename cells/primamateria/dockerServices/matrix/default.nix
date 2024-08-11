@@ -11,9 +11,13 @@
         synapse-data = null;
         synapse-db-data = null;
         synapse-log = null;
+        # matrix-wechat = null;
       };
 
-      services = super.synapse // super.element;
+      services =
+        super.synapse
+        // super.element
+        // super.bridgeWechat.dockerService;
     };
   };
 in {
