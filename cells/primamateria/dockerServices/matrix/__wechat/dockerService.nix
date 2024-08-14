@@ -23,8 +23,15 @@
     #   "matrix-net"
     # ];
     labels = [
-      # TODO: enable and configure host matrix and some subpath
-      "traefik.enable=false"
+      "traefik.enable=true"
+
+      "traefik.http.routers.https-matrix-wechat.entrypoints=https"
+      "traefik.http.routers.https-matrix-wechat.rule=Host(`matrix.primamateria.ddns.net`) && PathPrefix(`/_wechat/`)"
+      "traefik.http.routers.https-matrix-wechat.tls=true"
+      "traefik.http.routers.https-matrix-wechat.tls.certresolver=le-ssl"
+      "traefik.http.routers.https-matrix-wechat.service=matrix-wechat"
+
+      "traefik.http.services.matrix-wechat.loadbalancer.server.port=20002"
     ];
   };
 }
