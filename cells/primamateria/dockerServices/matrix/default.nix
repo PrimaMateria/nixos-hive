@@ -18,7 +18,7 @@
         super.synapse.dockerService
         // super.synapsedb.dockerService
         // super.element.dockerService
-        // super.bridgeWechat.dockerService;
+        // super.wechat.dockerService;
     };
   };
 in {

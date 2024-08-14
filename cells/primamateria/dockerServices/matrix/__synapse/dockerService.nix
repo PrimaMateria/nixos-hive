@@ -1,4 +1,7 @@
-{super}: {
+{
+  super,
+  root,
+}: {
   synapse = {
     image = "matrixdotorg/synapse:latest";
     container_name = "synapse";
@@ -8,8 +11,8 @@
       "synapse-log:/var/log/synapse"
       "${super.config}:/etc/synapse/synapse.yaml:ro"
       "${super.logging}:/matrix.primamateria.ddns.net.log.config:ro"
-      "${super.bridgeWechat.authenticator}/shared_secret_authenticator.py:/usr/local/lib/python3.11/site-packages/shared_secret_authenticator.py:ro"
-      "${super.bridgeWechat.registration}:/wechat-registration.yaml:ro"
+      "${root.wechat.authenticator}/shared_secret_authenticator.py:/usr/local/lib/python3.11/site-packages/shared_secret_authenticator.py:ro"
+      "${root.wechat.registration}:/wechat-registration.yaml:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
