@@ -48,7 +48,7 @@ in
           #   SQLite: File name is enough. https://github.com/mattn/go-sqlite3#connection-string
           #   Postgres: Connection string. For example, postgres://user:password@host/database?sslmode=disable
           #             To connect via Unix socket, use something like postgres:///dbname?host=/var/run/postgresql
-          uri = "postgres://${secrets.matrix.synapse.postgres_user}:${secrets.matrix.synapse.postgres_password}@synapse-db/matrix-wechat?sslmode=disable";
+          uri = "postgres://${secrets.matrix.synapse.postgres_user}:${secrets.matrix.synapse.postgres_password}@synapse-db/matrix_wechat?sslmode=disable";
           # Maximum number of connections. Mostly relevant for Postgres.
           max_open_conns = 20;
           max_idle_conns = 2;
