@@ -17,11 +17,11 @@ in
       namespaces = {
         users = [
           {
-            regex = "^@wechatbot:primamateria\\.ddns\\.net$";
+            regex = "^@wechatbot:matrix\\.primamateria\\.ddns\\.net$";
             exclusive = true;
           }
           {
-            regex = "^@_wechat_.*:primamateria\\.ddns\\.net$";
+            regex = "^@_wechat_.*:matrix\\.primamateria\\.ddns\\.net$";
             exclusive = true;
           }
         ];
