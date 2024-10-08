@@ -18,7 +18,7 @@ in {
     cli.ambients
     cli.vifm
     cli.dev
-    cli.weechat
+    # cli.weechat
 
     {
       home = {
