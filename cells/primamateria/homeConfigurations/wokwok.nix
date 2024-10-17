@@ -99,7 +99,6 @@ in {
             type = "prefabs";
             windows = [
               "nixos-hive"
-              "nixos"
               "neovim-nix"
               "dev-toolkit-nix"
               "startpages"
@@ -132,11 +131,22 @@ in {
           }
           {
             name = "wf";
-            type = "project";
-            dir = "~/dev/web-form/frontend";
+            type = "custom";
+            windows = ''
+              - window_name: feature
+                start_directory: ~/dev/web-form/frontend
+              - window_name: feature run
+                start_directory: ~/dev/web-form/frontend
+              - window_name: workbench
+                start_directory: ~/dev/web-form/frontend
+              - window_name: develop
+                start_directory: ~/dev/wf-develop/frontend
+              - window_name: develop run
+                start_directory: ~/dev/wf-develop/frontend
+            '';
           }
           {
-            name = "cuda";
+            name = "cd";
             type = "project";
             dir = "~/dev/finapi-customer-dashboard-ui";
           }
