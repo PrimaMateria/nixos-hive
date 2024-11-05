@@ -168,11 +168,6 @@ in {
         ];
       };
 
-      # TODO: either to project flakes or to dev application
-      programs.bash.shellAliases = {
-        shell-react = "nix-shell ~/dev/nixos/shell.react.nix";
-      };
-
       # TODO: move JIRA token to reporting flake
       programs.bash.initExtra = ''
         export JIRA_API_TOKEN=${secrets.wokwok.jiraApiToken}
