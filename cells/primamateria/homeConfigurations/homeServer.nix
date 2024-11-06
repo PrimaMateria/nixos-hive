@@ -19,6 +19,7 @@ in {
     dockerServices.traefik
     dockerServices.freshrss
     dockerServices.matrix
+    dockerServices.zhongwen
     {
       home = {
         username = "primamateria";
