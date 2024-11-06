@@ -13,6 +13,7 @@ in {
       entr
       btop
       jq
+      lazydocker
     ];
 
     programs.bash = {
