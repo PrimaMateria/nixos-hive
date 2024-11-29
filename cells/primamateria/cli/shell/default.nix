@@ -14,6 +14,7 @@ in {
       btop
       jq
       lazydocker
+      aichat
     ];
 
     programs.bash = {
