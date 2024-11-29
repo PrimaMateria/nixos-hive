@@ -143,6 +143,8 @@ in {
                 start_directory: ~/dev/wf-develop/frontend
               - window_name: develop run
                 start_directory: ~/dev/wf-develop/frontend
+              - window_name: backend
+                start_directory: ~/dev/web-form/backend
             '';
           }
           {
