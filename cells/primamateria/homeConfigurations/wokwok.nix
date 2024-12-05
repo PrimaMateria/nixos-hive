@@ -145,6 +145,10 @@ in {
                 start_directory: ~/dev/wf-develop/frontend
               - window_name: backend
                 start_directory: ~/dev/web-form/backend
+              - window_name: ui
+                start_directory: ~/dev/web-form-ui/frontend
+              - window_name: ui run
+                start_directory: ~/dev/web-form-ui/frontend
             '';
           }
           {
