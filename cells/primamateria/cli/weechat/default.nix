@@ -29,7 +29,6 @@ in {
     (nixpkgs.weechat.override {
       configure = {availablePlugins, ...}: {
         scripts = with nixpkgs.weechatScripts; [
-          weechat-matrix
           weechat-autosort
           weechat-go
         ];
