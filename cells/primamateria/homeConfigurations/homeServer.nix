@@ -20,6 +20,7 @@ in {
     dockerServices.freshrss
     dockerServices.matrix
     dockerServices.zhongwen
+    dockerServices.dhlpdfcleaner
     {
       home = {
         username = "primamateria";
