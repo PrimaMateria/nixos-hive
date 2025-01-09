@@ -57,7 +57,7 @@ in {
         bind -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 
         bind Tab choose-tree -sZ
-        bind Enter new-session -s 'F#{s/\$//:#{next_session_id}}'
+        bind Enter new-session -s 'F#{e|+:1,#{s/\$//:#{next_session_id}}}'
         bind X confirm-before -p "Kill #S (y/n)?" "run-shell 'tmux switch-client -t space \\\; kill-session -t \"#S\"'"
 
         bind % split-window -h -c '#{pane_current_path}'  # Split panes horizontal
