@@ -26,6 +26,7 @@ in {
         nvim = "nix run ~/dev/neovim-nix#neovim.base --";
         nvim-web = "nix run ~/dev/neovim-nix#neovim.web --";
         nvim-puml = "nix run ~/dev/neovim-nix#neovim.puml --";
+        nvim-blog = "nix run ~/dev/neovim-nix#neovim.blog --";
       };
     };
   };
