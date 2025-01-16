@@ -22,6 +22,7 @@ in {
     dockerServices.zhongwen
     dockerServices.dhlpdfcleaner
     dockerServices.monica
+    dockerServices.hoarder
     {
       home = {
         username = "primamateria";
