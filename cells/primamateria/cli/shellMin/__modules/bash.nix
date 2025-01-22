@@ -15,7 +15,7 @@
 
       PS1="''${BLUE}\w''${YELLOW}\$''${RESET} "
 
-      export EDITOR="nix run ~/dev/neovim-nix --"
+      export EDITOR="nix run ~/dev/neovim-nix#neovim.base --"
       export MANPAGER="less -R --use-color -Dd+y -Du+b"
     '';
   };
