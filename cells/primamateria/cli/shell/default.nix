@@ -15,6 +15,7 @@ in {
       jq
       lazydocker
       aichat
+      lf
     ];
 
     programs.bash = {
