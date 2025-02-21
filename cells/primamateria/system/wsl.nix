@@ -9,7 +9,6 @@ in {
       enable = true;
       defaultUser = "primamateria";
       startMenuLaunchers = true;
-      nativeSystemd = true;
 
       wslConf = {
         network = {
