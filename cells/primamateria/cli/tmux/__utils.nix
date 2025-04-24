@@ -94,6 +94,8 @@ with builtins; {
             start_directory: ${session.dir}
           - window_name: run
             start_directory: ${session.dir}
+          - window_name: bench
+            start_directory: ${session.dir}
       '';
       prefabs = session: ''
         ${sessionName session}

@@ -65,25 +65,8 @@ in {
           }
           {
             name = "wf";
-            type = "custom";
-            windows = ''
-              - window_name: feature
-                start_directory: ~/dev/web-form/frontend
-              - window_name: feature run
-                start_directory: ~/dev/web-form/frontend
-              - window_name: workbench
-                start_directory: ~/dev/web-form/frontend
-              - window_name: develop
-                start_directory: ~/dev/wf-develop/frontend
-              - window_name: develop run
-                start_directory: ~/dev/wf-develop/frontend
-              - window_name: backend
-                start_directory: ~/dev/web-form/backend
-              - window_name: ui
-                start_directory: ~/dev/web-form-ui/frontend
-              - window_name: ui run
-                start_directory: ~/dev/web-form-ui/frontend
-            '';
+            type = "project";
+            dir = "~/dev/web-form-ui";
           }
           {
             name = "cd";
