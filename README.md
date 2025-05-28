@@ -19,3 +19,17 @@ evolved.
 In addition, I rely on my [neovim
 flake](https://github.com/PrimaMateria/neovim-nix) and [dev
 toolkit](https://github.com/PrimaMateria/dev-toolkit-nix).
+
+## Troubleshooting
+
+After garbage collecting the nix store stuff following error occured:
+
+```
+error: reading directory /nix/store/ynkv01653lic8ac0qkkcygws4b2ing2l-incl: No such file or directory
+```
+
+Following command fixed it:
+
+```
+sudo nix-store --verify
+```
