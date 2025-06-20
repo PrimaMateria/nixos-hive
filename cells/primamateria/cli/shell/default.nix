@@ -18,6 +18,10 @@ in {
       lf
     ];
 
+    programs.nushell = {
+      enable = true;
+    };
+
     programs.bash = {
       enable = true;
       shellAliases = {
