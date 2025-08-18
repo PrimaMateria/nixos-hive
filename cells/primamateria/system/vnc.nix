@@ -24,7 +24,7 @@ in {
   config = {
     services.xserver.autorun = false;
     services.xserver.windowManager.icewm.enable = true;
-    services.xserver.displayManager.gdm.enable = true;
+    services.displayManager.gdm.enable = true;
 
     environment.systemPackages = [runx];
   };
