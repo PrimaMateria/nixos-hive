@@ -29,7 +29,7 @@
             "traefik.http.routers.freshrss.middlewares=freshrssM1,freshrssM2"
             "traefik.http.routers.freshrss.rule=Host(`freshrss.primamateria.ddns.net`)"
           ];
-          image = "freshrss/freshrss";
+          image = "freshrss/freshrss:1.27.0";
           container_name = "freshrss";
           restart = "unless-stopped";
           volumes = [
