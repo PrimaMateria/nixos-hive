@@ -25,7 +25,7 @@ in {
               "nixos-hive"
               "neovim-nix"
               "startpages"
-              "qmk"
+              "zmk"
               "blog"
             ];
           }

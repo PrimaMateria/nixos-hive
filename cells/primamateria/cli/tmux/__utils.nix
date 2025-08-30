@@ -53,6 +53,10 @@ with builtins; {
         - window_name: qmk
           start_directory: ~/dev/qmk_firmware/keyboards/ferris
       '';
+      zmk = ''
+        - window_name: zmk
+          start_directory: ~/dev/zmk-config/
+      '';
       monitoring = ''
         - window_name: monitoring
           panes:
