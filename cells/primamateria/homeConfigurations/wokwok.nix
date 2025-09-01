@@ -36,6 +36,7 @@ in {
               "neovim-nix"
               "dev-toolkit-nix"
               "startpages"
+              "zmk"
             ];
           }
           {
