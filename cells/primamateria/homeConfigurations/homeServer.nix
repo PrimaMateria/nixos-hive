@@ -23,6 +23,7 @@ in {
     dockerServices.dhlpdfcleaner
     dockerServices.monica
     dockerServices.hoarder
+    dockerServices.suwayomi
     {
       home = {
         username = "primamateria";
