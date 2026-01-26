@@ -18,10 +18,12 @@
       '';
     };
 in {
-  home.packages = (with pkgs; [
-    diff-so-fancy
-    lazygit
-  ]) ++ [gitBranchClean];
+  home.packages =
+    (with pkgs; [
+      diff-so-fancy
+      lazygit
+    ])
+    ++ [gitBranchClean];
 
   programs.git = {
     enable = true;
@@ -33,7 +35,7 @@ in {
     };
     extraConfig = {
       init.defaultBranch = "main";
-      core.pager = "diff-so-fancy | less --tabs=4 -RFX";
+      # core.pager = "diff-so-fancy | less --tabs=4 -RFX";
       color.ui = true;
       "color \"diff-highlight\"" = {
         oldNormal = "red bold";
