@@ -25,19 +25,21 @@ in {
 
     programs.ssh = {
       enable = true;
-      hashKnownHosts = true;
       matchBlocks = {
         "github.com" = {
           host = "github.com";
           identityFile = "${cfg.secrets.identityFile.github}";
+          hashKnownHosts = true;
         };
         "gitlab.com" = {
           host = "gitlab.com";
           identityFile = "${cfg.secrets.identityFile.gitlab}";
+          hashKnownHosts = true;
         };
         "bitbucket.org" = {
           host = "bitbucket.org";
           identityFile = "${cfg.secrets.identityFile.bitbucket}";
+          hashKnownHosts = true;
         };
       };
     };
