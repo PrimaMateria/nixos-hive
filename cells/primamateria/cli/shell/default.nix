@@ -1,6 +1,6 @@
 {inputs}: let
   inherit (cell) cli;
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs llm-agents;
 in {
   imports = [cli.shellMin];
   config = {
@@ -14,8 +14,8 @@ in {
       btop
       jq
       lazydocker
-      aichat
       lf
+      llm-agents.packages.${nixpkgs.system}.copilot-cli
     ];
 
     programs.nushell = {
