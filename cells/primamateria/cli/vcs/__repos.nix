@@ -55,6 +55,11 @@ in {
           identityFile = "${cfg.secrets.identityFile.bitbucket}";
           hashKnownHosts = true;
         };
+        "finapi.ghe.com" = {
+          host = "finapi.ghe.com";
+          identityFile = "${cfg.secrets.identityFile.ghe}";
+          hashKnownHosts = true;
+        };
       };
     };
   };
