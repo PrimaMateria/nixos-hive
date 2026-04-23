@@ -17,6 +17,7 @@ in {
     cli.feeds
     cli.ambients
     cli.vifm
+    cli.jira
     # cli.weechat
 
     {
@@ -110,11 +111,6 @@ in {
           }
         ];
       };
-
-      # TODO: move JIRA token to reporting flake
-      programs.bash.initExtra = ''
-        export JIRA_API_TOKEN=${secrets.wokwok.jiraApiToken}
-      '';
     }
   ];
 }
