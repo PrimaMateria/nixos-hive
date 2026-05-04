@@ -27,6 +27,8 @@ in {
       };
     };
 
+    networking.resolvconf.enable = false;
+
     environment.etc."resolv.conf" = {
       enable = true;
       source = nixpkgs.writeText "resolv.conf" ''

@@ -34,7 +34,7 @@ in {
           serverAliveCountMax = 3;
           compression = false;
           addKeysToAgent = "no";
-          hashKnownHosts = false;
+          hashKnownHosts = lib.mkForce false;
           userKnownHostsFile = "~/.ssh/known_hosts";
           controlMaster = "no";
           controlPath = "~/.ssh/master-%r@%n:%p";
