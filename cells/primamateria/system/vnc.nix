@@ -13,7 +13,7 @@
   runx = nixpkgs.writeShellApplication {
     name = "runx";
     runtimeInputs = with nixpkgs; [
-      xorg.xinit
+      xinit
       icewm
     ];
     text = ''

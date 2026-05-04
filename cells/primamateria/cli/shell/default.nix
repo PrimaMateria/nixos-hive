@@ -1,6 +1,6 @@
 {inputs}: let
   inherit (cell) cli;
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs llm-agents;
 in {
   imports = [cli.shellMin];
   config = {
@@ -14,8 +14,8 @@ in {
       btop
       jq
       lazydocker
-      aichat
       lf
+      llm-agents.packages.${nixpkgs.system}.copilot-cli
     ];
 
     programs.nushell = {
@@ -32,6 +32,7 @@ in {
         nvim-web = "nix run ~/dev/neovim-nix#neovim.web --";
         nvim-puml = "nix run ~/dev/neovim-nix#neovim.puml --";
         nvim-blog = "nix run ~/dev/neovim-nix#neovim.blog --";
+        nvim-python = "nix run ~/dev/neovim-nix#neovim.python --";
       };
     };
   };

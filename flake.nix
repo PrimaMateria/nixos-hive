@@ -55,6 +55,8 @@
 
   nixConfig = {
     extra-experimental-features = ["nix-command" "flakes"];
+    extra-substituters = ["https://cache.numtide.com"];
+    extra-trusted-public-keys = ["niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="];
     allowUnfree = true;
   };
 
@@ -106,5 +108,7 @@
       url = "github:vivien/i3blocks-contrib";
       flake = false;
     };
+
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 }

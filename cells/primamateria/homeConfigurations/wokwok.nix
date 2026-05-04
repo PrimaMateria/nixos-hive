@@ -17,6 +17,7 @@ in {
     cli.feeds
     cli.ambients
     cli.vifm
+    cli.jira
     # cli.weechat
 
     {
@@ -66,8 +67,27 @@ in {
           }
           {
             name = "wf";
-            type = "project";
-            dir = "~/dev/web-form-ui";
+            type = "custom";
+            windows = ''
+              - window_name: v2.1 code
+                start_directory: ~/dev/web-form-ui-2_1
+              - window_name: v2.1 run
+                start_directory: ~/dev/web-form-ui-2_1
+              - window_name: v2.0 code
+                start_directory: ~/dev/web-form-ui
+              - window_name: v2.0 run
+                start_directory: ~/dev/web-form-ui
+              - window_name: mockoon
+                start_directory: ~/dev/web-form-ui-2_1
+              - window_name: profile-convertor
+                start_directory: ~/dev/web-form-profile-convertor
+              - window_name: profile-diff
+                start_directory: ~/dev/web-form-profile-diff
+                layout: main-vertical
+                panes:
+                  - echo code
+                  - echo run
+            '';
           }
           {
             name = "cd";
@@ -91,11 +111,6 @@ in {
           }
         ];
       };
-
-      # TODO: move JIRA token to reporting flake
-      programs.bash.initExtra = ''
-        export JIRA_API_TOKEN=${secrets.wokwok.jiraApiToken}
-      '';
     }
   ];
 }

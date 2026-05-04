@@ -16,7 +16,7 @@ in {
     secrets = {
       inherit (secrets) github;
       identityFile = {
-        inherit (secrets.identityFile) github gitlab bitbucket;
+        inherit (secrets.identityFile) github gitlab bitbucket ghe;
       };
     };
   };

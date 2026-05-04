@@ -16,6 +16,7 @@ in {
           ${nixpkgs.newsboat}/bin/newsboat
         '';
       })
+    nixpkgs.circumflex
   ];
 
   xdg.configFile."newsboat/config".text = ''

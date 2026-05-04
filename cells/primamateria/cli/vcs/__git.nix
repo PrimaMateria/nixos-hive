@@ -18,22 +18,24 @@
       '';
     };
 in {
-  home.packages = (with pkgs; [
-    diff-so-fancy
-    lazygit
-  ]) ++ [gitBranchClean];
+  home.packages =
+    (with pkgs; [
+      diff-so-fancy
+      lazygit
+    ])
+    ++ [gitBranchClean];
 
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "matus.benko";
-    userEmail = "matus.benko@gmail.com";
-    aliases = {
-      lgb = "log -n 5 --color=always --pretty='format:%C(yellow)%h%Creset %C(green)%an%Creset %ar%C(red)%d%Creset%n%s%n' --graph";
-    };
-    extraConfig = {
+    signing.format = "openpgp";
+    settings = {
+      user = {
+        name = "matus.benko";
+        email = "matus.benko@gmail.com";
+      };
       init.defaultBranch = "main";
-      core.pager = "diff-so-fancy | less --tabs=4 -RFX";
+      # core.pager = "diff-so-fancy | less --tabs=4 -RFX";
       color.ui = true;
       "color \"diff-highlight\"" = {
         oldNormal = "red bold";
@@ -51,6 +53,9 @@ in {
       };
       pull = {
         rebase = false;
+      };
+      merge = {
+        conflictStyle = "diff3";
       };
     };
   };
