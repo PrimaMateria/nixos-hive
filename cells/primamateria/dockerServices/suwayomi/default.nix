@@ -29,7 +29,7 @@
             "traefik.http.routers.suwayomi.rule=Host(`suwayomi.primamateria.ddns.net`)"
             "traefik.http.services.suwayomi.loadbalancer.server.port=4567"
           ];
-          image = "ghcr.io/suwayomi/suwayomi-server:preview";
+          image = "ghcr.io/suwayomi/suwayomi-server:stable";
           container_name = "suwayomi";
           restart = "on-failure:3";
           volumes = [
@@ -39,7 +39,7 @@
             TZ = "Europe/Berlin";
             FLARESOLVERR_ENABLED = "true";
             FLARESOLVERR_URL = "http://flaresolverr:8191";
-            AUTH_MODE = "ui_login";
+            AUTH_MODE = "simple_login";
             AUTH_USERNAME = username;
             AUTH_PASSWORD = password;
           };

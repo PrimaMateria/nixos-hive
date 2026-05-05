@@ -25,7 +25,7 @@
       };
       services = {
         traefik = {
-          image = "traefik:v3.0";
+          image = "traefik:v3.6.15";
           container_name = "traefik";
           network_mode = "host";
           ports = [
@@ -53,7 +53,6 @@
             "--certificatesresolvers.le-ssl.acme.email=matus.benko@gmail.com"
             "--certificatesresolvers.le-ssl.acme.storage=/letsencrypt/acme.json"
             "--certificatesresolvers.le-ssl.acme.httpChallenge.entryPoint=http"
-            "--log.filepath=/tmp/traefik.log"
             "--log.level=DEBUG"
           ];
           labels = [
@@ -70,7 +69,8 @@ in {
         name = "run-traefik";
         text = ''
           echo "Composing traefik"
-          docker compose -p traefik --file ${dockerCompose} up -d
+          docker compose -p traefik --file ${dockerCompose} pull
+          docker compose -p traefik --file ${dockerCompose} up -d --remove-orphans
         '';
       })
   ];

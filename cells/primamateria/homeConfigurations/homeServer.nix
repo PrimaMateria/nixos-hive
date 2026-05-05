@@ -22,7 +22,7 @@ in {
     dockerServices.zhongwen
     dockerServices.dhlpdfcleaner
     dockerServices.monica
-    dockerServices.hoarder
+    dockerServices.karakeep
     dockerServices.suwayomi
     {
       home = {
