@@ -2,7 +2,7 @@
   inputs,
   cell,
 }: let
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs bitbucket-cli;
   inherit (cell) secrets;
 
   jiraConfig = nixpkgs.writeTextFile {
@@ -123,6 +123,8 @@ in {
         ${nixpkgs.jira-cli-go}/bin/jira -c ${jiraConfig} "$@"
       '';
     })
+
+    bitbucket-cli.packages.${nixpkgs.system}.bkt
   ];
 
   programs.bash.initExtra = ''
