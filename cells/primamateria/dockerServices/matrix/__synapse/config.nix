@@ -53,18 +53,5 @@ in
         {server_name = "matrix.org";}
       ];
 
-      # Authenticator for wechat bridge
-      modules = [
-        {
-          module = "shared_secret_authenticator.SharedSecretAuthProvider";
-          config = {
-            shared_secret = secrets.matrix.synapse.authenticator_shared_secret;
-            m_login_password_support_enabled = true;
-          };
-        }
-      ];
-      app_service_config_files = [
-        "/wechat-registration.yaml"
-      ];
     };
   }

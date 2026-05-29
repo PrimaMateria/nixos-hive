@@ -11,15 +11,12 @@
         synapse-data = null;
         synapse-db-data = null;
         synapse-log = null;
-        # matrix-wechat = null;
       };
 
       services =
         super.synapse.dockerService
         // super.synapsedb.dockerService
-        // super.element.dockerService
-        // super.wechat.dockerService
-        // super.wechatagent.dockerService;
+        // super.element.dockerService;
     };
   };
 in {
