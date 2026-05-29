@@ -53,5 +53,8 @@ in
         {server_name = "matrix.org";}
       ];
 
+      app_service_config_files = [
+        "/heisenbridge-registration.yaml"
+      ];
     };
   }

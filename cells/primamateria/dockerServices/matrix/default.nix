@@ -11,12 +11,14 @@
         synapse-data = null;
         synapse-db-data = null;
         synapse-log = null;
+        heisenbridge-data = null;
       };
 
       services =
         super.synapse.dockerService
         // super.synapsedb.dockerService
-        // super.element.dockerService;
+        // super.element.dockerService
+        // super.heisenbridge.dockerService;
     };
   };
 in {

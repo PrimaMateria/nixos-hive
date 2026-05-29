@@ -1,5 +1,6 @@
 {
   super,
+  root,
 }: {
   synapse = {
     image = "matrixdotorg/synapse:latest";
@@ -10,6 +11,7 @@
       "synapse-log:/var/log/synapse"
       "${super.config}:/etc/synapse/synapse.yaml:ro"
       "${super.logging}:/matrix.primamateria.ddns.net.log.config:ro"
+      "${root.heisenbridge.registration}:/heisenbridge-registration.yaml:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
