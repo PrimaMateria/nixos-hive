@@ -21,7 +21,6 @@ in {
     dockerServices.matrix
     dockerServices.zhongwen
     dockerServices.dhlpdfcleaner
-    dockerServices.monica
     dockerServices.karakeep
     dockerServices.suwayomi
     dockerServices.ttyd
