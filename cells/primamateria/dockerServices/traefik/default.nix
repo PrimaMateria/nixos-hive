@@ -23,15 +23,20 @@
         traefik-letsencrypt = null;
         traefik-tmp = null;
       };
+      networks = {
+        traefik_net = {external = true;};
+      };
+
       services = {
         traefik = {
           image = "traefik:v3.6.15";
           container_name = "traefik";
-          network_mode = "host";
+          networks = ["traefik_net"];
           ports = [
             "80:80"
-            "8080:8080"
             "443:443"
+            "8448:8448"
+            "8080:8080"
           ];
           volumes = [
             "/var/run/docker.sock:/var/run/docker.sock"
@@ -44,6 +49,7 @@
           command = [
             "--api.insecure=true"
             "--providers.docker=true"
+            "--providers.docker.network=traefik_net"
             "--entryPoints.http.address=:80"
             "--entryPoints.https.address=:443"
             "--entryPoints.federation.address=:8448"

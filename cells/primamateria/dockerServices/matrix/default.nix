@@ -7,6 +7,10 @@
   dockerCompose = nixpkgs.writeTextFile {
     name = "matrix-docker-compose.yaml";
     text = builtins.toJSON {
+      networks = {
+        traefik_net = {external = true;};
+      };
+
       volumes = {
         synapse-data = null;
         synapse-db-data = null;

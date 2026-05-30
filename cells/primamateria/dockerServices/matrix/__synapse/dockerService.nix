@@ -16,6 +16,7 @@
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
     ];
+    networks = ["default" "traefik_net"];
     depends_on = [
       "synapse-db"
     ];

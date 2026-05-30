@@ -1,10 +1,6 @@
 {
-  inputs,
-  cell,
-}: let
-  inherit (cell) secrets;
-  inherit (inputs) nixpkgs;
-in {
+  super,
+}: {
   element = {
     image = "vectorim/element-web:latest";
     container_name = "element";
@@ -12,10 +8,7 @@ in {
     volumes = [
       "${super.config}:/app/config.json:ro"
     ];
-    environment = [
-      "BASE_URL=/element"
-      "PUBLIC_URL=/element"
-    ];
+    networks = ["default" "traefik_net"];
     labels = [
       "traefik.enable=true"
 
