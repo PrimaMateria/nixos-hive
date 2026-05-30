@@ -13,6 +13,7 @@
       "${super.logging}:/matrix.primamateria.ddns.net.log.config:ro"
       "${root.heisenbridge.registration}:/heisenbridge-registration.yaml:ro"
       "${root.mautrixwhatsapp.registration}:/mautrix-whatsapp-registration.yaml:ro"
+      "${root.mautrixdiscord.registration}:/mautrix-discord-registration.yaml:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"

@@ -17,6 +17,7 @@
         synapse-log = null;
         heisenbridge-data = null;
         mautrix-whatsapp-data = null;
+        mautrix-discord-data = null;
       };
 
       services =
@@ -24,7 +25,8 @@
         // super.synapsedb.dockerService
         // super.element.dockerService
         // super.heisenbridge.dockerService
-        // super.mautrixwhatsapp.dockerService;
+        // super.mautrixwhatsapp.dockerService
+        // super.mautrixdiscord.dockerService;
     };
   };
 in {
