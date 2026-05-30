@@ -24,6 +24,7 @@ in {
     dockerServices.monica
     dockerServices.karakeep
     dockerServices.suwayomi
+    dockerServices.ttyd
     dockerServices.booksync
     dockerServices.bookorbit
     dockerServices.calibreweb
