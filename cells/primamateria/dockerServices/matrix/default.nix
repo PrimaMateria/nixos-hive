@@ -16,13 +16,15 @@
         synapse-db-data = null;
         synapse-log = null;
         heisenbridge-data = null;
+        mautrix-whatsapp-data = null;
       };
 
       services =
         super.synapse.dockerService
         // super.synapsedb.dockerService
         // super.element.dockerService
-        // super.heisenbridge.dockerService;
+        // super.heisenbridge.dockerService
+        // super.mautrixwhatsapp.dockerService;
     };
   };
 in {

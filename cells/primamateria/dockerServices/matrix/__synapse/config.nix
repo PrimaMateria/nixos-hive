@@ -55,6 +55,7 @@ in
 
       app_service_config_files = [
         "/heisenbridge-registration.yaml"
+        "/mautrix-whatsapp-registration.yaml"
       ];
     };
   }
