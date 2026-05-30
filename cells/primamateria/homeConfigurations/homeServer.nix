@@ -24,7 +24,9 @@ in {
     dockerServices.monica
     dockerServices.karakeep
     dockerServices.suwayomi
+    dockerServices.booksync
     dockerServices.bookorbit
+    dockerServices.calibreweb
     {
       home = {
         username = "primamateria";

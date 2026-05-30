@@ -82,7 +82,6 @@
   };
 in {
   home.packages = [
-    nixpkgs.rclone
     (nixpkgs.writeShellApplication {
       name = "run-bookorbit";
       text = ''
@@ -91,27 +90,4 @@ in {
       '';
     })
   ];
-
-  systemd.user.services.rclone-books-sync = {
-    Unit = {
-      Description = "Sync Calibre library from Google Drive to books directory";
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${nixpkgs.rclone}/bin/rclone sync gdrive:Calibre-Bibliothek /home/primamateria/books --create-empty-src-dirs";
-    };
-  };
-
-  systemd.user.timers.rclone-books-sync = {
-    Unit = {
-      Description = "Hourly timer for Calibre library sync from Google Drive";
-    };
-    Timer = {
-      OnCalendar = "hourly";
-      Persistent = true;
-    };
-    Install = {
-      WantedBy = ["timers.target"];
-    };
-  };
 }
