@@ -16,6 +16,7 @@ in {
     cli.shell
     cli.tmux
     cli.vcs
+    cli.weechat
     dockerServices.traefik
     dockerServices.freshrss
     dockerServices.matrix

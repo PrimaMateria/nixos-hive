@@ -58,5 +58,20 @@ in {
         docker compose -p calibreweb --file ${dockerCompose} up -d
       '';
     })
+    (nixpkgs.writeShellApplication {
+      name = "calibre-add";
+      text = ''
+        if [ -z "$1" ]; then
+          echo "Usage: calibre-add <path-to-ebook>"
+          exit 1
+        fi
+        FILE="$1"
+        FILENAME=$(basename "$FILE")
+        docker cp "$FILE" calibreweb:/tmp/"$FILENAME"
+        docker exec calibreweb calibredb add /tmp/"$FILENAME" --library-path /books
+        docker exec calibreweb rm /tmp/"$FILENAME"
+        echo "Done: $FILENAME added to Calibre library"
+      '';
+    })
   ];
 }

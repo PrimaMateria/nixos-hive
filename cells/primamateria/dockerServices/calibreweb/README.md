@@ -27,7 +27,7 @@ Admin → Basic Configuration → Email Server:
 - SMTP host: `smtp.eu.mailgun.org`
 - Port: `587`
 - Username: `postmaster@primamateria.ddns.net`
-- Password: from `secrets/default.nix` (`monicaServer.mailPassword`)
+- Password: from `secrets/default.nix` (`mailgun.smtpPassword`)
 - From: `books@primamateria.ddns.net`
 
 Then set your Kindle address in Admin → Edit User → Send to Kindle E-Mail.
