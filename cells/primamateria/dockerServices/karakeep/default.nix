@@ -19,6 +19,10 @@
   dockerCompose = nixpkgs.writeTextFile {
     name = "karakeep-docker-compose.yaml";
     text = builtins.toJSON {
+      networks = {
+        traefik_net = {external = true;};
+      };
+
       volumes = {
         meilisearch = null;
         data = null;
@@ -28,6 +32,7 @@
         web = {
           image = "ghcr.io/karakeep-app/karakeep:release";
           restart = "unless-stopped";
+          networks = ["default" "traefik_net"];
           volumes = ["data:/data"];
           env_file = ["${karakeepEnv}"];
           environment = {

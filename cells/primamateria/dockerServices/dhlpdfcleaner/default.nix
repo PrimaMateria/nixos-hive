@@ -9,8 +9,12 @@
     name = "dhlpdfcleaner-docker-compose.yaml";
     text = builtins.toJSON {
       version = "2.4";
+      networks = {
+        traefik_net = {external = true;};
+      };
       services = {
         dhlpdfcleaner = {
+          networks = ["default" "traefik_net"];
           labels = [
             "traefik.enable=true"
             "traefik.http.middlewares.dhlpdfcleanerM1.compress=true"
