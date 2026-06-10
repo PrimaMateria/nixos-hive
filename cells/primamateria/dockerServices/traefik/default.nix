@@ -23,15 +23,20 @@
         traefik-letsencrypt = null;
         traefik-tmp = null;
       };
+      networks = {
+        traefik_net = {external = true;};
+      };
+
       services = {
         traefik = {
-          image = "traefik:v3.0";
+          image = "traefik:v3.6.15";
           container_name = "traefik";
-          network_mode = "host";
+          networks = ["traefik_net"];
           ports = [
             "80:80"
-            "8080:8080"
             "443:443"
+            "8448:8448"
+            "8080:8080"
           ];
           volumes = [
             "/var/run/docker.sock:/var/run/docker.sock"
@@ -44,6 +49,7 @@
           command = [
             "--api.insecure=true"
             "--providers.docker=true"
+            "--providers.docker.network=traefik_net"
             "--entryPoints.http.address=:80"
             "--entryPoints.https.address=:443"
             "--entryPoints.federation.address=:8448"
@@ -53,7 +59,6 @@
             "--certificatesresolvers.le-ssl.acme.email=matus.benko@gmail.com"
             "--certificatesresolvers.le-ssl.acme.storage=/letsencrypt/acme.json"
             "--certificatesresolvers.le-ssl.acme.httpChallenge.entryPoint=http"
-            "--log.filepath=/tmp/traefik.log"
             "--log.level=DEBUG"
           ];
           labels = [
@@ -70,7 +75,8 @@ in {
         name = "run-traefik";
         text = ''
           echo "Composing traefik"
-          docker compose -p traefik --file ${dockerCompose} up -d
+          docker compose -p traefik --file ${dockerCompose} pull
+          docker compose -p traefik --file ${dockerCompose} up -d --remove-orphans
         '';
       })
   ];

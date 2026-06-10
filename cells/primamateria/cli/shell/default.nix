@@ -16,6 +16,7 @@ in {
       lazydocker
       lf
       llm-agents.packages.${nixpkgs.system}.copilot-cli
+      llm-agents.packages.${nixpkgs.system}.claude-code
     ];
 
     programs.nushell = {

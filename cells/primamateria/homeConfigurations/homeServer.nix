@@ -16,14 +16,18 @@ in {
     cli.shell
     cli.tmux
     cli.vcs
+    cli.weechat
     dockerServices.traefik
     dockerServices.freshrss
     dockerServices.matrix
     dockerServices.zhongwen
     dockerServices.dhlpdfcleaner
-    dockerServices.monica
-    dockerServices.hoarder
+    dockerServices.karakeep
     dockerServices.suwayomi
+    dockerServices.ttyd
+    dockerServices.booksync
+    dockerServices.bookorbit
+    dockerServices.calibreweb
     {
       home = {
         username = "primamateria";

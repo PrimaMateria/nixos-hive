@@ -26,39 +26,38 @@ in {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-
-      matchBlocks = {
+      settings = {
         "*" = {
-          forwardAgent = false;
-          serverAliveInterval = 0;
-          serverAliveCountMax = 3;
-          compression = false;
-          addKeysToAgent = "no";
-          hashKnownHosts = false;
-          userKnownHostsFile = "~/.ssh/known_hosts";
-          controlMaster = "no";
-          controlPath = "~/.ssh/master-%r@%n:%p";
-          controlPersist = "no";
+          ForwardAgent = false;
+          ServerAliveInterval = 0;
+          ServerAliveCountMax = 3;
+          Compression = false;
+          AddKeysToAgent = "no";
+          HashKnownHosts = lib.mkForce false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "no";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "no";
         };
         "github.com" = {
-          host = "github.com";
-          identityFile = "${cfg.secrets.identityFile.github}";
-          hashKnownHosts = true;
+          HostName = "github.com";
+          IdentityFile = "${cfg.secrets.identityFile.github}";
+          HashKnownHosts = true;
         };
         "gitlab.com" = {
-          host = "gitlab.com";
-          identityFile = "${cfg.secrets.identityFile.gitlab}";
-          hashKnownHosts = true;
+          HostName = "gitlab.com";
+          IdentityFile = "${cfg.secrets.identityFile.gitlab}";
+          HashKnownHosts = true;
         };
         "bitbucket.org" = {
-          host = "bitbucket.org";
-          identityFile = "${cfg.secrets.identityFile.bitbucket}";
-          hashKnownHosts = true;
+          HostName = "bitbucket.org";
+          IdentityFile = "${cfg.secrets.identityFile.bitbucket}";
+          HashKnownHosts = true;
         };
         "finapi.ghe.com" = {
-          host = "finapi.ghe.com";
-          identityFile = "${cfg.secrets.identityFile.ghe}";
-          hashKnownHosts = true;
+          HostName = "finapi.ghe.com";
+          IdentityFile = "${cfg.secrets.identityFile.ghe}";
+          HashKnownHosts = true;
         };
       };
     };

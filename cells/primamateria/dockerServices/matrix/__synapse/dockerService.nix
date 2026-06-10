@@ -11,12 +11,14 @@
       "synapse-log:/var/log/synapse"
       "${super.config}:/etc/synapse/synapse.yaml:ro"
       "${super.logging}:/matrix.primamateria.ddns.net.log.config:ro"
-      "${root.wechat.authenticator}/shared_secret_authenticator.py:/usr/local/lib/python3.11/site-packages/shared_secret_authenticator.py:ro"
-      "${root.wechat.registration}:/wechat-registration.yaml:ro"
+      "${root.heisenbridge.registration}:/heisenbridge-registration.yaml:ro"
+      "${root.mautrixwhatsapp.registration}:/mautrix-whatsapp-registration.yaml:ro"
+      "${root.mautrixdiscord.registration}:/mautrix-discord-registration.yaml:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
     ];
+    networks = ["default" "traefik_net"];
     depends_on = [
       "synapse-db"
     ];

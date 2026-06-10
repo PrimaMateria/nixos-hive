@@ -13,7 +13,7 @@
       YELLOW="\001$(tput setaf 3)\002"
       RESET="\001$(tput sgr0)\002"
 
-      PS1="''${BLUE}\w''${YELLOW}\$''${RESET} "
+      PS1="''${BLUE}\w ''${YELLOW}\$''${RESET} "
 
       export EDITOR="nix run ~/dev/neovim-nix#neovim.base --"
       export MANPAGER="less -R --use-color -Dd+y -Du+b"

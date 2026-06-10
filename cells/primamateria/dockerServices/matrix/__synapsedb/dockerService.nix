@@ -12,7 +12,8 @@
     name = "synapsedb-init.sh";
     text = ''
       #!/bin/sh
-      createdb -U ${secrets.matrix.synapse.postgres_user} -O ${secrets.matrix.synapse.postgres_user} matrix_wechat
+      createdb -U ${secrets.matrix.synapse.postgres_user} -O ${secrets.matrix.synapse.postgres_user} matrix_whatsapp
+      createdb -U ${secrets.matrix.synapse.postgres_user} -O ${secrets.matrix.synapse.postgres_user} matrix_discord
     '';
     executable = true;
   };

@@ -20,11 +20,13 @@ in {
 
       programs.ssh = {
         enable = true;
-        matchBlocks = {
+        settings = {
+          "*" = {
+            HashKnownHosts = true;
+          };
           "homeServer" = {
-            host = "homeServer";
-            identityFile = "${secrets.identityFile.ggHomeServer}";
-            hashKnownHosts = true;
+            HostName = "homeServer";
+            IdentityFile = "${secrets.identityFile.ggHomeServer}";
           };
         };
       };

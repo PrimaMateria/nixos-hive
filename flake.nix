@@ -110,5 +110,7 @@
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+
+    bitbucket-cli.url = "github:avivsinai/bitbucket-cli";
   };
 }

@@ -7,19 +7,26 @@
   dockerCompose = nixpkgs.writeTextFile {
     name = "matrix-docker-compose.yaml";
     text = builtins.toJSON {
+      networks = {
+        traefik_net = {external = true;};
+      };
+
       volumes = {
         synapse-data = null;
         synapse-db-data = null;
         synapse-log = null;
-        # matrix-wechat = null;
+        heisenbridge-data = null;
+        mautrix-whatsapp-data = null;
+        mautrix-discord-data = null;
       };
 
       services =
         super.synapse.dockerService
         // super.synapsedb.dockerService
         // super.element.dockerService
-        // super.wechat.dockerService
-        // super.wechatagent.dockerService;
+        // super.heisenbridge.dockerService
+        // super.mautrixwhatsapp.dockerService
+        // super.mautrixdiscord.dockerService;
     };
   };
 in {
