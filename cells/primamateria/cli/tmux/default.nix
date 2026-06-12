@@ -25,7 +25,16 @@ in {
       customPaneNavigationAndResize = true;
       keyMode = "vi";
       mouse = true;
-      plugins = with nixpkgs; [];
+      plugins = [
+        {
+          plugin = nixpkgs.tmuxPlugins.extrakto;
+          extraConfig = ''
+            set -g @extrakto_key e
+            set -g @extrakto_copy_key enter
+            set -g @extrakto_insert_key tab
+          '';
+        }
+      ];
       tmuxp.enable = true;
       extraConfig = ''
         set -g status 2
