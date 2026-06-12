@@ -45,14 +45,14 @@ in {
             type = "custom";
             windows = ''
               - window_name: reporting
-                start_directory: ~/dev/finapi-reporting
+                start_directory: ~/dev/lazyreporting
                 panes:
                   - lr
               - window_name: todo
                 start_directory: ~/Documents
               - window_name: x
               - window_name: reporting dev
-                start_directory: ~/dev/finapi-reporting
+                start_directory: ~/dev/lazyreporting
             '';
           }
           {
