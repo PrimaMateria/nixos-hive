@@ -25,7 +25,7 @@ in {
       customPaneNavigationAndResize = true;
       keyMode = "vi";
       mouse = true;
-      plugins = with nixpkgs.tmuxPlugins; [ prefix-highlight ];
+      plugins = with nixpkgs; [];
       tmuxp.enable = true;
       extraConfig = ''
         set -g status 2
@@ -43,8 +43,7 @@ in {
         set -g status-style fg=white
         set -g status-left "#[white][#H] #S ~  "
         set -g status-left-length 40
-        set -g @prefix_highlight_show_copy_mode 'on'
-        set -g status-right "#{prefix_highlight}"
+        set -g status-right "#{?client_prefix,#[reverse] ^B #[noreverse],}#{?pane_in_mode,#[reverse] Copy #[noreverse],}"
 
         set -g status-justify 'left'
         set -g window-status-format "#{window_index}.#{window_name}"
