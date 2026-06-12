@@ -32,7 +32,6 @@ in {
         set -g status-format[1] ""
 
         set -g status-position top
-        set -g default-terminal xterm
         set -g display-time 5000
         set -g focus-events on
         set -sg escape-time 10
@@ -42,7 +41,7 @@ in {
 
         set -g status-style bg=terminal
         set -g status-style fg=white
-        set -g status-left "#[white][#(hostname)] #S ~  "
+        set -g status-left "#[white][#H] #S ~  "
         set -g status-left-length 40
         set -g status-right ""
 
@@ -58,26 +57,27 @@ in {
 
         bind Tab choose-tree -sZ
         bind Enter new-session -s 'F#{e|+:1,#{s/\$//:#{next_session_id}}}'
-        bind X confirm-before -p "Kill #S (y/n)?" "run-shell 'tmux switch-client -t space \\\; kill-session -t \"#S\"'"
+        bind X confirm-before -p "Kill #S (y/n)?" "run-shell 'tmux switch-client -p \\\; kill-session -t \"#S\"'"
 
-        bind % split-window -h -c '#{pane_current_path}'  # Split panes horizontal
-        bind '"' split-window -v -c '#{pane_current_path}'  # Split panes vertically
+        bind % split-window -h -c '#{pane_current_path}'
+        bind '"' split-window -v -c '#{pane_current_path}'
 
-        set -g @yank_selection 'clipboard'
+        set -g history-limit 50000
+        set -g pane-base-index 1
         bind BSpace last-window
 
-        bind -n F1 switch-client -t F1
-        bind -n F2 switch-client -t F2
-        bind -n F3 switch-client -t F3
-        bind -n F4 switch-client -t F4
-        bind -n F5 switch-client -t F5
-        bind -n F6 switch-client -t F6
-        bind -n F7 switch-client -t F7
-        bind -n F8 switch-client -t F8
-        bind -n F9 switch-client -t F9
-        bind -n F10 switch-client -t F10
-        bind -n F11 switch-client -t F11
-        bind -n F12 switch-client -t F12
+        bind -n F1 if-shell 'tmux has-session -t F1' 'switch-client -t F1'
+        bind -n F2 if-shell 'tmux has-session -t F2' 'switch-client -t F2'
+        bind -n F3 if-shell 'tmux has-session -t F3' 'switch-client -t F3'
+        bind -n F4 if-shell 'tmux has-session -t F4' 'switch-client -t F4'
+        bind -n F5 if-shell 'tmux has-session -t F5' 'switch-client -t F5'
+        bind -n F6 if-shell 'tmux has-session -t F6' 'switch-client -t F6'
+        bind -n F7 if-shell 'tmux has-session -t F7' 'switch-client -t F7'
+        bind -n F8 if-shell 'tmux has-session -t F8' 'switch-client -t F8'
+        bind -n F9 if-shell 'tmux has-session -t F9' 'switch-client -t F9'
+        bind -n F10 if-shell 'tmux has-session -t F10' 'switch-client -t F10'
+        bind -n F11 if-shell 'tmux has-session -t F11' 'switch-client -t F11'
+        bind -n F12 if-shell 'tmux has-session -t F12' 'switch-client -t F12'
       '';
     };
   };
