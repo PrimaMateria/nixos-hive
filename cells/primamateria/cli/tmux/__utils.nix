@@ -73,6 +73,10 @@ with builtins; {
         - window_name: dev-toolkit-nix
           start_directory: ~/dev/dev-toolkit-nix
       '';
+      diary = ''
+        - window_name: diary
+          start_directory: ~/dev/notes
+      '';
     };
 
     generatePrefabs = foldl (accumulator: window: accumulator + (getAttr window prefabs)) "";

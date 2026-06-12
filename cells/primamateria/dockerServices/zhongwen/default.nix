@@ -9,8 +9,12 @@
     name = "zhongwen-docker-compose.yaml";
     text = builtins.toJSON {
       version = "2.4";
+      networks = {
+        traefik_net = {external = true;};
+      };
       services = {
         zhongwen = {
+          networks = ["default" "traefik_net"];
           labels = [
             "traefik.enable=true"
             "traefik.http.middlewares.zhongwenM1.compress=true"

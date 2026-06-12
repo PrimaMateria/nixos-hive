@@ -9,12 +9,16 @@
     name = "freshrss-docker-compose.yaml";
     text = builtins.toJSON {
       version = "2.4";
+      networks = {
+        traefik_net = {external = true;};
+      };
       volumes = {
         data = null;
         extensions = null;
       };
       services = with secrets.freshrssServer; {
         freshrss = {
+          networks = ["default" "traefik_net"];
           labels = [
             "traefik.enable=true"
             "traefik.http.middlewares.freshrssM1.compress=true"

@@ -9,11 +9,15 @@
     name = "suwayomi.yaml";
     text = builtins.toJSON {
       version = "2.4";
+      networks = {
+        traefik_net = {external = true;};
+      };
       volumes = {
         files = null;
       };
       services = with secrets.suwayomi; {
         suwayomi = {
+          networks = ["default" "traefik_net"];
           labels = [
             "traefik.enable=true"
             "traefik.http.middlewares.suwayomiM1.compress=true"
