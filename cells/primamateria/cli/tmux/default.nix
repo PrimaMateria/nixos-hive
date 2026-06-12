@@ -63,6 +63,13 @@ in {
         bind % split-window -h -c '#{pane_current_path}'
         bind '"' split-window -v -c '#{pane_current_path}'
 
+        is_vim="ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?nvim?x?)(diff)?$'"
+        bind -n C-w if-shell "$is_vim" "send-keys C-w" "switch-client -T navigator"
+        bind -T navigator h select-pane -L
+        bind -T navigator j select-pane -D
+        bind -T navigator k select-pane -U
+        bind -T navigator l select-pane -R
+
         set -g history-limit 50000
         set -g pane-base-index 1
         bind BSpace last-window
