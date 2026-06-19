@@ -18,6 +18,7 @@ in {
     cli.ambients
     cli.vifm
     cli.jira
+    cli.redthread
     # cli.weechat
 
     {
@@ -50,6 +51,8 @@ in {
                   - lr
               - window_name: todo
                 start_directory: ~/Documents
+                panes:
+                  - redthread
               - window_name: x
               - window_name: reporting dev
                 start_directory: ~/dev/lazyreporting
