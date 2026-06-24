@@ -33,7 +33,7 @@
             "traefik.http.routers.suwayomi.rule=Host(`suwayomi.primamateria.ddns.net`)"
             "traefik.http.services.suwayomi.loadbalancer.server.port=4567"
           ];
-          image = "ghcr.io/suwayomi/suwayomi-server:stable";
+          image = "ghcr.io/suwayomi/suwayomi-server:v2.2.2100";
           container_name = "suwayomi";
           restart = "on-failure:3";
           volumes = [
