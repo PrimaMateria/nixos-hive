@@ -19,6 +19,7 @@ in {
     cli.vifm
     cli.jira
     cli.redthread
+    cli.claude
     # cli.weechat
 
     {
