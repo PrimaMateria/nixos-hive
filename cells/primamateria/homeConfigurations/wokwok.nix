@@ -45,14 +45,14 @@ in {
             type = "custom";
             windows = ''
               - window_name: reporting
-                layout: even-horizontal
-                start_directory: ~/reporting
+                start_directory: ~/dev/lazyreporting
                 panes:
-                  - nix develop --command ./current2
-                  - nix develop
+                  - lr
               - window_name: todo
                 start_directory: ~/Documents
               - window_name: x
+              - window_name: reporting dev
+                start_directory: ~/dev/lazyreporting
             '';
           }
           {
@@ -69,24 +69,20 @@ in {
             name = "wf";
             type = "custom";
             windows = ''
-              - window_name: v2.1 code
+              - window_name: 2.1 code
                 start_directory: ~/dev/web-form-ui-2_1
-              - window_name: v2.1 run
+              - window_name: 2.1 run
                 start_directory: ~/dev/web-form-ui-2_1
-              - window_name: v2.0 code
+              - window_name: 2.1-w code
+                start_directory: ~/dev/web-form-ui-2_1-worktree
+              - window_name: 2.1-w run
+                start_directory: ~/dev/web-form-ui-2_1-worktree
+              - window_name: 2.0 code
                 start_directory: ~/dev/web-form-ui
-              - window_name: v2.0 run
+              - window_name: 2.0 run
                 start_directory: ~/dev/web-form-ui
               - window_name: mockoon
                 start_directory: ~/dev/web-form-ui-2_1
-              - window_name: profile-convertor
-                start_directory: ~/dev/web-form-profile-convertor
-              - window_name: profile-diff
-                start_directory: ~/dev/web-form-profile-diff
-                layout: main-vertical
-                panes:
-                  - echo code
-                  - echo run
             '';
           }
           {
