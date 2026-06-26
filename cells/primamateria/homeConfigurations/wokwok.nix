@@ -20,6 +20,7 @@ in {
     cli.jira
     cli.redthread
     cli.claude
+    cli.iamb
     # cli.weechat
 
     {
@@ -27,6 +28,11 @@ in {
         username = "primamateria";
         homeDirectory = "/home/primamateria";
         stateVersion = "22.05";
+      };
+
+      programs.bash.sessionVariables = {
+        ATLASSIAN_TOKEN = secrets.wokwok.atlassianApiToken;
+        ATLASSIAN_EMAIL = secrets.wokwok.email;
       };
 
       primamateria.cli.tmux = {
