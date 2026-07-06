@@ -2,6 +2,7 @@
   inputs,
   cell,
   config,
+  pkgs,
   ...
 }: let
   inherit (inputs) nixpkgs;
@@ -10,9 +11,20 @@
   utils = import ./__utils.nix {inherit lib;};
 
   cfg = config.primamateria.cli.tmux;
+
+  # tmuxp 1.73.0 pins libtmux~=0.60.0 but nixpkgs provides 0.61.0; patch the constraint away
+  tmuxpFixed = pkgs.tmuxp.overridePythonAttrs (old: {
+    postPatch =
+      (old.postPatch or "")
+      + ''
+        substituteInPlace pyproject.toml --replace "libtmux~=0.60.0" "libtmux>=0.60.0"
+      '';
+  });
 in {
   config = {
     xdg.configFile = utils.generateTmuxpConfigs cfg.sessions;
+
+    home.packages = [tmuxpFixed];
 
     programs.bash.shellAliases = {
       tmux-load = "tmuxp load ${utils.generateTmuxpLoadArgs cfg.sessions}";
@@ -35,7 +47,6 @@ in {
           '';
         }
       ];
-      tmuxp.enable = true;
       extraConfig = ''
         set -g status 2
         set -g status-format[1] ""
