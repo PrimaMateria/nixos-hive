@@ -1,7 +1,6 @@
 #
 # █▄█ ▄▀▄ █▄ ▄█ ██▀
 # █ █ ▀▄▀ █ ▀ █ █▄▄ wokwok
-#
 {
   inputs,
   cell,
@@ -79,17 +78,17 @@ in {
             name = "wf";
             type = "custom";
             windows = ''
-              - window_name: 2.1 code
+              - window_name: code 2_1
                 start_directory: ~/dev/web-form-ui-2_1
-              - window_name: 2.1 run
+              - window_name: run 2_1
                 start_directory: ~/dev/web-form-ui-2_1
-              - window_name: 2.1-w code
+              - window_name: code 2_1w
                 start_directory: ~/dev/web-form-ui-2_1-worktree
-              - window_name: 2.1-w run
+              - window_name: run 2_1w
                 start_directory: ~/dev/web-form-ui-2_1-worktree
-              - window_name: 2.0 code
+              - window_name: code 2_0
                 start_directory: ~/dev/web-form-ui
-              - window_name: 2.0 run
+              - window_name: run 2_0
                 start_directory: ~/dev/web-form-ui
               - window_name: mockoon
                 start_directory: ~/dev/web-form-ui-2_1
