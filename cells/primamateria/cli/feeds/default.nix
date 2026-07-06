@@ -12,7 +12,6 @@ in {
         text = ''
           # This for avoiding duplicated when using remote RSS server
           # rm "$HOME/.local/share/newsboat/cache.db"
-          # curl '${secrets.freshrss.host}/i/?c=feed&a=actualize&user=${secrets.freshrss.user}&token=${secrets.freshrss.token}'
           ${nixpkgs.newsboat}/bin/newsboat
         '';
       })
@@ -50,12 +49,6 @@ in {
     highlight article "^(Title):.*$" cyan default
     highlight article "https?://[^ ]+" red default
     highlight article "\\[image\\ [0-9]+\\]" green default
-
-    # remote
-    urls-source "freshrss"
-    freshrss-url "${secrets.freshrss.host}/api/greader.php"
-    freshrss-login "${secrets.freshrss.user}"
-    freshrss-password "${secrets.freshrss.password}"
 
   '';
 }
