@@ -33,7 +33,7 @@ in
       };
       root = {
         level = "INFO";
-        handlers = ["buffer"];
+        handlers = ["console"];
       };
       disable_existing_loggers = false;
     };
