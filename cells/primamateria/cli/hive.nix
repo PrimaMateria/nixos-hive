@@ -9,8 +9,8 @@ in {
     (nixpkgs.writeShellApplication {
       name = "hive-reload-home";
       text = ''
-        nix build "${src}#homeConfigurations.primamateria-$HOSTNAME.activationPackage"
-        "${src}/result/activate"
+        out=$(nix build --no-link --print-out-paths "${src}#homeConfigurations.primamateria-$HOSTNAME.activationPackage")
+        "$out/activate"
       '';
     })
 
