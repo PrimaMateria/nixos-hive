@@ -28,6 +28,7 @@ in {
     dockerServices.booksync
     dockerServices.bookorbit
     dockerServices.calibreweb
+    dockerServices.strix
     {
       home = {
         username = "primamateria";
