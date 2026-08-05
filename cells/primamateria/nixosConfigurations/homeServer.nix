@@ -28,14 +28,12 @@ in {
         externalInterface = "enp2s0";
         privateKeyFile = secrets.wireguard.serverPrivateKeyFile;
         peers = [
-          # TODO: re-enable once mentat's real publicKey is set in secrets/default.nix
-          # (currently the placeholder REPLACE_WITH_MENTAT_PUBKEY fails wg key parsing)
-          # {
-          #   name = "mentat";
-          #   publicKey = secrets.wireguard.peers.mentat.publicKey;
-          #   allowedIPs = ["10.100.0.2/32"];
-          #   presharedKeyFile = secrets.wireguard.peers.mentat.presharedKeyFile;
-          # }
+          {
+            name = "mentat";
+            publicKey = secrets.wireguard.peers.mentat.publicKey;
+            allowedIPs = ["10.100.0.2/32"];
+            presharedKeyFile = secrets.wireguard.peers.mentat.presharedKeyFile;
+          }
           {
             name = "stalker";
             publicKey = secrets.wireguard.peers.stalker.publicKey;
