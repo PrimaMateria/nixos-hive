@@ -75,11 +75,12 @@ in
 
       networking.firewall.allowedUDPPorts = [cfg.listenPort];
 
-      networking.nat = {
-        enable = true;
-        externalInterface = cfg.externalInterface;
-        internalInterfaces = ["wg0"];
-      };
+      # NOTE: we deliberately do NOT use `networking.nat` here. On this host the
+      # firewall is disabled and Docker owns the iptables nat/FORWARD tables, and
+      # the standalone `nat.service` ends up dead (never ordered against wg0's
+      # creation), so no masquerade rule is ever installed. Instead we tie the
+      # masquerade + forward rules to the wg0 interface lifecycle via
+      # postSetup/postShutdown, which run exactly when the interface comes up.
 
       networking.wireguard.interfaces.wg0 = {
         ips = [cfg.serverAddress];
@@ -96,6 +97,20 @@ in
               })
           )
           cfg.peers;
+
+        # Masquerade tunnel traffic out the WAN interface so replies can route
+        # back, and explicitly allow wg0<->WAN forwarding (belt-and-suspenders in
+        # case Docker ever flips the FORWARD policy to DROP).
+        postSetup = ''
+          ${nixpkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${cfg.subnet} -o ${cfg.externalInterface} -j MASQUERADE
+          ${nixpkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o ${cfg.externalInterface} -j ACCEPT
+          ${nixpkgs.iptables}/bin/iptables -A FORWARD -i ${cfg.externalInterface} -o wg0 -j ACCEPT
+        '';
+        postShutdown = ''
+          ${nixpkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${cfg.subnet} -o ${cfg.externalInterface} -j MASQUERADE
+          ${nixpkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o ${cfg.externalInterface} -j ACCEPT
+          ${nixpkgs.iptables}/bin/iptables -D FORWARD -i ${cfg.externalInterface} -o wg0 -j ACCEPT
+        '';
       };
 
       environment.systemPackages = [
