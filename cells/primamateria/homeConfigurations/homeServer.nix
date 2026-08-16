@@ -20,7 +20,7 @@ in {
     dockerServices.traefik
     dockerServices.freshrss
     dockerServices.matrix
-    dockerServices.zhongwen
+    dockerServices.apps
     dockerServices.dhlpdfcleaner
     dockerServices.karakeep
     dockerServices.suwayomi

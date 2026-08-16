@@ -112,5 +112,10 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     bitbucket-cli.url = "github:avivsinai/bitbucket-cli";
+
+    zhongwen = {
+      url = "github:PrimaMateria/zhongwen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
