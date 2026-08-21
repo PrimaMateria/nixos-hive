@@ -16,42 +16,26 @@
 
   outputs = {
     self,
-    hive,
-    std,
+    nixpkgs,
+    haumea,
     ...
-  } @ inputs:
-    hive.growOn
-    {
-      inherit inputs;
-
-      nixpkgsConfig.allowUnfree = true;
-
+  } @ inputs: let
+    grown = import ./lib/grow.nix {
+      inherit (nixpkgs) lib;
+      inherit nixpkgs haumea inputs;
       cellsFrom = ./cells;
-      cellBlocks = with std.blockTypes;
-      with hive.blockTypes; [
-        (functions "bees")
-        (functions "devices")
-        (functions "system")
-        (functions "machines")
-        (functions "installations")
-        (functions "cli")
-        (functions "environments")
-        (functions "desktop")
-        (functions "secrets")
-        (functions "dockerServices")
-        nixosConfigurations
-        homeConfigurations
-      ];
-    }
-    {
-      # sudo nixos-rebuild switch --flake .#primamateria-gg
-      # sudo nixos-rebuild dry-activate --flake .#primamateria-mentat --show-trace --option eval-cache false
-      nixosConfigurations = hive.collect self "nixosConfigurations";
-
-      # nix build .#homeConfigurations.primamateria-gg.activationPackage
-      # ./result/activate
-      homeConfigurations = hive.collect self "homeConfigurations";
+      systems = ["x86_64-linux" "aarch64-linux"];
+      nixpkgsConfig = {allowUnfree = true;};
     };
+  in {
+    # sudo nixos-rebuild switch --flake .#primamateria-gg
+    # sudo nixos-rebuild dry-activate --flake .#primamateria-mentat --show-trace --option eval-cache false
+    inherit (grown) nixosConfigurations;
+
+    # nix build .#homeConfigurations.primamateria-gg.activationPackage
+    # ./result/activate
+    inherit (grown) homeConfigurations;
+  };
 
   nixConfig = {
     extra-experimental-features = ["nix-command" "flakes"];
@@ -60,7 +44,7 @@
     allowUnfree = true;
   };
 
-  # Hive inputs
+  # Framework inputs
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
@@ -73,16 +57,6 @@
 
     wsl = {
       url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    std = {
-      url = "github:divnix/std";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hive = {
-      url = "github:divnix/hive";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
