@@ -15,6 +15,7 @@
   # files instead of loading them as cell-block module options.)
   projectFiles = [
     ./_projects/zhongwen.nix
+    ./_projects/kpop-game.nix
   ];
   projects = map (f: import f {inherit inputs;}) projectFiles;
 

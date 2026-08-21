@@ -117,5 +117,11 @@
       url = "github:PrimaMateria/zhongwen";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # No-build static HTML game; served as-is from its source tree.
+    kpop-game = {
+      url = "github:PrimaMateria/kpop-game";
+      flake = false;
+    };
   };
 }

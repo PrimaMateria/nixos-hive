@@ -567,6 +567,22 @@
         "type": "github"
       }
     },
+    "kpop-game": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786887220,
+        "narHash": "sha256-Wq+I927AwEj4JOSpHHFldwPgpbKv/+dPk2xULAcrjBc=",
+        "owner": "PrimaMateria",
+        "repo": "kpop-game",
+        "rev": "3579ffe84df5cc1dfbc384aa203f5c9c26a3739c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PrimaMateria",
+        "repo": "kpop-game",
+        "type": "github"
+      }
+    },
     "lib": {
       "locked": {
         "lastModified": 1694306727,
@@ -839,6 +855,7 @@
         "home-manager": "home-manager",
         "i3blocks-contrib": "i3blocks-contrib",
         "i3blocks-gcalcli": "i3blocks-gcalcli",
+        "kpop-game": "kpop-game",
         "llm-agents": "llm-agents",
         "nixpkgs": [
           "nixpkgs-unstable"
