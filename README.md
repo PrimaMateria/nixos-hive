@@ -1,16 +1,18 @@
 # PrimaMateria's NixOS configuration
 
 This is my main flake that declares all of my Nixified systems. It is built with
-Hive and Haumea, and it contains configurations for my home station on the
-desktop. I have 2 WSL instances - one running on Windows dedicated for gaming,
-and the other for running on Windows at work. Currently, I am also experimenting
-with a Raspberry Pi 5.
+a small in-repo cell loader (see `lib/`) on top of Haumea, and it contains
+configurations for my home station on the desktop. I have 2 WSL instances - one
+running on Windows dedicated for gaming, and the other for running on Windows at
+work. Currently, I am also experimenting with a Raspberry Pi 5.
 
-I discussed the basics of Hive in my [blog
-post](https://primamateria.github.io/blog/hive/). Although it may be slightly
-outdated now, if you are interested, it would be helpful to start from the
-beginning rather than trying to decipher a configuration that has already
-evolved.
+The layout was originally built with [Hive](https://github.com/divnix/hive)
+(std/paisano), which I discussed in my [blog
+post](https://primamateria.github.io/blog/hive/). As that ecosystem is no longer
+maintained, the flake has since been migrated off it: the cell/block directory
+structure is preserved, but the growing and collecting is now done by a vendored,
+self-contained loader in `lib/` (`loader.nix`, `beeModule.nix`, `grow.nix`).
+Each cell file keeps the same `{inputs, cell}` calling convention.
 
 - Windows manager: i3wm
 - Terminals manager: tmux
