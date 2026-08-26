@@ -3,12 +3,29 @@
   cell,
 }: let
   inherit (inputs) nixpkgs;
+  # `grow.nix` swaps `inputs.nixpkgs` for an instantiated pkgs set, so the raw
+  # flake - the one `nixpkgs.follows` points at - is reached under its own name.
+  nixpkgsFlake = inputs.nixpkgs-unstable;
 in {
   time.timeZone = "Europe/Berlin";
 
   nix = {
     extraOptions = "experimental-features = nix-command flakes";
+
+    # `nix-shell -p`, `nix-build` and `<nixpkgs>` resolve through NIX_PATH, which
+    # by default points at root's nix-channel profile - state that no flake ever
+    # touches, so it rots at whatever `nix-channel --update` last fetched. Point
+    # it at this flake's locked nixpkgs instead.
+    nixPath = ["nixpkgs=/etc/nix/inputs/nixpkgs"];
+
+    # Same story for the flake CLI: make `nix shell nixpkgs#cargo` and friends
+    # resolve to the locked input rather than the online registry's channel.
+    registry.nixpkgs.flake = nixpkgsFlake;
   };
+
+  # Indirection so NIX_PATH stays a stable string across rebuilds instead of
+  # baking a store hash into every shell's environment.
+  environment.etc."nix/inputs/nixpkgs".source = nixpkgsFlake.outPath;
 
   services.xserver = {
     enable = true;

@@ -5,7 +5,7 @@
   inputs,
   cell,
 }: let
-  inherit (cell) bees cli secrets;
+  inherit (cell) bees cli;
 in {
   bee = bees.wsl;
   imports = [
@@ -16,7 +16,6 @@ in {
     cli.feeds
     cli.ambients
     cli.vifm
-    cli.jira
     cli.redthread
     cli.claude
     cli.iamb
@@ -27,11 +26,6 @@ in {
         username = "primamateria";
         homeDirectory = "/home/primamateria";
         stateVersion = "22.05";
-      };
-
-      programs.bash.sessionVariables = {
-        ATLASSIAN_TOKEN = secrets.wokwok.atlassianApiToken;
-        ATLASSIAN_EMAIL = secrets.wokwok.email;
       };
 
       primamateria.cli.tmux = {
