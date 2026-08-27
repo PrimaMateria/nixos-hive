@@ -54,8 +54,6 @@ in {
                 panes:
                   - redthread
               - window_name: x
-              - window_name: reporting dev
-                start_directory: ~/dev/lazyreporting
             '';
           }
           {
