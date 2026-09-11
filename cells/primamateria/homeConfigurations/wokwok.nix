@@ -30,6 +30,7 @@ in {
 
       primamateria.cli.tmux = {
         sessions = [
+          # F1
           {
             name = "space";
             type = "prefabs";
@@ -41,8 +42,9 @@ in {
               "zmk"
             ];
           }
+          # F2
           {
-            name = "wokwok";
+            name = "space station";
             type = "custom";
             windows = ''
               - window_name: reporting
@@ -53,21 +55,60 @@ in {
                 start_directory: ~/Documents
                 panes:
                   - redthread
+              - window_name: depv
+                start_directory: ~/dev/depv/
+                panes:
+                  - depv
               - window_name: x
             '';
           }
+          # F3
           {
-            name = "fds";
-            type = "project";
-            dir = "~/dev/finapi-design-system";
+            name = "planet:design-system";
+            type = "custom";
+            windows = ''
+              - window_name: finapi-design-system
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/finapi-design-system/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+              - window_name: web-form-design-system
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/web-form-design-system/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+            '';
           }
+          # F4
           {
-            name = "fwl";
-            type = "project";
-            dir = "~/dev/finapi-widget-library";
+            name = "planet:widget-library";
+            type = "custom";
+            windows = ''
+              - window_name: code
+                start_directory: ~/dev/finapi-widget-library/
+              - window_name: run
+                start_directory: ~/dev/finapi-widget-library/
+                panes:
+                  - echo "lib"
+                  - echo "widget"
+              - window_name: monolith code
+                start_directory: ~/dev/finapi-widget-library-monolith/
+              - window_name: monolith run
+                start_directory: ~/dev/finapi-widget-library-monolith/
+                panes:
+                  - echo "lib"
+                  - echo "widget"
+            '';
           }
+          # F5
           {
-            name = "wf";
+            name = "planet:web-form";
             type = "custom";
             windows = ''
               - window_name: code 2_1
@@ -86,25 +127,73 @@ in {
                 start_directory: ~/dev/web-form-ui-2_1
             '';
           }
+          # F6
           {
-            name = "cd";
+            name = "planet:customer-dashboard";
             type = "project";
             dir = "~/dev/finapi-customer-dashboard-ui";
           }
+          # F7
           {
-            name = "fjsl";
+            name = "planet:order-process";
             type = "project";
-            dir = "~/dev/finapi-js-loader";
+            dir = "~/dev/finapi-orderprocess-ui/";
           }
+          # F8
           {
-            name = "wfl";
-            type = "project";
-            dir = "~/dev/web-form-loader";
+            name = "void";
+            type = "custom";
+            windows = ''
+              - window_name: void
+                start_directory: /tmp
+            '';
           }
+          # F9
           {
-            name = "fhp";
-            type = "project";
-            dir = "~/dev/finapi-hostpages";
+            name = "moons";
+            type = "custom";
+            windows = ''
+              - window_name: hostpages
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/finapi-hostpages/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+              - window_name: webform-loader
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/web-form-loader/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+              - window_name: js-loader
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/finapi-js-loader/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+              - window_name: static-resources
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/finapi-js-static-resources/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+              - window_name: web-utils
+                layout: main-vertical
+                options:
+                  main-pane-width: 66%
+                start_directory: ~/dev/finapi-web-utils/
+                panes:
+                  - echo "nvim"
+                  - echo "run"
+            '';
           }
         ];
       };
