@@ -125,6 +125,7 @@ with builtins; {
     ];
 
   # Picks names from the provided sessions and joins them space separated into
-  # one string.
-  generateTmuxpLoadArgs = foldl (acc: session: acc + " ${session.name}") "";
+  # one string. Each name is shell-quoted so names containing spaces (e.g.
+  # "space station") are passed to tmuxp as a single argument.
+  generateTmuxpLoadArgs = foldl (acc: session: acc + " ${escapeShellArg session.name}") "";
 }

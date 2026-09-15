@@ -17,7 +17,6 @@ in {
     cli.ambients
     cli.vifm
     cli.redthread
-    cli.claude
     cli.iamb
     # cli.weechat
 
@@ -44,7 +43,7 @@ in {
           }
           # F2
           {
-            name = "space station";
+            name = "space-station";
             type = "custom";
             windows = ''
               - window_name: reporting
@@ -64,7 +63,7 @@ in {
           }
           # F3
           {
-            name = "planet:design-system";
+            name = "planet-design-system";
             type = "custom";
             windows = ''
               - window_name: finapi-design-system
@@ -87,7 +86,7 @@ in {
           }
           # F4
           {
-            name = "planet:widget-library";
+            name = "planet-widget-library";
             type = "custom";
             windows = ''
               - window_name: code
@@ -108,7 +107,7 @@ in {
           }
           # F5
           {
-            name = "planet:web-form";
+            name = "planet-web-form";
             type = "custom";
             windows = ''
               - window_name: code 2_1
@@ -129,13 +128,13 @@ in {
           }
           # F6
           {
-            name = "planet:customer-dashboard";
+            name = "planet-customer-dashboard";
             type = "project";
             dir = "~/dev/finapi-customer-dashboard-ui";
           }
           # F7
           {
-            name = "planet:order-process";
+            name = "planet-order-process";
             type = "project";
             dir = "~/dev/finapi-orderprocess-ui/";
           }
