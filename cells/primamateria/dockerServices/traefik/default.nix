@@ -31,6 +31,7 @@
         traefik = {
           image = "traefik:v3.6.15";
           container_name = "traefik";
+          restart = "unless-stopped";
           networks = ["traefik_net"];
           ports = [
             "80:80"
