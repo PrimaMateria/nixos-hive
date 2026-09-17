@@ -56,8 +56,8 @@ in {
         set -g focus-events on
         set -sg escape-time 10
         set -g renumber-windows on
-        set -g default-terminal "screen-256color"
-        set -sa terminal-overrides ',screen-256color:RGB'
+        set -g default-terminal "tmux-256color"
+        set -as terminal-features ',xterm-256color:RGB:cstyle:sync'
 
         set -g status-style bg=terminal
         set -g status-style fg=white
