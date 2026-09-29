@@ -38,6 +38,7 @@ in {
         nvim-python = "~/dev/neovim-nix/run/nvim-python";
         nvim-rust = "~/dev/neovim-nix/run/nvim-rust";
         nvim-web = "~/dev/neovim-nix/run/nvim-web";
+        cdf = "cd $(git ls-files | sed -n 's|/[^/]*$||p' | sort -u | fzf)";
       };
     };
   };
