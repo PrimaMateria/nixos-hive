@@ -5,11 +5,6 @@
   inherit (inputs) nixpkgs;
   inherit (cell) secrets;
 
-  vncPasswd = nixpkgs.writeTextFile {
-    name = "vnc-passwd";
-    text = secrets.vncPassword;
-  };
-
   runx = nixpkgs.writeShellApplication {
     name = "runx";
     runtimeInputs = with nixpkgs; [
@@ -17,7 +12,7 @@
       icewm
     ];
     text = ''
-      xinit icewm -- ${nixpkgs.tigervnc}/bin/Xvnc :1 PasswordFile=${vncPasswd}
+      xinit icewm -- ${nixpkgs.tigervnc}/bin/Xvnc :1 PasswordFile=${secrets.vncPasswordFile}
     '';
   };
 in {
