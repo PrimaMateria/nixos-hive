@@ -19,9 +19,7 @@ in {
       llm-agents.packages.${nixpkgs.system}.claude-code
     ];
 
-    programs.nushell = {
-      enable = true;
-    };
+    programs.man.generateCaches = true;
 
     programs.bash = {
       enable = true;
