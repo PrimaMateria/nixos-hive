@@ -93,6 +93,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lazyjira = {
+      url = "github:textfuel/lazyjira";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # No-build static HTML game; served as-is from its source tree.
     kpop-game = {
       url = "github:PrimaMateria/kpop-game";

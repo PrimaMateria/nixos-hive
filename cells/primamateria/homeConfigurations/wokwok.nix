@@ -18,6 +18,7 @@ in {
     cli.vifm
     cli.redthread
     cli.iamb
+    cli.lazyjira
     # cli.weechat
 
     {
@@ -58,6 +59,9 @@ in {
                 start_directory: ~/dev/depv/
                 panes:
                   - depv
+              - window_name: lazyjira
+                panes:
+                  - lazyjira
               - window_name: x
             '';
           }
