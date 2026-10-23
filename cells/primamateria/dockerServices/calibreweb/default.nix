@@ -17,7 +17,7 @@
 
       services = {
         calibreweb = {
-          image = "linuxserver/calibre-web:latest";
+          image = "linuxserver/calibre-web:0.6.27-ls406";
           container_name = "calibreweb";
           restart = "unless-stopped";
           environment = [

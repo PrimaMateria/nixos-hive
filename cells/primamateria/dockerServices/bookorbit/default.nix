@@ -19,7 +19,7 @@
 
       services = {
         bookorbit = {
-          image = "ghcr.io/bookorbit/bookorbit:latest";
+          image = "ghcr.io/bookorbit/bookorbit:1.3.0";
           container_name = "bookorbit";
           restart = "unless-stopped";
           environment = [

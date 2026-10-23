@@ -2,7 +2,7 @@
   super,
 }: {
   heisenbridge = {
-    image = "hif1/heisenbridge:latest";
+    image = "hif1/heisenbridge:1.15.4";
     container_name = "heisenbridge";
     restart = "unless-stopped";
     volumes = [
