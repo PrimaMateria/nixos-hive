@@ -8,7 +8,6 @@
     restart = "unless-stopped";
     volumes = [
       "synapse-data:/data"
-      "synapse-log:/var/log/synapse"
       "${super.config}:/etc/synapse/synapse.yaml:ro"
       "${super.logging}:/matrix.primamateria.ddns.net.log.config:ro"
       "${root.heisenbridge.registration}:/heisenbridge-registration.yaml:ro"

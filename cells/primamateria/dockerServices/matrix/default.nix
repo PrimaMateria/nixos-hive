@@ -14,7 +14,6 @@
       volumes = {
         synapse-data = null;
         synapse-db-data = null;
-        synapse-log = null;
         heisenbridge-data = null;
         mautrix-whatsapp-data = null;
         mautrix-discord-data = null;
