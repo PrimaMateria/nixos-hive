@@ -19,7 +19,16 @@ in {
     system.wireguard
     {
       networking.hostName = "homeServer";
-      services.openssh.enable = true;
+      services.openssh = {
+        enable = true;
+        settings = {
+          # Both must be off. With KbdInteractiveAuthentication left at its
+          # default of true, sshd still accepts passwords through PAM even
+          # when PasswordAuthentication is false.
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+        };
+      };
       networking.firewall.enable = false;
 
       primamateria.system.wireguard = {
