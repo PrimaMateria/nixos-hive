@@ -18,9 +18,9 @@
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"
     ];
     networks = ["default" "traefik_net"];
-    depends_on = [
-      "synapse-db"
-    ];
+    depends_on = {
+      synapse-db.condition = "service_healthy";
+    };
     labels = [
       "traefik.enable=true"
 

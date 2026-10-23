@@ -15,6 +15,9 @@
       "cp /seed/config.yaml /data/config.yaml && chmod 644 /data/config.yaml && exec /usr/bin/mautrix-whatsapp -c /data/config.yaml"
     ];
     networks = ["default"];
-    depends_on = ["synapse" "synapse-db"];
+    depends_on = {
+      synapse.condition = "service_healthy";
+      synapse-db.condition = "service_healthy";
+    };
   };
 }
