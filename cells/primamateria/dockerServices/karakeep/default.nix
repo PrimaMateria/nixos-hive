@@ -30,7 +30,7 @@
 
       services = {
         web = {
-          image = "ghcr.io/karakeep-app/karakeep:release";
+          image = "ghcr.io/karakeep-app/karakeep:0.34.1";
           restart = "unless-stopped";
           networks = ["default" "traefik_net"];
           volumes = ["data:/data"];
