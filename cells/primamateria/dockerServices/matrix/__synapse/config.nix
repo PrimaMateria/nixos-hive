@@ -51,6 +51,31 @@ in
       log_config = "/matrix.primamateria.ddns.net.log.config";
       media_store_path = "/data/media_store";
 
+      # Link previews. The blacklist stops the previewer being used to probe
+      # the LAN, the docker networks and the wireguard subnet.
+      url_preview_enabled = true;
+      url_preview_ip_range_blacklist = [
+        "127.0.0.0/8"
+        "10.0.0.0/8"
+        "172.16.0.0/12"
+        "192.168.0.0/16"
+        "100.64.0.0/10"
+        "192.0.0.0/24"
+        "169.254.0.0/16"
+        "192.88.99.0/24"
+        "198.18.0.0/15"
+        "192.0.2.0/24"
+        "198.51.100.0/24"
+        "203.0.113.0/24"
+        "224.0.0.0/4"
+        "::1/128"
+        "fe80::/10"
+        "fc00::/7"
+        "2001:db8::/32"
+        "ff00::/8"
+        "fec0::/10"
+      ];
+
       # Forbid public registration
       enable_registration = false;
       registration_shared_secret = secrets.matrix.synapse.registration_shared_secret;
