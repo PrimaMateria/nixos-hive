@@ -10,6 +10,13 @@ in
     name = "synapse-config.yaml";
     text = builtins.toJSON {
       server_name = "matrix.primamateria.ddns.net";
+      public_baseurl = "https://matrix.primamateria.ddns.net/";
+
+      # Answer /.well-known/matrix/server ourselves. Without it remote servers
+      # get a 404 and fall back to the SRV/8448 path, which means the
+      # federation entrypoint has to stay open forever.
+      serve_server_wellknown = true;
+
       pid_file = "/data/homeserver.pid";
       listeners = [
         {
@@ -52,6 +59,7 @@ in
       trusted_key_servers = [
         {server_name = "matrix.org";}
       ];
+      suppress_key_server_warning = true;
 
       app_service_config_files = [
         "/heisenbridge-registration.yaml"
