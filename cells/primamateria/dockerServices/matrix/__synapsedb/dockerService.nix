@@ -14,6 +14,7 @@
       #!/bin/sh
       createdb -U ${secrets.matrix.synapse.postgres_user} -O ${secrets.matrix.synapse.postgres_user} matrix_whatsapp
       createdb -U ${secrets.matrix.synapse.postgres_user} -O ${secrets.matrix.synapse.postgres_user} matrix_discord
+      createdb -U ${secrets.matrix.synapse.postgres_user} -O ${secrets.matrix.synapse.postgres_user} matrix_maubot
     '';
     executable = true;
   };

@@ -17,6 +17,7 @@
         heisenbridge-data = null;
         mautrix-whatsapp-data = null;
         mautrix-discord-data = null;
+        maubot-data = null;
       };
 
       services =
@@ -27,7 +28,8 @@
         // super.heisenbridge.dockerService
         // super.mautrixwhatsapp.dockerService
         // super.mautrixdiscord.dockerService
-        // super.coturn.dockerService;
+        // super.coturn.dockerService
+        // super.maubot.dockerService;
     };
   };
 in {
