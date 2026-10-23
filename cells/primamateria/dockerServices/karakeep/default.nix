@@ -60,21 +60,26 @@
         };
 
         chrome = {
-          image = "gcr.io/zenika-hub/alpine-chrome:123";
+          # gcr.io/zenika-hub is gone: anonymous pulls fail with "requires
+          # billing to be enabled", so the old image survives only as a local
+          # layer cache and would break on any recreate. karakeep publishes
+          # its own browser image now; this mirrors upstream's compose.
+          # Pinned by digest because it only ships a floating :release tag.
+          image = "ghcr.io/karakeep-app/karakeep-chrome@sha256:4ad61127638dd27bfe685222787c5780dd1d083d23a7658c39af657775814c44";
           restart = "unless-stopped";
+          init = true;
           command = [
-            "--no-sandbox"
             "--disable-gpu"
             "--disable-dev-shm-usage"
-            "--remote-debugging-address=0.0.0.0"
-            "--remote-debugging-port=9222"
             "--hide-scrollbars"
+            "--disable-blink-features=AutomationControlled"
+            "--window-size=1440,900"
           ];
           labels = ["traefik.enable=false"];
         };
 
         meilisearch = {
-          image = "getmeili/meilisearch:v1.11.1";
+          image = "getmeili/meilisearch:v1.41.0";
           restart = "unless-stopped";
           env_file = ["${karakeepEnv}"];
           environment = {
