@@ -24,7 +24,10 @@ in {
           "*" = {
             HashKnownHosts = true;
           };
-          "homeServer" = {
+          # ssh_config Host patterns are case-sensitive, so a bare
+          # `ssh homeserver` skips this block and falls back to ~/.ssh/id_rsa.
+          # Both spellings are listed so either one picks up the right key.
+          "homeServer homeserver" = {
             HostName = "homeServer";
             IdentityFile = "${secrets.identityFile.ggHomeServer}";
           };
