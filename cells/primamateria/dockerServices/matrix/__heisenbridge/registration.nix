@@ -18,7 +18,7 @@ in
         users = [
           {
             exclusive = true;
-            regex = "@heisenbridge_.*";
+            regex = "@heisenbridge_.*:matrix\\.primamateria\\.ddns\\.net$";
           }
         ];
         aliases = [];

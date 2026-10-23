@@ -18,7 +18,7 @@ in
         users = [
           {
             exclusive = true;
-            regex = "@discord_.*";
+            regex = "@discord_.*:matrix\\.primamateria\\.ddns\\.net$";
           }
           {
             exclusive = true;
