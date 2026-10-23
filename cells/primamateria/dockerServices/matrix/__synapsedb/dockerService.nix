@@ -22,7 +22,6 @@ in {
     image = "postgres:alpine";
     container_name = "synapse-db";
     restart = "unless-stopped";
-    ports = ["5432:5432"];
     environment = [
       "POSTGRES_USER=${secrets.matrix.synapse.postgres_user}"
       "POSTGRES_PASSWORD=${secrets.matrix.synapse.postgres_password}"
