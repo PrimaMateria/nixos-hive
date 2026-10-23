@@ -26,7 +26,8 @@
         // super.synapseadmin.dockerService
         // super.heisenbridge.dockerService
         // super.mautrixwhatsapp.dockerService
-        // super.mautrixdiscord.dockerService;
+        // super.mautrixdiscord.dockerService
+        // super.coturn.dockerService;
     };
   };
 in {

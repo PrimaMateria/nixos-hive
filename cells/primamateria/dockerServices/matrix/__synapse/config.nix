@@ -51,6 +51,17 @@ in
       log_config = "/matrix.primamateria.ddns.net.log.config";
       media_store_path = "/data/media_store";
 
+      # 1:1 voice/video. coturn runs with host networking on the LAN
+      # interface; clients get ephemeral HMAC credentials derived from the
+      # shared secret, so there are no static TURN accounts.
+      turn_uris = [
+        "turn:primamateria.ddns.net:3478?transport=udp"
+        "turn:primamateria.ddns.net:3478?transport=tcp"
+      ];
+      turn_shared_secret = secrets.matrix.coturn.static_auth_secret;
+      turn_user_lifetime = "1h";
+      turn_allow_guests = false;
+
       # Remote media is a re-fetchable cache, so let it expire. Local media
       # is deliberately left alone: it is the only copy of our own uploads.
       media_retention.remote_media_lifetime = "14d";
