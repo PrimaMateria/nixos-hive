@@ -46,7 +46,6 @@
 
   # Framework inputs
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
     nixpkgs.follows = "nixpkgs-unstable";
 
