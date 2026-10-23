@@ -33,7 +33,7 @@
             "traefik.http.routers.freshrss.middlewares=freshrssM1,freshrssM2"
             "traefik.http.routers.freshrss.rule=Host(`freshrss.primamateria.ddns.net`)"
           ];
-          image = "freshrss/freshrss:1.27.0";
+          image = "freshrss/freshrss:1.30.4";
           container_name = "freshrss";
           restart = "unless-stopped";
           volumes = [
@@ -43,7 +43,7 @@
           environment = {
             TZ = "Europe/Berlin";
             CRON_MIN = "2,32";
-            FRESHRSS_ENV = "development";
+            FRESHRSS_ENV = "production";
             LISTEN = "0.0.0.0:80";
             ADMIN_EMAIL = adminEmail;
             ADMIN_PASSWORD = adminPassword;
@@ -73,6 +73,7 @@ in {
         name = "run-freshrss";
         text = ''
           echo "Composing freshrss"
+          docker compose -p freshrss --file ${dockerCompose} pull
           docker compose -p freshrss --file ${dockerCompose} up -d
         '';
       })
