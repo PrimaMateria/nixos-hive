@@ -51,6 +51,10 @@ in
       log_config = "/matrix.primamateria.ddns.net.log.config";
       media_store_path = "/data/media_store";
 
+      # Remote media is a re-fetchable cache, so let it expire. Local media
+      # is deliberately left alone: it is the only copy of our own uploads.
+      media_retention.remote_media_lifetime = "14d";
+
       # Link previews. The blacklist stops the previewer being used to probe
       # the LAN, the docker networks and the wireguard subnet.
       url_preview_enabled = true;
