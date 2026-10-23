@@ -23,6 +23,7 @@
         super.synapse.dockerService
         // super.synapsedb.dockerService
         // super.element.dockerService
+        // super.synapseadmin.dockerService
         // super.heisenbridge.dockerService
         // super.mautrixwhatsapp.dockerService
         // super.mautrixdiscord.dockerService;
