@@ -29,7 +29,7 @@
 
       services = {
         traefik = {
-          image = "traefik:v3.6.15";
+          image = "traefik:v3.7.16";
           container_name = "traefik";
           restart = "unless-stopped";
           networks = ["traefik_net"];
@@ -37,7 +37,7 @@
             "80:80"
             "443:443"
             "8448:8448"
-            "8080:8080"
+            "192.168.2.67:8080:8080"
           ];
           volumes = [
             "/var/run/docker.sock:/var/run/docker.sock"
@@ -60,7 +60,7 @@
             "--certificatesresolvers.le-ssl.acme.email=matus.benko@gmail.com"
             "--certificatesresolvers.le-ssl.acme.storage=/letsencrypt/acme.json"
             "--certificatesresolvers.le-ssl.acme.httpChallenge.entryPoint=http"
-            "--log.level=DEBUG"
+            "--log.level=INFO"
           ];
           labels = [
             "traefik.enable=false"
