@@ -43,6 +43,10 @@ in
         };
       };
 
+      # Single-user server federating into large public rooms: presence is
+      # pure overhead here.
+      presence.enabled = false;
+
       report_stats = true;
       log_config = "/matrix.primamateria.ddns.net.log.config";
       media_store_path = "/data/media_store";
