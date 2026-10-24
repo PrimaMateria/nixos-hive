@@ -3,7 +3,7 @@
   root,
 }: {
   synapse = {
-    image = "ghcr.io/element-hq/synapse:v1.157.2";
+    image = "ghcr.io/element-hq/synapse:v1.163.2";
     container_name = "synapse";
     restart = "unless-stopped";
     volumes = [
