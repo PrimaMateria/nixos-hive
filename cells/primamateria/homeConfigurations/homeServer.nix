@@ -19,6 +19,7 @@ in {
     cli.weechat
     dockerServices.traefik
     dockerServices.freshrss
+    dockerServices.frirss
     dockerServices.matrix
     dockerServices.apps
     dockerServices.dhlpdfcleaner
