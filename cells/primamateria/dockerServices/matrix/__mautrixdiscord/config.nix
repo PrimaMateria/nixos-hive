@@ -57,10 +57,8 @@ in
         };
       };
 
-      # Temporarily at debug to diagnose ghost users being created with empty
-      # displaynames. Revert to "warn" once that is understood.
       logging = {
-        min_level = "debug";
+        min_level = "warn";
         writers = [
           {
             type = "stdout";
