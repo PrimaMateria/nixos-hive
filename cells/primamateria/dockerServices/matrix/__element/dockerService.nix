@@ -2,7 +2,7 @@
   super,
 }: {
   element = {
-    image = "vectorim/element-web:v1.12.25";
+    image = "vectorim/element-web:v1.12.32";
     container_name = "element";
     restart = "unless-stopped";
     volumes = [
