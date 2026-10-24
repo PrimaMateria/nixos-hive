@@ -20,7 +20,7 @@
   };
 in {
   synapse-db = {
-    image = "postgres:alpine";
+    image = "postgres:16.15-alpine";
     container_name = "synapse-db";
     restart = "unless-stopped";
     environment = [
