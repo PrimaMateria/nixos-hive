@@ -2,7 +2,7 @@
   super,
 }: {
   mautrix-discord = {
-    image = "dock.mau.dev/mautrix/discord:v0.4.0";
+    image = "dock.mau.dev/mautrix/discord:v0.7.7";
     container_name = "mautrix-discord";
     restart = "unless-stopped";
     volumes = [
