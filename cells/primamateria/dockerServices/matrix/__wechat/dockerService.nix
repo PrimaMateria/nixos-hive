@@ -4,11 +4,15 @@
 }: let
   inherit (cell) secrets;
 in {
+  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm1: the
+  # thumbnail fallback for received images and the media-retry backoff, both
+  # kept on their own branches there for a possible upstream PR.
+  #
   # Runs the vendor WeChat for Linux AppImage (4.1.13, sha256-pinned upstream)
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/yamada-sexta/matrix-wechat-runtime@sha256:87cd64fa940cd7a9d645f03106289c38427dbc3b9a44f02c2368b2fcada95916";
+    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:956c39cf9600ff1294927868328f8b66e679ecadb1b96ca03af1c3a4b6eb1c5f";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -17,10 +21,6 @@ in {
     shm_size = "256m";
     volumes = [
       "matrix-wechat-runtime-data:/home/wechat"
-      # Thumbnail fallback for received images; see patches/README.md. Both
-      # images run TS from source with the transpiler cache off, so mounting
-      # over the file is enough — no rebuild. Re-derive if the digest moves.
-      "${./patches/attachments.ts}:/opt/matrix-wechat/packages/wechat-runtime/src/attachments.ts:ro"
     ];
     # Web UI for QR login and chat inspection. Loopback only; reach it over an
     # ssh tunnel. `login qr` in the management room works without it.
@@ -38,7 +38,7 @@ in {
   };
 
   matrix-wechat = {
-    image = "ghcr.io/yamada-sexta/matrix-wechat@sha256:97c9622c50c5ae9d06b70dbeba5d1ce07d63079cb7ad3e3c600e4924fda4a799";
+    image = "ghcr.io/primamateria/matrix-wechat@sha256:5d915a9297d417f860587704c1977ccbc051c4aa272ab23b9baaf235a0c09189";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
