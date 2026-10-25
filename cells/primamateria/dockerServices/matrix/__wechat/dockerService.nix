@@ -30,7 +30,9 @@ in {
       "TZ=UTC"
       "WECHAT_API_TOKEN=${secrets.matrix.wechat.api_token}"
       "WECHAT_WEB_UI=true"
-      "WECHAT_AUTO_LOGIN=false"
+      # Resume the stored session on restart instead of waiting for a
+      # phone approval that only `login prompt` can trigger.
+      "WECHAT_AUTO_LOGIN=true"
     ];
     networks = ["default"];
   };
