@@ -4,7 +4,7 @@
 }: let
   inherit (cell) secrets;
 in {
-  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm5: the
+  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm6: the
   # thumbnail fallback for received images, the media-retry backoff, the
   # optional VNC view, and the image-viewer walker, each on its own branch.
   #
@@ -12,7 +12,7 @@ in {
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:b05c6da2423b4ca683ecea94585ac11e2f68ba3bb9d1d465bb23fad440088442";
+    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:faac3d5414d8146005c439dfc0d5f6a8b49e9e40be76cd5a72cbf8104d6cf97b";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -40,16 +40,16 @@ in {
       "WECHAT_AUTO_LOGIN=true"
       "WECHAT_VNC=true"
       "WECHAT_VNC_PASSWORD=${secrets.matrix.wechat.vnc_password}"
-      # The media write trace stays off: it found the write path but not the
-      # download call, and it hooks every openat in the process.
-      # See ~/matrix-wechat-deploy/RE-FINDINGS.md.
-      "WECHAT_TRACE_MEDIA=false"
+      # Investigation harness: records attachment writes and accepts hook
+      # requests over the private socket. Turn off once the download call is
+      # found. See ~/matrix-wechat-deploy/RE-FINDINGS.md.
+      "WECHAT_TRACE_MEDIA=true"
     ];
     networks = ["default"];
   };
 
   matrix-wechat = {
-    image = "ghcr.io/primamateria/matrix-wechat@sha256:9b0d415dab35521bb673f9a73455b67a42f5c44e1f527231bb4530577c4bda7f";
+    image = "ghcr.io/primamateria/matrix-wechat@sha256:0502c5143b6f8ce81eeea52e04c4b3e41d9358ac53cab976a4b9e8a1e6d7f781";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
