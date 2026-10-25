@@ -4,15 +4,15 @@
 }: let
   inherit (cell) secrets;
 in {
-  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm2: the
-  # thumbnail fallback for received images, the media-retry backoff, and the
-  # optional VNC view, each kept on its own branch there.
+  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm3: the
+  # thumbnail fallback for received images, the media-retry backoff, the
+  # optional VNC view, and the media write trace, each on its own branch.
   #
   # Runs the vendor WeChat for Linux AppImage (4.1.13, sha256-pinned upstream)
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:972e190a5dc949ddf721eba4b194bdc17fddf1862e53d2555cf2c1fdfb8fae74";
+    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:5cf388844a45aaeaef97d4efe66dfb9773da17b00105c370acf0f624e1db5e74";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -40,12 +40,16 @@ in {
       "WECHAT_AUTO_LOGIN=true"
       "WECHAT_VNC=true"
       "WECHAT_VNC_PASSWORD=${secrets.matrix.wechat.vnc_password}"
+      # Records the native stack behind an original attachment write, to
+      # /home/wechat/media-trace.log. Diagnostic only; turn it back off once
+      # the download call has been located.
+      "WECHAT_TRACE_MEDIA=true"
     ];
     networks = ["default"];
   };
 
   matrix-wechat = {
-    image = "ghcr.io/primamateria/matrix-wechat@sha256:9f127add8af0ea665d8c31a8bc2cd5ffe9209bedd86dca104ef2142e6035a841";
+    image = "ghcr.io/primamateria/matrix-wechat@sha256:0130308c01fc2d40a42b14e168ea2812644dd54a6a9cf5add4acac6c03104076";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
