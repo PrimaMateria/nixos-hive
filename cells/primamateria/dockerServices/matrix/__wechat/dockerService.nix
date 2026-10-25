@@ -4,15 +4,15 @@
 }: let
   inherit (cell) secrets;
 in {
-  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm1: the
-  # thumbnail fallback for received images and the media-retry backoff, both
-  # kept on their own branches there for a possible upstream PR.
+  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm2: the
+  # thumbnail fallback for received images, the media-retry backoff, and the
+  # optional VNC view, each kept on its own branch there.
   #
   # Runs the vendor WeChat for Linux AppImage (4.1.13, sha256-pinned upstream)
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:956c39cf9600ff1294927868328f8b66e679ecadb1b96ca03af1c3a4b6eb1c5f";
+    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:972e190a5dc949ddf721eba4b194bdc17fddf1862e53d2555cf2c1fdfb8fae74";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -24,7 +24,12 @@ in {
     ];
     # Web UI for QR login and chat inspection. Loopback only; reach it over an
     # ssh tunnel. `login qr` in the management room works without it.
-    ports = ["127.0.0.1:18742:18742"];
+    ports = [
+      "127.0.0.1:18742:18742"
+      # Opening an image in the client is the only thing that makes WeChat
+      # download the original. Tunnel in: ssh -L 5900:127.0.0.1:5900 homeServer
+      "127.0.0.1:5900:5900"
+    ];
     expose = ["18743"];
     environment = [
       "TZ=UTC"
@@ -33,12 +38,14 @@ in {
       # Resume the stored session on restart instead of waiting for a
       # phone approval that only `login prompt` can trigger.
       "WECHAT_AUTO_LOGIN=true"
+      "WECHAT_VNC=true"
+      "WECHAT_VNC_PASSWORD=${secrets.matrix.wechat.vnc_password}"
     ];
     networks = ["default"];
   };
 
   matrix-wechat = {
-    image = "ghcr.io/primamateria/matrix-wechat@sha256:5d915a9297d417f860587704c1977ccbc051c4aa272ab23b9baaf235a0c09189";
+    image = "ghcr.io/primamateria/matrix-wechat@sha256:9f127add8af0ea665d8c31a8bc2cd5ffe9209bedd86dca104ef2142e6035a841";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
