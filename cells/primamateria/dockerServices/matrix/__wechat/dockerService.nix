@@ -4,15 +4,15 @@
 }: let
   inherit (cell) secrets;
 in {
-  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm4: the
+  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm5: the
   # thumbnail fallback for received images, the media-retry backoff, the
-  # optional VNC view, and the media write trace, each on its own branch.
+  # optional VNC view, and the image-viewer walker, each on its own branch.
   #
   # Runs the vendor WeChat for Linux AppImage (4.1.13, sha256-pinned upstream)
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:63880e894bd4331e98077776cdefec984006f3a49becb0cb0cd993dbf630b2d8";
+    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:b05c6da2423b4ca683ecea94585ac11e2f68ba3bb9d1d465bb23fad440088442";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -40,16 +40,16 @@ in {
       "WECHAT_AUTO_LOGIN=true"
       "WECHAT_VNC=true"
       "WECHAT_VNC_PASSWORD=${secrets.matrix.wechat.vnc_password}"
-      # Records the native stack behind an original attachment write, to
-      # /home/wechat/media-trace.log. Diagnostic only; turn it back off once
-      # the download call has been located.
-      "WECHAT_TRACE_MEDIA=true"
+      # The media write trace stays off: it found the write path but not the
+      # download call, and it hooks every openat in the process.
+      # See ~/matrix-wechat-deploy/RE-FINDINGS.md.
+      "WECHAT_TRACE_MEDIA=false"
     ];
     networks = ["default"];
   };
 
   matrix-wechat = {
-    image = "ghcr.io/primamateria/matrix-wechat@sha256:06167468e90a1f577bb10255243d0b28e11f8360a4e0c03b8e1a36ad27bc96a6";
+    image = "ghcr.io/primamateria/matrix-wechat@sha256:9b0d415dab35521bb673f9a73455b67a42f5c44e1f527231bb4530577c4bda7f";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
