@@ -17,6 +17,10 @@ in {
     shm_size = "256m";
     volumes = [
       "matrix-wechat-runtime-data:/home/wechat"
+      # Thumbnail fallback for received images; see patches/README.md. Both
+      # images run TS from source with the transpiler cache off, so mounting
+      # over the file is enough — no rebuild. Re-derive if the digest moves.
+      "${./patches/attachments.ts}:/opt/matrix-wechat/packages/wechat-runtime/src/attachments.ts:ro"
     ];
     # Web UI for QR login and chat inspection. Loopback only; reach it over an
     # ssh tunnel. `login qr` in the management room works without it.
