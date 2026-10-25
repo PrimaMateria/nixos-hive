@@ -4,7 +4,7 @@
 }: let
   inherit (cell) secrets;
 in {
-  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm3: the
+  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm4: the
   # thumbnail fallback for received images, the media-retry backoff, the
   # optional VNC view, and the media write trace, each on its own branch.
   #
@@ -12,7 +12,7 @@ in {
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:5cf388844a45aaeaef97d4efe66dfb9773da17b00105c370acf0f624e1db5e74";
+    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:63880e894bd4331e98077776cdefec984006f3a49becb0cb0cd993dbf630b2d8";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -49,7 +49,7 @@ in {
   };
 
   matrix-wechat = {
-    image = "ghcr.io/primamateria/matrix-wechat@sha256:0130308c01fc2d40a42b14e168ea2812644dd54a6a9cf5add4acac6c03104076";
+    image = "ghcr.io/primamateria/matrix-wechat@sha256:06167468e90a1f577bb10255243d0b28e11f8360a4e0c03b8e1a36ad27bc96a6";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
