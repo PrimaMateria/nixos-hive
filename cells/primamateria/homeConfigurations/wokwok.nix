@@ -17,7 +17,6 @@ in {
     cli.ambients
     cli.vifm
     cli.redthread
-    cli.iamb
     cli.lazyjira
     # cli.weechat
 
