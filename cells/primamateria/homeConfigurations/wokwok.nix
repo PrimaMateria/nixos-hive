@@ -18,6 +18,7 @@ in {
     cli.vifm
     cli.redthread
     cli.lazyjira
+    cli.opensearchMcp
     # cli.weechat
 
     {
