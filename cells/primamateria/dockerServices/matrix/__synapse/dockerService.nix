@@ -13,6 +13,7 @@
       "${root.heisenbridge.registration}:/heisenbridge-registration.yaml:ro"
       "${root.mautrixwhatsapp.registration}:/mautrix-whatsapp-registration.yaml:ro"
       "${root.mautrixdiscord.registration}:/mautrix-discord-registration.yaml:ro"
+      "${root.wechat.registration}:/matrix-wechat-registration.yaml:ro"
     ];
     environment = [
       "SYNAPSE_CONFIG_PATH=/etc/synapse/synapse.yaml"

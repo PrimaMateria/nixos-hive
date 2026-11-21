@@ -18,6 +18,8 @@
         mautrix-whatsapp-data = null;
         mautrix-discord-data = null;
         maubot-data = null;
+        matrix-wechat-data = null;
+        matrix-wechat-runtime-data = null;
       };
 
       services =
@@ -29,7 +31,8 @@
         // super.mautrixwhatsapp.dockerService
         // super.mautrixdiscord.dockerService
         // super.coturn.dockerService
-        // super.maubot.dockerService;
+        // super.maubot.dockerService
+        // super.wechat.dockerService;
     };
   };
 in {

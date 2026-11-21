@@ -109,6 +109,7 @@ in
         "/heisenbridge-registration.yaml"
         "/mautrix-whatsapp-registration.yaml"
         "/mautrix-discord-registration.yaml"
+        "/matrix-wechat-registration.yaml"
       ];
     };
   }
