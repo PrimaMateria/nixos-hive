@@ -4,15 +4,16 @@
 }: let
   inherit (cell) secrets;
 in {
-  # Images come from the PrimaMateria/matrix-wechat fork, tag v0.1.0-pm6: the
-  # thumbnail fallback for received images, the media-retry backoff, the
-  # optional VNC view, and the image-viewer walker, each on its own branch.
+  # Back on upstream. As of 2026-11-06 upstream requests originals through
+  # WeChat's native coroutine queue, serves the cached thumbnail until one
+  # arrives and upgrades the Matrix event in place -- everything the fork
+  # carried, done better. See ~/matrix-wechat-deploy/RE-FINDINGS.md.
   #
   # Runs the vendor WeChat for Linux AppImage (4.1.13, sha256-pinned upstream)
   # under Xvfb and instruments it with Frida. SYS_PTRACE is what frida-inject
   # needs; SYS_CHROOT is for the client's embedded browser sandbox.
   matrix-wechat-runtime = {
-    image = "ghcr.io/primamateria/matrix-wechat-runtime@sha256:faac3d5414d8146005c439dfc0d5f6a8b49e9e40be76cd5a72cbf8104d6cf97b";
+    image = "ghcr.io/yamada-sexta/matrix-wechat-runtime@sha256:cc144c990ddef485aad9ca8840ad9aac73a6038ebb6b6466157cea8bd4d03898";
     container_name = "matrix-wechat-runtime";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
@@ -24,12 +25,7 @@ in {
     ];
     # Web UI for QR login and chat inspection. Loopback only; reach it over an
     # ssh tunnel. `login qr` in the management room works without it.
-    ports = [
-      "127.0.0.1:18742:18742"
-      # Opening an image in the client is the only thing that makes WeChat
-      # download the original. Tunnel in: ssh -L 5900:127.0.0.1:5900 homeServer
-      "127.0.0.1:5900:5900"
-    ];
+    ports = ["127.0.0.1:18742:18742"];
     expose = ["18743"];
     environment = [
       "TZ=UTC"
@@ -38,18 +34,12 @@ in {
       # Resume the stored session on restart instead of waiting for a
       # phone approval that only `login prompt` can trigger.
       "WECHAT_AUTO_LOGIN=true"
-      "WECHAT_VNC=true"
-      "WECHAT_VNC_PASSWORD=${secrets.matrix.wechat.vnc_password}"
-      # Investigation harness: records attachment writes and accepts hook
-      # requests over the private socket. Turn off once the download call is
-      # found. See ~/matrix-wechat-deploy/RE-FINDINGS.md.
-      "WECHAT_TRACE_MEDIA=true"
     ];
     networks = ["default"];
   };
 
   matrix-wechat = {
-    image = "ghcr.io/primamateria/matrix-wechat@sha256:0502c5143b6f8ce81eeea52e04c4b3e41d9358ac53cab976a4b9e8a1e6d7f781";
+    image = "ghcr.io/yamada-sexta/matrix-wechat@sha256:939b62fe021d435db605cfb266d831610007ada0e2d6b40a0937d276c09c5d6f";
     container_name = "matrix-wechat";
     restart = "unless-stopped";
     cap_drop = ["ALL"];
