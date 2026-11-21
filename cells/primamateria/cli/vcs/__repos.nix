@@ -49,8 +49,9 @@ in {
           IdentityFile = "${cfg.secrets.identityFile.gitlab}";
           HashKnownHosts = true;
         };
-        "bitbucket.org" = {
-          HostName = "bitbucket.org";
+        # Bitbucket moved git-over-SSH to ssh.bitbucket.org. No HostName, so
+        # each alias connects to itself instead of being rewritten to the old host.
+        "bitbucket.org ssh.bitbucket.org" = {
           IdentityFile = "${cfg.secrets.identityFile.bitbucket}";
           HashKnownHosts = true;
         };

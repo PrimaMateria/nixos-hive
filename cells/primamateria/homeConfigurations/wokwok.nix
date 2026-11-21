@@ -17,8 +17,8 @@ in {
     cli.ambients
     cli.vifm
     cli.redthread
-    cli.iamb
     cli.lazyjira
+    cli.opensearchMcp
     # cli.weechat
 
     {
@@ -71,21 +71,9 @@ in {
             type = "custom";
             windows = ''
               - window_name: finapi-design-system
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/finapi-design-system/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
               - window_name: web-form-design-system
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/web-form-design-system/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
             '';
           }
           # F4
@@ -100,13 +88,6 @@ in {
                 panes:
                   - echo "lib"
                   - echo "widget"
-              - window_name: monolith code
-                start_directory: ~/dev/finapi-widget-library-monolith/
-              - window_name: monolith run
-                start_directory: ~/dev/finapi-widget-library-monolith/
-                panes:
-                  - echo "lib"
-                  - echo "widget"
             '';
           }
           # F5
@@ -118,10 +99,6 @@ in {
                 start_directory: ~/dev/web-form-ui-2_1
               - window_name: run 2_1
                 start_directory: ~/dev/web-form-ui-2_1
-              - window_name: code 2_1w
-                start_directory: ~/dev/web-form-ui-2_1-worktree
-              - window_name: run 2_1w
-                start_directory: ~/dev/web-form-ui-2_1-worktree
               - window_name: code 2_0
                 start_directory: ~/dev/web-form-ui
               - window_name: run 2_0
@@ -157,45 +134,15 @@ in {
             type = "custom";
             windows = ''
               - window_name: hostpages
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/finapi-hostpages/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
               - window_name: webform-loader
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/web-form-loader/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
               - window_name: js-loader
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/finapi-js-loader/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
               - window_name: static-resources
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/finapi-js-static-resources/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
               - window_name: web-utils
-                layout: main-vertical
-                options:
-                  main-pane-width: 66%
                 start_directory: ~/dev/finapi-web-utils/
-                panes:
-                  - echo "nvim"
-                  - echo "run"
             '';
           }
         ];
