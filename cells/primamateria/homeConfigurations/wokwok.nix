@@ -18,6 +18,7 @@ in {
     cli.vifm
     cli.redthread
     cli.lazyjira
+    cli.jtui
     cli.opensearchMcp
     # cli.weechat
 
@@ -62,6 +63,9 @@ in {
               - window_name: lazyjira
                 panes:
                   - lazyjira
+              - window_name: jtui
+                panes:
+                  - jtui
               - window_name: x
             '';
           }
