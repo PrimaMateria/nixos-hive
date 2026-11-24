@@ -20,9 +20,10 @@
 
   hiveRepos = pkgs.writeShellApplication {
     name = "hive-repos";
-    runtimeInputs = [pkgs.git pkgs.coreutils pkgs.util-linux];
+    runtimeInputs = [pkgs.git pkgs.git-crypt pkgs.coreutils pkgs.util-linux pkgs.gnugrep];
     text = ''
       DEV="''${HIVE_REPOS_DIR:-$HOME/dev}"
+      KEYCHAIN="''${HIVE_REPOS_KEYCHAIN:-$DEV/keychain}"
       MANIFEST=${manifest}
 
       usage() {
@@ -30,7 +31,8 @@
       Usage: hive-repos <command>
 
         status   show missing repos and local-only work (default)
-        sync     clone missing repos into $DEV and allow their .envrc
+        sync     clone missing repos into $DEV, allow their .envrc and
+                 git-crypt unlock them with $KEYCHAIN/<repo>.key
         list     print the repos enabled for this host
       EOF
       }
@@ -39,24 +41,43 @@
         column -t -s $'\t' "$MANIFEST"
       }
 
+      # A repo is locked when it has git-crypt attributes but no key installed.
+      is_locked() {
+        grep -qs "filter=git-crypt" "$1/.gitattributes" &&
+          [ ! -e "$(git -C "$1" rev-parse --git-common-dir)/git-crypt/keys/default" ]
+      }
+
       cmd_sync() {
         mkdir -p "$DEV"
-        local cloned=0 failed=0
+        local cloned=0 unlocked=0 failed=0
         while IFS=$'\t' read -r name url; do
           local dir="$DEV/$name"
-          [ -e "$dir" ] && continue
-          echo "==> cloning $name"
-          if git clone "$url" "$dir"; then
-            cloned=$((cloned + 1))
-            if [ -f "$dir/.envrc" ] && command -v direnv >/dev/null; then
-              direnv allow "$dir"
+          if [ ! -e "$dir" ]; then
+            echo "==> cloning $name"
+            if git clone "$url" "$dir"; then
+              cloned=$((cloned + 1))
+              if [ -f "$dir/.envrc" ] && command -v direnv >/dev/null; then
+                direnv allow "$dir"
+              fi
+            else
+              echo "!! failed to clone $name ($url)" >&2
+              failed=$((failed + 1))
+              continue
             fi
-          else
-            echo "!! failed to clone $name ($url)" >&2
-            failed=$((failed + 1))
+          fi
+
+          local key="$KEYCHAIN/$name.key"
+          if [ -f "$key" ] && is_locked "$dir"; then
+            echo "==> unlocking $name"
+            if git -C "$dir" crypt unlock "$key"; then
+              unlocked=$((unlocked + 1))
+            else
+              echo "!! failed to unlock $name (working tree must be clean)" >&2
+              failed=$((failed + 1))
+            fi
           fi
         done <"$MANIFEST"
-        echo "cloned: $cloned, failed: $failed"
+        echo "cloned: $cloned, unlocked: $unlocked, failed: $failed"
         [ "$failed" -eq 0 ]
       }
 
@@ -79,6 +100,7 @@
           [ "$unpushed" -gt 0 ] && notes+=("unpushed=$unpushed")
           [ "$stashes" -gt 0 ] && notes+=("stash=$stashes")
           [ "$worktrees" -gt 0 ] && notes+=("worktrees=$worktrees")
+          is_locked "$dir" && notes+=("git-crypt-locked")
           [ "$(git -C "$dir" remote get-url origin 2>/dev/null)" != "$url" ] && notes+=("origin-differs")
           [ ''${#notes[@]} -gt 0 ] && printf '%-40s %s\n' "$name" "''${notes[*]}"
         done <"$MANIFEST"

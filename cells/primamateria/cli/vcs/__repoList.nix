@@ -25,7 +25,7 @@
       finapi-orderprocess-ui = "git@ssh.bitbucket.org:teaminvest/finapi-orderprocess-ui.git";
       finapi-web-utils = "git@ssh.bitbucket.org:teaminvest/finapi-web-utils.git";
       finapi-widget-library = "git@ssh.bitbucket.org:teaminvest/finapi-widget-library.git";
-      lazyjira = "git@github.com:textfuel/lazyjira.git";
+      lazyjira = "git@github.com:PrimaMateria/lazyjira.git";
       lazyreporting = "git@github.com:PrimaMateria/lazyreporting.git";
       web-form-design-system = "git@ssh.bitbucket.org:teaminvest/web-form-design-system.git";
       web-form-loader = "git@ssh.bitbucket.org:teaminvest/web-form-loader.git";

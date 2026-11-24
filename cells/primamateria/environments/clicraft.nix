@@ -27,7 +27,6 @@ in {
               "startpages"
               "zmk"
               "blog"
-              "diary"
             ];
           }
         ];
