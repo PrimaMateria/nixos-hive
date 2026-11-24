@@ -20,6 +20,7 @@ in {
     cli.lazyjira
     cli.jtui
     cli.depv
+    cli.lazyreporting
     cli.opensearchMcp
     # cli.weechat
 
