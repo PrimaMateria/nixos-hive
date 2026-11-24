@@ -10,6 +10,7 @@ in {
     ./__git.nix
     ./__secrets.nix
     ./__repos.nix
+    ./__hiveRepos.nix
   ];
 
   primamateria.cli.vcs.repos = {

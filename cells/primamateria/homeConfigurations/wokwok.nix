@@ -29,6 +29,13 @@ in {
         stateVersion = "22.05";
       };
 
+      primamateria.cli.vcs.repos.groups = [
+        "personal.tmux"
+        "work.tmux"
+        "personal.extra"
+        "work.extra"
+      ];
+
       primamateria.cli.tmux = {
         sessions = [
           # F1
