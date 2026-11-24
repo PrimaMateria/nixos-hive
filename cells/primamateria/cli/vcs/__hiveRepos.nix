@@ -44,7 +44,7 @@
       # A repo is locked when it has git-crypt attributes but no key installed.
       is_locked() {
         grep -qs "filter=git-crypt" "$1/.gitattributes" &&
-          [ ! -e "$(git -C "$1" rev-parse --git-common-dir)/git-crypt/keys/default" ]
+          [ ! -e "$(git -C "$1" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)/git-crypt/keys/default" ]
       }
 
       cmd_sync() {

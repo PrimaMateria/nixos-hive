@@ -19,6 +19,7 @@ in {
     cli.redthread
     cli.lazyjira
     cli.jtui
+    cli.depv
     cli.opensearchMcp
     # cli.weechat
 

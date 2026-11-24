@@ -107,8 +107,8 @@ permanently later).
    git remote set-url origin git@github.com:PrimaMateria/nixos-hive.git
    ```
 
-6. Clone the rest of `~/dev` and unlock the other git-crypt repos (`blog`,
-   `neovim-nix`, `dev-toolkit-nix`) with their keys:
+6. Clone the rest of `~/dev`. Repos with a matching `~/dev/keychain/<repo>.key`
+   get git-crypt unlocked on the way:
 
    ```sh
    hive-repos sync
