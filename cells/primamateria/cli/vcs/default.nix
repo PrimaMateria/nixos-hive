@@ -10,7 +10,7 @@ in {
     ./__git.nix
     ./__secrets.nix
     ./__repos.nix
-    ./__hiveRepos.nix
+    (import ./__hiveRepos.nix {workRepos = secrets.wokwok.repos;})
   ];
 
   primamateria.cli.vcs.repos = {

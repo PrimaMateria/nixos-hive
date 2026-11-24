@@ -1,14 +1,15 @@
 # hive-repos: keep ~/dev in line with the repositories listed in
-# __repoList.nix. Clones are done on demand (never during activation), so a
-# fresh machine needs SSH keys in place before running `hive-repos sync`.
-{
+# __repoList.nix (personal) and secrets.wokwok.repos (work). Clones are done on
+# demand (never during activation), so a fresh machine needs SSH keys in place
+# before running `hive-repos sync`.
+{workRepos}: {
   lib,
   pkgs,
   config,
   ...
 }: let
   cfg = config.primamateria.cli.vcs.repos;
-  repoList = import ./__repoList.nix;
+  repoList = import ./__repoList.nix // {work = workRepos;};
 
   groupNames = lib.concatMap (top: map (sub: "${top}.${sub}") (lib.attrNames repoList.${top})) (lib.attrNames repoList);
 
