@@ -42,8 +42,6 @@
       finapi-keycloak = "git@ssh.bitbucket.org:teaminvest/finapi-keycloak.git";
       finapi-orderprocess = "git@ssh.bitbucket.org:teaminvest/finapi-orderprocess.git";
       finapi-process-ctrl = "git@ssh.bitbucket.org:teaminvest/finapi-process-ctrl.git";
-      frontend-skills = "finapi@finapi.ghe.com:dev/frontend-skills.git";
-      frontend-specs = "finapi@finapi.ghe.com:dev/frontend-specs.git";
       react-to-webcomponent-bundler = "git@ssh.bitbucket.org:teaminvest/react-to-webcomponent-bundler.git";
       test-mandator-creator = "finapi@finapi.ghe.com:dev/test-mandator-creator.git";
       web-form = "git@ssh.bitbucket.org:teaminvest/web-form.git";
