@@ -12,6 +12,5 @@ in {
     devices.ethernet_tower
     devices.mouse_logitech_g502
     devices.printer_hp_deskjet_3630
-    devices.monitor_acer
   ];
 }

@@ -1,3 +1,4 @@
+# A machine with a screen: audio, bluetooth and the niri + Noctalia desktop.
 {
   inputs,
   cell,
@@ -6,9 +7,8 @@
 in {
   imports = [
     installations.headless
-    {boot.loader.timeout = 10000;}
     system.bluetooth
-    system.sound
-    system.xserver
+    system.pipewire
+    system.wayland
   ];
 }

@@ -2,6 +2,8 @@
 # █▄█ ▄▀▄ █▄ ▄█ ██▀
 # █ █ ▀▄▀ █ ▀ █ █▄▄ mentat
 #
+# Home desktop: personal CLI, the niri + Noctalia desktop and leisure apps.
+# No work tools (those live in environments.workbench).
 {
   inputs,
   cell,
@@ -11,8 +13,7 @@ in {
   bee = bees.boot;
   imports = [
     environments.clicraft
-    desktop.xsession
-    desktop.terminal
+    desktop.wayland
     desktop.office
     desktop.media
     desktop.comms

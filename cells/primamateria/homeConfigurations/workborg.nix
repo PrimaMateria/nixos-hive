@@ -14,7 +14,6 @@ in {
     desktop.office
     desktop.media
     desktop.comms
-
     {
       home = {
         username = "primamateria";

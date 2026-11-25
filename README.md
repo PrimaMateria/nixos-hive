@@ -1,9 +1,9 @@
 # PrimaMateria's Hive
 
 My main flake declaring all of my Nixified systems: a desktop tower, a home
-server, a few WSL instances (gaming and work) and an older Raspberry Pi 5 setup.
+server, a work laptop and a few WSL instances (gaming and work).
 
-- Window manager: i3wm
+- Desktop: niri (scrolling Wayland compositor) + Noctalia shell, foot terminal
 - Terminal multiplexer: tmux
 - Secrets: git-crypt
 
@@ -24,7 +24,7 @@ growing and collecting is now done by a small vendored loader in `lib/` built on
 flake.nix                 inputs + hands ./cells to lib/grow.nix
 lib/                      loader.nix, beeModule.nix, grow.nix
 cells/primamateria/
-  bees.nix                platforms: wsl, boot (x86_64), rpi (aarch64)
+  bees.nix                platforms: wsl, boot (x86_64)
   nixosConfigurations/    one file per host  -> primamateria-<host>
   homeConfigurations/     one file per host  -> primamateria-<host>
   machines/ devices/      hardware
@@ -36,12 +36,12 @@ cells/primamateria/
 
 | Host         | What                            |
 | ------------ | ------------------------------- |
-| `mentat`     | desktop tower, NixOS + i3       |
+| `mentat`     | desktop tower, NixOS + niri     |
+| `workborg`   | work laptop, NixOS + niri       |
 | `homeServer` | Beelink, headless NixOS         |
 | `gg`         | WSL                             |
 | `stalker`    | WSL                             |
 | `wokwok`     | WSL, work                       |
-| `rpi5`       | home-manager only, unmaintained |
 
 ## Setting up a new machine
 

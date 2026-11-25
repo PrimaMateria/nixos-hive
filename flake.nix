@@ -24,7 +24,7 @@
       inherit (nixpkgs) lib;
       inherit nixpkgs haumea inputs;
       cellsFrom = ./cells;
-      systems = ["x86_64-linux" "aarch64-linux"];
+      systems = ["x86_64-linux"];
       nixpkgsConfig = {allowUnfree = true;};
     };
   in {
@@ -67,21 +67,6 @@
 
   # My inputs
   inputs = {
-    dmenu-primamateria = {
-      url = "github:PrimaMateria/dmenu";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    i3blocks-gcalcli = {
-      url = "github:PrimaMateria/i3blocks-gcalcli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    i3blocks-contrib = {
-      url = "github:vivien/i3blocks-contrib";
-      flake = false;
-    };
-
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";

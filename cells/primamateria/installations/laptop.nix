@@ -6,10 +6,7 @@
   inherit (cell) system installations;
 in {
   imports = [
-    installations.headless
+    installations.graphical
     system.laptop
-    system.bluetooth
-    system.pipewire
-    system.wayland
   ];
 }

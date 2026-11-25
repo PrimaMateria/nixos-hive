@@ -11,6 +11,8 @@ in {
     cli.tmux
     cli.weechat
 
+    {primamateria.cli.vcs.repos.groups = ["personal.tmux" "personal.extra"];}
+
     {
       primamateria.cli.tmux = {
         sessions = [

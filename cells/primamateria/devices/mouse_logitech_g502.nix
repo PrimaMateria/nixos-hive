@@ -3,15 +3,7 @@
   cell,
 }: {
   config = {
-    services.xserver.inputClassSections = [
-      ''
-        Identifier      "Logitech G502 HERO Gaming Mouse sensitivity"
-        MatchProduct    "Logitech G502 HERO Gaming Mouse"
-        MatchIsPointer  "true"
-        Option          "ConstantDeceleration" "3"
-        Driver          "evdev"
-      ''
-    ];
+    # Pointer speed is set in niri (homeConfigurations/mentat.nix).
     services.ratbagd.enable = true;
   };
 }

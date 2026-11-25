@@ -23,9 +23,4 @@
     pkgs = inputs.nixpkgs;
     home = inputs.home-manager;
   };
-  rpi = {
-    system = "aarch64-linux";
-    pkgs = inputs.nixpkgs;
-    home = inputs.home-manager;
-  };
 }

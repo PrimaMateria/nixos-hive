@@ -16,7 +16,7 @@
   haumea,
   inputs, # all raw flake inputs
   cellsFrom, # e.g. ./cells
-  systems ? ["x86_64-linux" "aarch64-linux"],
+  systems ? ["x86_64-linux"],
   nixpkgsConfig ? {allowUnfree = true;},
 }: let
   l = lib // builtins;

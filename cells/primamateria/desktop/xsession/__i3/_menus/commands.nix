@@ -1,2 +1,0 @@
-{super}:
-super.dmenu.dmenuRun

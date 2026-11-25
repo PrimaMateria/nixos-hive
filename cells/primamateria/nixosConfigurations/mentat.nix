@@ -2,25 +2,21 @@
 # █▄ █ █ ▀▄▀ ▄▀▄ ▄▀▀
 # █ ▀█ █ █ █ ▀▄▀ ▄██ mentat
 #
+# Home desktop tower, native NixOS with niri + Noctalia.
 {
   inputs,
   cell,
 }: let
-  inherit (cell) bees machines installations system devices;
+  inherit (cell) bees machines installations system;
 in {
   bee = bees.boot;
-
   imports = [
     machines.tower
     installations.common
-    installations.standalone
+    installations.graphical
     system.networkingHome
     {
-      imports = [
-        # system.docker
-        # system.steam
-        # rclone
-      ];
+      boot.loader.timeout = 10000;
       networking.hostName = "mentat";
     }
   ];

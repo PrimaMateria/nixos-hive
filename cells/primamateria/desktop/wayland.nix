@@ -16,9 +16,6 @@
     red = "#ea6962";
   };
 
-  # Named workspaces, in order: Mod+1..9 focus them by position.
-  workspaces = ["Comms" "Nix" "Chrome" "Firefox" "α" "β" "γ" "δ" "ε" "Vibe"];
-
   # Start from niri's own default config (well commented, all the standard
   # binds) and swap in our tools. Every pattern must still exist upstream,
   # otherwise the build fails instead of silently keeping the default.
@@ -69,19 +66,25 @@
     ]
   ];
 
-  namedWorkspaces = lib.concatMapStrings (name: "workspace \"${name}\"\n") workspaces;
-
   defaultConfig = builtins.readFile "${nixpkgs.niri.src}/resources/default-config.kdl";
 
   froms = map lib.head replacements;
   tos = map lib.last replacements;
   missing = lib.filter (p: !(lib.hasInfix p defaultConfig)) froms;
 
+  # One workspace per Mod+digit: Mod+1..9 and Mod+0 focus them by position.
+  workspaces = ["α" "β" "γ" "δ" "ε" "ζ" "η" "θ" "ι" "κ"];
+
   niriConfig = assert lib.assertMsg (missing == []) "niri default config changed, patterns not found: ${toString missing}";
     builtins.replaceStrings froms tos defaultConfig
-    + "\n// Named workspaces (desktop/wayland.nix)\n"
-    + namedWorkspaces
-    + "\noverview {\n    backdrop-color \"#000000\"\n}\n";
+    + "\noverview {\n    backdrop-color \"#000000\"\n}\n\n"
+    + lib.concatMapStrings (name: "workspace \"${name}\"\n") workspaces;
+
+  # Built with niri itself, so a config niri rejects fails the build.
+  niriConfigFile = nixpkgs.runCommand "niri-config.kdl" {nativeBuildInputs = [nixpkgs.niri];} ''
+    cp ${nixpkgs.writeText "config.kdl" niriConfig} $out
+    niri validate -c $out
+  '';
 
   # Local Noctalia plugin: Claude plan usage on the bar.
   claudeUsagePlugin = nixpkgs.runCommand "noctalia-claude-usage" {} ''
@@ -89,12 +92,6 @@
     cp ${./__noctalia-claude-usage/plugin.toml} $out/claude-usage/plugin.toml
     substitute ${./__noctalia-claude-usage/usage.luau} $out/claude-usage/usage.luau \
       --replace-fail @rateLimitsFile@ /home/primamateria/.claude/rate-limits.json
-  '';
-
-  # Fail the build on a config niri itself rejects.
-  niriConfigFile = nixpkgs.runCommand "niri-config.kdl" {nativeBuildInputs = [nixpkgs.niri];} ''
-    cp ${nixpkgs.writeText "config.kdl" niriConfig} $out
-    niri validate -c $out
   '';
 in {
   xdg.configFile."niri/config.kdl".source = niriConfigFile;
