@@ -11,9 +11,8 @@ in {
   imports = [
     environments.workbench
     desktop.wayland
-    desktop.office
-    desktop.media
-    desktop.comms
+    desktop.common
+    desktop.work
     {
       home = {
         username = "primamateria";

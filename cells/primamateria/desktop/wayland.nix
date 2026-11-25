@@ -46,6 +46,8 @@
     # Look: tighter gaps, a thin gruvbox focus ring, rounded corners and no
     # client-side title bars, so every window gets the same frame.
     ["    gaps 16" "    gaps 8\n    background-color \"#000000\""]
+    # New windows open full width; Mod+R still cycles the preset widths.
+    ["    default-column-width { proportion 0.5; }" "    default-column-width { proportion 1.0; }"]
 
     # Tenth workspace on Mod+0.
     ["    Mod+9 { focus-workspace 9; }" "    Mod+9 { focus-workspace 9; }\n    Mod+0 { focus-workspace 10; }"]
