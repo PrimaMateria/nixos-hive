@@ -9,9 +9,6 @@ in {
     cli.shell
     cli.vcs
     cli.tmux
-    cli.feeds
-    cli.ambients
-    cli.vifm
     cli.weechat
 
     {

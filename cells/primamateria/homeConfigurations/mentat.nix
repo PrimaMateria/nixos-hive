@@ -16,6 +16,7 @@ in {
     desktop.office
     desktop.media
     desktop.comms
+    desktop.leisure
     {
       home = {
         username = "primamateria";

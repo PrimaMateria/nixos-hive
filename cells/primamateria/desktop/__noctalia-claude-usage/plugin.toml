@@ -1,0 +1,10 @@
+id         = "primamateria/claude-usage"
+name       = "Claude usage"
+version    = "1.0.0"
+plugin_api = 3
+author     = "primamateria"
+description = "Claude plan limits (5h session, week) from ~/.claude/rate-limits.json, written by the Claude Code status line."
+
+[[widget]]
+id    = "usage"
+entry = "usage.luau"

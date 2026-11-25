@@ -30,19 +30,6 @@ with builtins; {
         - window_name: startpages
           start_directory: ~/dev/startpages/
       '';
-      ambients = ''
-        - window_name: ambients
-          start_directory: ~/Music/ambients
-          panes:
-            - echo cmus
-      '';
-      newsboat = ''
-        - window_name: newsboat
-          layout: even-horizontal
-          start_directory: ~/
-          panes:
-            - echo newsboat
-      '';
       weechat = ''
         - window_name: weechat
           start_directory: ~/

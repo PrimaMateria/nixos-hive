@@ -52,15 +52,8 @@ in {
     browser: firefox
     ebooks: calibre
     files: doublecmd
-    image Editor: gimp
-    image Viewer: qimgv
     led: openrgb
     mouse: piper
-    office: libreoffice
-    pdf: sioyek
-    scanner: simple-scan
-    screenshot: flameshot
-    speakers control: pavucontrol
     stream: obs-studio
   '';
 }

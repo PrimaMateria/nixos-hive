@@ -27,15 +27,6 @@ in {
   # baking a store hash into every shell's environment.
   environment.etc."nix/inputs/nixpkgs".source = nixpkgsFlake.outPath;
 
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us,sk,de";
-      variant = ",qwerty,qwerty";
-      options = "grp:lctrl_lwin_toggle";
-    };
-  };
-
   users.users.primamateria = {
     isNormalUser = true;
     homeMode = "755";

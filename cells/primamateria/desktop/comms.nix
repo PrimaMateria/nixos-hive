@@ -7,7 +7,5 @@ in {
   home.packages = with nixpkgs; [
     element-desktop
     slack
-    skypeforlinux
-    discord
   ];
 }

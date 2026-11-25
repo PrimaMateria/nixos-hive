@@ -17,6 +17,7 @@
   };
 in {
   config = {
+    services.xserver.enable = true;
     services.xserver.autorun = false;
     services.xserver.windowManager.icewm.enable = true;
     services.displayManager.gdm.enable = true;

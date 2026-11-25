@@ -5,6 +5,15 @@
   inherit (inputs) nixpkgs;
   inherit (nixpkgs) lib;
 in {
+  services.xserver = {
+    enable = true;
+    xkb = {
+      layout = "us,sk,de";
+      variant = ",qwerty,qwerty";
+      options = "grp:lctrl_lwin_toggle";
+    };
+  };
+
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.displayManager.lightdm.enable = true;
